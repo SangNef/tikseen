@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Default from '~/views/Default/index.vue';
 import LoginView from '~/views/Login/index.vue';
+import RegisterView from '~/views/Login/Register.vue';
 import HomeView from '~/views/Home/index.vue';
 import ShopView from '~/views/Shop/index.vue';
 import HistoryView from '~/views/History/index.vue';
@@ -22,6 +23,7 @@ import ShopType from '~/views/Shop/ShopType.vue';
 const routes: Array<RouteRecordRaw> = [
     { path: '/default', component: Default, meta: { layout: "NoLayout" } },
     { path: '/login', component: LoginView, meta: { layout: "NoLayout" } },
+    { path: '/register', component: RegisterView, meta: { layout: "NoLayout" } },
     {
         path: '/',
         component: HomeView,

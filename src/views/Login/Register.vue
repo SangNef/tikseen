@@ -3,11 +3,11 @@
         <Toast v-show="message !== ''" :type="toastType" :message="message" />
         <div class="mt-[20%]">
             <div class="m-[30px] flex justify-between">
-                <span class="text-[#333] font-bold text-[28px] p-1.5 rounded-lg">Đăng nhập</span>
+                <span class="text-[#333] font-bold text-[28px] p-1.5 rounded-lg">Đăng ký</span>
             </div>
-            <div class="mx-[30px]">
-                <form @submit.prevent="handleLogin">
-                    <div>
+            <div>
+                <form @submit.prevent="handleRegister">
+                    <div class="mx-[30px]">
                         <span class="">Tên đăng nhập</span>
                         <div
                             style="
@@ -40,7 +40,7 @@
                                 <input
                                     style="color: #333"
                                     v-model="username"
-                                    class="w-[65%] h-[2.17333rem] text-[15px] border-none rounded-[.26667rem] bg-transparent outline-none [background-size:.64rem.64rem] [padding:.36rem.34667rem.36rem.8rem]"
+                                    class="w-[100%] h-[2.17333rem] text-[15px] border-none rounded-[.26667rem] bg-transparent outline-none [background-size:.64rem.64rem] [padding:.36rem.34667rem.36rem.8rem]"
                                     id="txtPhone"
                                     type="text"
                                     placeholder="Tên đăng nhập" />
@@ -49,7 +49,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-4 mx-[30px]">
                         <span>Mật khẩu</span>
                         <div
                             style="
@@ -65,7 +65,7 @@
                                 <input
                                     style="color: #333"
                                     v-model="password"
-                                    class="w-[65%] h-[2.17333rem] text-[15px] border-none rounded-[.26667rem] bg-transparent outline-none [background-size:.64rem.64rem] [padding:.36rem.34667rem.36rem.8rem]"
+                                    class="w-[100%] h-[2.17333rem] text-[15px] border-none rounded-[.26667rem] bg-transparent outline-none [background-size:.64rem.64rem] [padding:.36rem.34667rem.36rem.8rem]"
                                     id="txtPassword"
                                     type="password"
                                     placeholder="Vui lòng xác nhận mật khẩu" />
@@ -73,33 +73,65 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mb-4 mx-[30px]">
+                        <span>Xác nhận mật khẩu</span>
+                        <div
+                            style="
+                                background: #fff;
+                                border: 1px solid #eee;
+                                border-radius: 6px;
+                                padding: 10px;
+                                margin-bottom: 30px;
+                                margin-top: 5px;
+                            ">
+                            <div class="dropdown" style="display: flex">
+                                <img style="height: 30px" src="https://i.imgur.com/wYahEmm.png" alt="" />
+                                <input
+                                    style="color: #333"
+                                    v-model="cfPassword"
+                                    class="w-[100%] h-[2.17333rem] text-[15px] border-none rounded-[.26667rem] bg-transparent outline-none [background-size:.64rem.64rem] [padding:.36rem.34667rem.36rem.8rem]"
+                                    id="cfPassword"
+                                    type="password"
+                                    placeholder="Vui lòng nhập lại mật khẩu 6-20 ký tự" />
+                                <div style="border-bottom: 0.01333rem solid #686c94; padding-top: 10px"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4 mx-[30px]">
+                        <span>Mã mời</span>
+                        <div
+                            style="
+                                background: #fff;
+                                border: 1px solid #eee;
+                                border-radius: 6px;
+                                padding: 10px;
+                                margin-bottom: 30px;
+                                margin-top: 5px;
+                            ">
+                            <div class="dropdown" style="display: flex">
+                                <img style="height: 30px" src="https://i.imgur.com/wYahEmm.png" alt="" />
+                                <input
+                                    style="color: #333"
+                                    v-model="code"
+                                    class="w-[100%] h-[2.17333rem] text-[15px] border-none rounded-[.26667rem] bg-transparent outline-none [background-size:.64rem.64rem] [padding:.36rem.34667rem.36rem.8rem]"
+                                    id="code"
+                                    type="text"
+                                    placeholder="Vui lòng nhập mã mời" />
+                                <div style="border-bottom: 0.01333rem solid #686c94; padding-top: 10px"></div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div class="my-2.5">
+                    <div class="m-5">
                         <button
                             type="submit"
                             style="border-radius: 4px; height: 51px; color: #fff; background: #fe4a70"
                             class="w-full border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black focus:ring focus:ring-yellow-300 active:bg-yellow-400 active:text-black active:shadow-md disabled:border-yellow-400 disabled:text-yellow-400 px-4 py-2 rounded-md transition"
                             id="btnLogin">
-                            Đăng Nhập
+                            Xác nhận
                         </button>
                     </div>
-                    <div class="my-2.5">
-                        <button
-                            style="
-                                border-radius: 4px;
-                                height: 51px;
-                                color: #333;
-                                background: #f2f2f2;
-                                border: 1px solid #eee;
-                            "
-                            class="w-full border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black focus:ring focus:ring-yellow-300 active:bg-yellow-400 active:text-black active:shadow-md disabled:border-yellow-400 disabled:text-yellow-400 px-4 py-2 rounded-md transition"
-                            id="btnLogin"
-                            @click="router.push('/register')"
-                            >
-                            Đăng ký
-                        </button>
-                    </div>
-                    <div class="my-2.5" style="font-size: 14px; color: #666">
+                    <div class="m-5" style="font-size: 14px; color: #666">
                         Bằng cách tiếp tục, bạn đồng ý với Điều khoản dịch vụ thương gia dành cho tiktok shop, Điều
                         khoản dịch vụ thương mại Tiktok và xác nhận rằng bạn đã đọc Chính sách quyền riêng tư của Tiktok
                         shop và Chính sách quyền riêng tư của Tiktok for business để tìm hiểu cách chúng tôi thu thập,
@@ -114,30 +146,69 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import Toast from "../../components/Toast.vue";
-import { useRouter } from "vue-router";
-const router = useRouter();
 
 const username = ref<string>("");
 const password = ref<string>("");
+const cfPassword = ref<string>("");
+const code = ref<string>("");
 const message = ref<string>("");
 const toastType = ref<"error" | "success">("error");
 
-const handleLogin = () => {
-    if (username.value === "kimcuong" && password.value === "123456") {
-        localStorage.setItem("user", JSON.stringify({ username: username.value }));
-        message.value = "Đăng nhập thành công";
+const handleRegister = () => {
+    // if (username.value === "kimcuong" && password.value === "123456") {
+    //     localStorage.setItem("user", JSON.stringify({ username: username.value }));
+    //     message.value = "Đăng nhập thành công";
+    //     toastType.value = "success";
+    //     setTimeout(() => {
+    //         message.value = "";
+    //         window.location.href = "/";
+    //     }, 1000);
+    // } else {
+    //     message.value = "Sai tài khoản hoặc mật khẩu";
+    //     toastType.value = "error";
+
+    //     setTimeout(() => {
+    //         message.value = "";
+    //     }, 5000);
+    // }
+
+    if (username.value === "" ) {
+        message.value = "Vui lòng điền tên tài khoản";
+        toastType.value = "error";
+        setTimeout(() => {
+            message.value = "";
+        }, 5000);
+    } else if (password.value === "") {
+        message.value = "Vui lòng nhập mật khẩu";
+        toastType.value = "error";
+        setTimeout(() => {
+            message.value = "";
+        }, 5000);
+    } else if (cfPassword.value !== password.value) {
+        message.value = "Mật khẩu xác nhận chưa khớp";
+        toastType.value = "error";
+        setTimeout(() => {
+            message.value = "";
+        }, 5000);
+    } else if (cfPassword.value.length < 6) {
+        message.value = "Mật khẩu từ 6 ký tự trở lên";
+        toastType.value = "error";
+        setTimeout(() => {
+            message.value = "";
+        }, 5000);
+    } else if (code.value === "" ) {
+        message.value = "Vui lòng nhập mã mời";
+        toastType.value = "error";
+        setTimeout(() => {
+            message.value = "";
+        }, 5000);
+    } else {
+        message.value = "Đăng ký thành công";
         toastType.value = "success";
         setTimeout(() => {
             message.value = "";
             window.location.href = "/";
         }, 1000);
-    } else {
-        message.value = "Sai tài khoản hoặc mật khẩu";
-        toastType.value = "error";
-
-        setTimeout(() => {
-            message.value = "";
-        }, 5000);
     }
 };
 </script>
