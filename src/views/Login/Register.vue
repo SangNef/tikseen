@@ -143,16 +143,16 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { ref } from "vue";
 import Toast from "../../components/Toast.vue";
 
-const username = ref<string>("");
-const password = ref<string>("");
-const cfPassword = ref<string>("");
-const code = ref<string>("");
-const message = ref<string>("");
-const toastType = ref<"error" | "success">("error");
+const username = ref("");
+const password = ref("");
+const cfPassword = ref("");
+const code = ref("");
+const message = ref("");
+const toastType = ref("error");
 
 const handleRegister = () => {
     // if (username.value === "kimcuong" && password.value === "123456") {

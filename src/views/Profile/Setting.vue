@@ -25,7 +25,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
 import { useRouter } from "vue-router";
 
@@ -39,7 +39,7 @@ const items = [
     { title: "Quản lý thẻ ngân hàng", route: "changebank" },
 ];
 
-const navigateTo = (route: string) => {
+const navigateTo = (route) => {
     router.push(route);
 };
 </script>

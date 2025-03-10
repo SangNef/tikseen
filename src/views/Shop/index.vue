@@ -40,7 +40,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import homePng2 from "~/assets/imgs/shoppng.png";
 import loa from "~/assets/imgs/loa.png";
 import { ref } from "vue";

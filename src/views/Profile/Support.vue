@@ -28,7 +28,7 @@
 </template>
 
 
-<script lang="ts" setup>
+<script setup>
 import { useRouter } from "vue-router";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
 
@@ -41,7 +41,7 @@ const items = [
     { title: "Chát với trợ lý 2", type: 3},
 ]
 
-const navigateTo = (type: number) => {
+const navigateTo = (type) => {
     router.push({ path: "/support", query: { type } });
 };
 </script>

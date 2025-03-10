@@ -58,7 +58,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { useRouter } from "vue-router";
 
 const router = useRouter();

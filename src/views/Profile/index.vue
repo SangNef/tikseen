@@ -63,7 +63,7 @@
                     <!-- <span style="font-size:20px">0</span> -->
                 </div>
             </div>
-            <div style="display: flex; justify-content: space-between; align-item: center; margin-top: 15px">
+            <div style="display: flex; justify-content: space-between; align-content: center; margin-top: 15px">
                 <a
                     href="/deposit"
                     class="bg-gradient-to-b from-[#13a2ba] to-[#087c95] flex-1 rounded-[10px] min-h-11 text-white text-lg font-semibold flex items-center justify-center mr-1.5"
@@ -93,7 +93,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { useRouter } from "vue-router";
 const router = useRouter();
 
@@ -117,7 +117,7 @@ const items = [
     { title: "Đăng xuất", route: "/logout" },
 ];
 
-const navigateTo = (path: string) => {
+const navigateTo = (path) => {
     if (path === "/logout") {
         handleLogout();
     } else {

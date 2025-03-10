@@ -14,7 +14,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { ref, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
@@ -54,7 +54,7 @@ const route = useRoute();
 
 const currentRoute = computed(() => route.path);
 
-const navigateTo = (path: string) => {
+const navigateTo = (path) => {
     router.push(path);
 };
 </script>

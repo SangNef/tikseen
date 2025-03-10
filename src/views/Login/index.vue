@@ -111,16 +111,16 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { ref } from "vue";
 import Toast from "../../components/Toast.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-const username = ref<string>("");
-const password = ref<string>("");
-const message = ref<string>("");
-const toastType = ref<"error" | "success">("error");
+const username = ref("");
+const password = ref("");
+const message = ref("");
+const toastType = ref("error");
 
 const handleLogin = () => {
     if (username.value === "kimcuong" && password.value === "123456") {

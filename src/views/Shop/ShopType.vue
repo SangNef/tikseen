@@ -131,6 +131,7 @@
                                         font-size: 14px;
                                         display: -webkit-box;
                                         -webkit-line-clamp: 2;
+                                        line-clamp: 2;
                                         -webkit-box-orient: vertical;
                                         overflow: hidden;
                                         text-overflow: ellipsis;
@@ -170,7 +171,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import Toast from "../../components/Toast.vue";
@@ -184,7 +185,7 @@ const router = useRouter();
 
 const type = computed(() => Number(route.query.type) || 0);
 
-const titles: Record<number, string> = {
+const titles = {
     1: "RABITY",
     2: "NPP",
     3: "VEDETTE",
@@ -192,7 +193,7 @@ const titles: Record<number, string> = {
 };
 
 const countdown = ref(300);
-let timer: ReturnType<typeof setInterval> | null = null;
+let timer = null;
 
 const minutes = computed(() => String(Math.floor(countdown.value / 60)).padStart(2, "0"));
 const seconds = computed(() => String(countdown.value % 60).padStart(2, "0"));
@@ -331,13 +332,13 @@ const products = [
     },
 ];
 
-const formatPrice = (price: number) => {
+const formatPrice = (price) => {
     return new Intl.NumberFormat("vi-VN").format(price) + "đ";
 };
 
-const selectedProduct = ref<(typeof products)[0] | null>(null);
+const selectedProduct = ref(null);
 
-const handleSelectProduct = (product: (typeof products)[0]) => {
+const handleSelectProduct = (product) => {
     selectedProduct.value = product;
     console.log("selectedProduct", selectedProduct.value);
 };
@@ -351,8 +352,8 @@ const handleToggleModel = () => {
     showModel.value = !showModel.value;
 };
 
-const message = ref<string>("");
-const toastType = ref<"error" | "success">("error");
+const message = ref("");
+const toastType = ref("error");
 
 const handleBuy = () => {
     if (!selectedProduct.value) {

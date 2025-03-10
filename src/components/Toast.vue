@@ -6,13 +6,20 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { computed, watchEffect } from "vue";
 
-const props = defineProps<{
-    type: "error" | "success";
-    message: string;
-}>();
+const props = defineProps({
+    type: {
+        type: String,
+        required: true,
+        validator: (value) => ['error', 'success'].includes(value)
+    },
+    message: {
+        type: String,
+        required: true
+    }
+});
 
 const toastClass = computed(() => ({
     "toast-error": props.type === "error",
@@ -43,13 +50,13 @@ watchEffect(() => {
 }
 
 .toast-error {
-    background-image: url('~/assets/icons/toast-err.png');
+    background-image: url('@client/assets/icons/toast-err.png');
     background-color: #BD362F;
     color: white;
 }
 
 .toast-success {
-    background-image: url('~/assets/icons/toast-scs.png');
+    background-image: url('@client/assets/icons/toast-scs.png');
     background-color: #51A351;
     color: white;
 }

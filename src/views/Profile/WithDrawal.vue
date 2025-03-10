@@ -35,7 +35,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { useRoute, useRouter } from "vue-router";
 import { computed } from "vue";
 import { ref } from "vue";
@@ -56,7 +56,7 @@ const tabs = [
     { title: "Tuần này", role: "week" },
 ]
 
-const handleSetActiveTab = (role: string) => {
+const handleSetActiveTab = (role) => {
     activeTab.value = role;
 }
 

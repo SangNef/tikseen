@@ -10,7 +10,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { useRouter } from "vue-router";
 import { ChevronLeftIcon } from "@heroicons/vue/24/solid";
 
