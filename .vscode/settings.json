@@ -1,0 +1,48 @@
+{
+    "editor.wordWrap": "on",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.tabWidth": 2,
+    "prettier.bracketSpacing": true,
+    "prettier.useEditorConfig": true,
+    "i18n-ally.keystyle": "nested",
+    "[dotenv]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.exclude": {
+        "node_modules": true
+    },
+    "[ignore]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "files.associations": {
+        "*.vue": "vue",
+        "*.js": "javascript",
+        "*.ts": "typescript",
+        "*.scss": "scss",
+        "*.less": "less"
+    },
+    "[edge]": {
+        "editor.defaultFormatter": "luongnd.edge"
+    },
+    "git.ignoreLimitWarning": true,
+}
