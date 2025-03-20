@@ -6,6 +6,7 @@ import ProfileView from "@client/views/Profile/index.vue";
 import HistoryView from "@client/views/Profile/History.vue";
 import BindView from "@client/views/Profile/Bind.vue";
 import SignupView from "@client/views/Profile/Signup.vue";
+import LoginView from "@client/views/Profile/Login.vue";
 
 const routes = [
     {
@@ -41,6 +42,11 @@ const routes = [
     {
         path: "/signup",
         component: SignupView,
+        meta: { layout: "DefaultLayout" },
+    },
+    {
+        path: "/login",
+        component: LoginView,
         meta: { layout: "DefaultLayout" },
     }
 ];

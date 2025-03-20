@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex flex-col gap-3 items-center px-3 overflow-hidden" v-if="user">
+    <div class="w-full flex flex-col gap-3 items-center px-3 overflow-hidden" v-if="1">
         <div
             class="rounded-xl border bg-card text-card-foreground shadow relative p-6 gap-4 w-full flex flex-col justify-between items-center overflow-hidden">
             <img
