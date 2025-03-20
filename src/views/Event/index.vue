@@ -5,21 +5,50 @@ const timeLeft = ref(180);
 const value = ref("");
 const isBet = ref(false);
 const checked = ref(0);
+const numbers = ref(["", "", ""]);
+const isTimeUp = ref(false);
+const showCardIndex = ref(-1);
 
 let timer;
+
 onMounted(() => {
-    timer = setInterval(() => {
-        if (timeLeft.value > 0) {
-            timeLeft.value -= 1;
-        } else {
-            clearInterval(timer);
-        }
-    }, 1000);
+    startCountdown();
 });
 
 onUnmounted(() => {
     clearInterval(timer);
 });
+
+const startCountdown = () => {
+    timeLeft.value = 5;
+    showCardIndex.value = -1;
+    numbers.value = ["", "", ""];
+    isTimeUp.value = false;
+
+    timer = setInterval(() => {
+        if (timeLeft.value > 0) {
+            timeLeft.value -= 1;
+        } else {
+            clearInterval(timer);
+            isTimeUp.value = true;
+            revealCards();
+        }
+    }, 1000);
+};
+
+const revealCards = () => {
+    setTimeout(() => { showCardIndex.value = 0; }, 500);
+    setTimeout(() => { showCardIndex.value = 1; }, 1000);
+    setTimeout(() => {
+        showCardIndex.value = 2;
+        numbers.value = ["1", "2", "3"];
+    }, 1500);
+
+    setTimeout(() => {
+        showCardIndex.value = -1;
+        startCountdown();
+    }, 4500);
+};
 
 const formatTime = (seconds) => {
     const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
@@ -36,6 +65,78 @@ const formattedTime = computed(() => formatTime(timeLeft.value));
         <iframe
             class="w-full h-full absolute z-[-1]"
             src="https://lottie.host/embed/cd316237-3ff3-4e09-9d3f-54bb0d5b4608/79FRzmE2LF.json"></iframe>
+        <div class="relative w-full flex">
+            <div class="w-full grid grid-cols-3 gap-8">
+                <!-- CARD 1 -->
+                <div
+                    id="container1"
+                    class="container transform transition-all duration-700 relative aspect-[2/3] flex justify-center items-center"
+                    :class="{ 'translate-x-0': showCardIndex >= 0, 'translate-x-[1500px]': showCardIndex < 0 }">
+                    <div
+                        id="card_1"
+                        class="card absolute z-10 front w-full h-full bg-[url('/pattern.png')] bg-[length:90px_90px] transition-all duration-500 drop-shadow-lg border-2 bg-white  rounded-lg"
+                        :class="{
+                            '[transform:rotateY(180deg)]': showCardIndex >= 0,
+                            '[transform:rotateY(0deg)]': showCardIndex < 0,
+                        }"></div>
+                    <div
+                        id="back_1"
+                        class="px-2 py-1 z-10 inline-flex justify-center items-center font-bold text-3xl text-[#4492bf] bg-white card absolute w-full h-full transition-all delay-500 duration-500"
+                        :class="{
+                            '[transform:rotateY(0deg)]': showCardIndex >= 0,
+                            '[transform:rotateY(90deg)]': showCardIndex < 0,
+                        }">
+                        {{ numbers[0] }}
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div
+                    id="container2"
+                    class="container transform transition-all duration-700 relative aspect-[2/3] flex justify-center items-center"
+                    :class="{ 'translate-x-0': showCardIndex >= 1, 'translate-x-[1500px]': showCardIndex < 1 }">
+                    <div
+                        id="card_2"
+                        class="card absolute z-10 front w-full h-full bg-[url('/pattern.png')] bg-[length:90px_90px] transition-all duration-500 drop-shadow-lg border-2 bg-white  rounded-lg"
+                        :class="{
+                            '[transform:rotateY(180deg)]': showCardIndex >= 1,
+                            '[transform:rotateY(0deg)]': showCardIndex < 1,
+                        }"></div>
+                    <div
+                        id="back_2"
+                        class="px-2 py-1 z-10 inline-flex justify-center items-center font-bold text-3xl text-[#4492bf] bg-white card absolute w-full h-full transition-all delay-500 duration-500"
+                        :class="{
+                            '[transform:rotateY(0deg)]': showCardIndex >= 1,
+                            '[transform:rotateY(90deg)]': showCardIndex < 1,
+                        }">
+                        {{ numbers[1] }}
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div
+                    id="container3"
+                    class="container transform transition-all duration-700 relative aspect-[2/3] flex justify-center items-center"
+                    :class="{ 'translate-x-0': showCardIndex >= 2, 'translate-x-[1500px]': showCardIndex < 2 }">
+                    <div
+                        id="card_3"
+                        class="card absolute z-10 front w-full h-full bg-[url('/pattern.png')] bg-[length:90px_90px] transition-all duration-500 drop-shadow-lg border-2 bg-white  rounded-lg"
+                        :class="{
+                            '[transform:rotateY(180deg)]': showCardIndex >= 2,
+                            '[transform:rotateY(0deg)]': showCardIndex < 2,
+                        }"></div>
+                    <div
+                        id="back_3"
+                        class="px-2 py-1 z-10 inline-flex justify-center items-center font-bold text-3xl text-[#4492bf] bg-white card absolute w-full h-full transition-all delay-500 duration-500"
+                        :class="{
+                            '[transform:rotateY(0deg)]': showCardIndex >= 2,
+                            '[transform:rotateY(90deg)]': showCardIndex < 2,
+                        }">
+                        {{ numbers[2] }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="w-full h-[48px] font-bold flex flex-row justify-between items-center">
         <div class="w-full text-xl flex justify-start items-center">
