@@ -1,209 +1,297 @@
 <template>
-    <div class="w-full flex flex-col gap-3 items-center px-3 overflow-hidden" v-if="1">
+    <div>
+        <div class="bg-[#e72732] min-h-11 flex items-center justify-center border-b border-[#fff]">
+            <p class="p text-white" style="margin-bottom: 0px; font-size: 15px">Trung Tâm Người Dùng</p>
+        </div>
         <div
-            class="rounded-xl border bg-card text-card-foreground shadow relative p-6 gap-4 w-full flex flex-col justify-between items-center overflow-hidden">
-            <img
-                alt=""
-                loading="lazy"
-                width="320"
-                height="500"
-                decoding="async"
-                data-nimg="1"
-                class="opacity-10 translate-x-[97px] scale-[1] absolute -rotate-[20deg]"
-                :src="IBanner"
-                style="color: transparent" />
-            <div class="relative w-full h-[140px] flex flex-row justify-between items-center">
-                <div class="relative w-[30%] h-full rounded-lg z-[1]">
-                    <img
-                        alt=""
-                        loading="lazy"
-                        decoding="async"
-                        data-nimg="fill"
-                        class="rounded-lg object-cover"
-                        sizes="100vw"
-                        :src="PLogo"
-                        style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent" />
-                </div>
-                <div class="w-[67%] h-full font-bold text-[#4492bf] flex flex-col z-[1] gap-1">
-                    <div class="text-xl">mang01</div>
-                    <div
-                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-primary-foreground shadow w-fit hover:bg-[#4492bfa8] bg-[#4492bf] text-white text-[0.75rem] [line-height:1rem]">
-                        계정 정상
-                    </div>
-                    <div class="w-full flex-row flex justify-between items-center">
-                        <div>현재 적립금:</div>
-                        <div>0 원</div>
+            class="h-[calc(100vh-env(safe-area-inset-bottom)-92px)]"
+            :style="{
+                backgroundImage: `url(${bgRed})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPositionX: 'center',
+                backgroundPositionY: 'center',
+                backgroundAttachment: 'fixed',
+                backgroundSize: 'cover',
+            }">
+            <div class="h-[110px] relative pt-[26px]">
+                <div class="absolute left-[35%] translate-x-[-30%]">
+                    <div class="flex">
+                        <div class="flex flex-col justify-center">
+                            <img
+                                :src="userDefault"
+                                alt=""
+                                class="rounded-full w-15 h-15 align-middle border-2 border-[#fff3]" />
+                            <i
+                                class="-ml-[10px] mr-[10px] w-[75px] h-[18px] relative"
+                                :style="{
+                                    backgroundImage: `url(${rich})`,
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPositionX: 'center',
+                                    backgroundPositionY: '0px',
+                                }"></i>
+                        </div>
+                        <div class="pt-[10px] pl-[10px] flex flex-col text-white">
+                            <div class="text-[16px] font-medium float-left">mrl9999</div>
+                            <div class="mt-[5px] w-[65vw] opacity-60 text-xs">
+                                <span>Lần đăng nhập cuối:23-03-2025 19:52:43</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="px-3 w-full flex-col flex justify-center relative gap-3">
-                <div class="w-full font-bold text-xl top-0 items-center flex flex-row justify-between text-[1.25rem]">
-                    <button
-                        type="button"
-                        @click="modalVisible = true"
-                        class="flex flex-row justify-center items-center gap-2">
-                        <div class="text-base underline underline-offset-4">매너 점수</div>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-info">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 16v-4"></path>
-                            <path d="M12 8h.01"></path>
-                        </svg>
-                    </button>
-                    <div class="text-[#ff6e1d]">10/10 🫠</div>
+            <div class="mx-[30px] text-white rounded-[5px] px-[15px] py-[5px] bg-[#ffffff1a] mt-3">
+                <span style="font-size: 12px; opacity: 0.7">Tổng quỹ</span>
+                <br />
+                <span style="font-size: 18px" class="flex">
+                    <img :src="balance" alt="" class="w-5 h-5" />&nbsp;₫&nbsp;0
+                </span>
+            </div>
+            <div class="text-white" style="display: flex; margin: 10px 20px; font-size: 12px">
+                <div class="w-full rounded-[5px] p-[10px] bg-[#ffffff1a] text-center" style="margin: 0px 10px">
+                    <router-link class="flex flex-col items-center">
+                        <img :src="dep" alt="" class="w-[22px]" />
+                        <span>Ký quỹ</span>
+                    </router-link>
+                </div>
+                <div class="w-full rounded-[5px] p-[10px] bg-[#ffffff1a] text-center" style="margin: 0px 10px">
+                    <router-link class="flex flex-col items-center">
+                        <img :src="cashout" alt="" class="w-[22px]" />
+                        <span>Rút quỹ</span>
+                    </router-link>
+                </div>
+            </div>
+            <div class="" style="padding: 10px; margin: 10px 0px 30px">
+                <div class="bg-white p-[10px]" style="border-radius: 10px 10px 0px 0px; margin-bottom: -1px">
+                    <p class="p-[10px] text-xs text-center">Thành viên</p>
+                    <div class="bg-[#178bff] w-1/5 h-[3px] mx-auto"></div>
                 </div>
                 <div
-                    aria-valuemax="100"
-                    aria-valuemin="0"
-                    role="progressbar"
-                    data-state="indeterminate"
-                    data-max="100"
-                    class="relative h-2 w-full overflow-hidden rounded-full bg-primary/20">
+                    class=""
+                    style="
+                        overflow-x: hidden;
+                        border-radius: 0px 0px 10px 10px;
+                        margin-bottom: calc(0px + env(safe-area-inset-bottom));
+                    ">
                     <div
-                        data-state="indeterminate"
-                        data-max="100"
-                        class="h-full w-full flex-1 bg-[#ff6e1d] rounded-full transition-all"
-                        :style="{ transform: `translateX(${progress}%)` }"></div>
+                        class=""
+                        style="
+                            height: 1018px;
+                            flex-direction: row;
+                            transition: all;
+                            transform: translate(0%, 0px);
+                            direction: ltr;
+                            display: flex;
+                            will-change: transform;
+                        ">
+                        <div
+                            class="w-full"
+                            style="
+                                background-color: white;
+                                color: black;
+                                overflow-x: hidden;
+                                border-radius: 0px 0px 10px 10px;
+                            ">
+                            <div v-for="(category, index) in menuCategories" :key="index">
+                                <button
+                                    class="m-[5%] w-[90%] flex justify-between items-center"
+                                    @click="toggleCategory(category.id)">
+                                    <span class="text-sm font-bold">{{ category.label }}</span>
+                                    <svg
+                                        stroke="currentColor"
+                                        fill="currentColor"
+                                        stroke-width="0"
+                                        viewBox="0 0 24 24"
+                                        class="dropdownArrow transition-transform duration-300"
+                                        :class="{ 'rotate-180': openCategories[category.id] }"
+                                        size="20"
+                                        height="20"
+                                        width="20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                            <path d="M12 8l6 6H6z"></path>
+                                        </g>
+                                    </svg>
+                                </button>
+                                <div v-if="openCategories[category.id]" class="ml-6 transition-all duration-300">
+                                    <router-link
+                                        v-for="item in groupedMenuItems[category.id]"
+                                        :key="item.href"
+                                        :to="item.href"
+                                        class="flex items-center p-2 text-sm">
+                                        <img :src="item.icon" alt="" width="25" />
+                                        <span style="font-size: 14px; margin-left: 15px;">{{ item.label }}</span>
+                                    </router-link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="grid grid-cols-3 w-full gap-4">
-            <router-link to="/history"
-                ><div
-                    class="rounded-xl shadow hover:opacity-40 aspect-square border border-[#4492bf40] bg-[#4492bfa8] text-white justify-center items-center flex flex-col w-full font-bold gap-3">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="26"
-                        height="26"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-arrow-right-left">
-                        <path d="m16 3 4 4-4 4"></path>
-                        <path d="M20 7H4"></path>
-                        <path d="m8 21-4-4 4-4"></path>
-                        <path d="M4 17h16"></path>
-                    </svg>
-                    <div>데이터 기록</div>
-                </div></router-link
-            ><router-link to="/mypage/bind"
-                ><div
-                    class="rounded-xl shadow hover:opacity-40 aspect-square border border-[#4492bf40] bg-[#4492bfa8] text-white justify-center items-center flex flex-col w-full font-bold gap-3">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="26"
-                        height="26"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-credit-card">
-                        <rect width="20" height="14" x="2" y="5" rx="2"></rect>
-                        <line x1="2" x2="22" y1="10" y2="10"></line>
-                    </svg>
-                    <div>계좌 등록</div>
-                </div></router-link
-            ><router-link to="/withdraw"
-                ><div
-                    class="rounded-xl shadow hover:opacity-40 aspect-square border border-[#4492bf40] bg-[#4492bfa8] text-white justify-center items-center flex flex-col w-full font-bold gap-3">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="26"
-                        height="26"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-circle-arrow-out-down-right">
-                        <path d="M12 22a10 10 0 1 1 10-10"></path>
-                        <path d="M22 22 12 12"></path>
-                        <path d="M22 16v6h-6"></path>
-                    </svg>
-                    <div>환급 신청</div>
-                </div></router-link
-            >
-        </div>
-        <button
-            class="rounded-xl border border-[#e5e5e5] cursor-pointer shadow hover:opacity-40 px-5 py-3 bg-red-400 w-full flex justify-center items-center text-white font-bold"
-            @click="handleLogout">
-            로그아웃
-        </button>
-    </div>
-    <Login v-else />
-    <div v-if="modalVisible" class="fixed h-[100vh] inset-0 z-999999 bg-black/80">
-        <div
-            class="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg bg-white">
-            <div class="flex flex-col space-y-2 text-center sm:text-left">
-                <h2 id="radix-:RncqfnkqH1:" class="text-lg font-semibold">매너 점수란?</h2>
-                <p id="radix-:RncqfnkqH2:" class="text-sm text-[#737373]">
-                    <br />각 개인의 신용도를 평가한 점수를 말합니다. <br />
-                    이용기간, 보안심의 유무 등의 정보를 종합하여 정해지며,<br />
-                    이 점수는 신용도를 나타내는 것으로,<br />
-                    높을수록 신뢰도가 높은 사용자임을 의미합니다.<br />
-                    <br />계정 매너 점수가 낮은 경우, <br />서비스 이용에 제한이 있을 수 있습니다.
-                </p>
-            </div>
-            <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-                <button
-                    type="button"
-                    @click="modalVisible = false"
-                    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-[#171717] text-[#fafafa] shadow hover:bg-primary/90 h-9 px-4 py-2">
-                    확인
-                </button>
             </div>
         </div>
     </div>
 </template>
 
-<script>
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
-import Login from "./Login.vue";
-import PLogo from "@client/assets/PLogo.webp";
-import IBanner from "@client/assets/IBanner.webp";
+<script setup>
+import { ref, computed, onMounted } from "vue";
 
-export default {
-    components: { Login },
-    setup() {
-        const user = ref(null);
-        const router = useRouter();
-        const modalVisible = ref(false);
+import bgRed from "@/assets/images/bg/bg-red.png";
+import userDefault from "@/assets/images/profile/user-default.jpg";
+import rich from "@/assets/images/profile/rich.png";
+import balance from "@/assets/images/profile/balance.png";
+import dep from "@/assets/images/profile/icon_dep.png";
+import cashout from "@/assets/images/profile/icon_cashout.png";
 
-        onMounted(() => {
-            user.value = localStorage.getItem("user");
-        });
+import withDraw from "@/assets/images/profile/withdraw.png";
+import myFund from "@/assets/images/profile/myfunds.png";
+import record from "@/assets/images/profile/record.png";
+import report from "@/assets/images/profile/report.png";
+import myAcc from "@/assets/images/profile/myacc.png";
+import password from "@/assets/images/profile/password.png";
+import vip from "@/assets/images/profile/vip.png";
+import verified from "@/assets/images/profile/verified.png";
+import music from "@/assets/images/profile/music.png";
+import theme from "@/assets/images/profile/theme.png";
+import chipSettings from "@/assets/images/profile/chipsettings.png";
+import noti from "@/assets/images/profile/noti.png";
+import language from "@/assets/images/profile/language.png";
+import msg from "@/assets/images/profile/msg.png";
+import qna from "@/assets/images/profile/qna.png";
+import aboutus from "@/assets/images/profile/aboutus.png";
+import signout from "@/assets/images/profile/signout.png";
 
-        const handleLogout = () => {
-            localStorage.removeItem("user");
-            user.value = null;
-            router.push("/mypage");
-        };
+const menuCategories = [
+    { id: 1, label: "Quản lý cá nhân" },
+    { id: 2, label: "Quản lý Dự Án" },
+    { id: 3, label: "Quản lý Tài Khoản" },
+    { id: 4, label: "Cài Đặt Hệ Thống" },
+    { id: 5, label: "Quản Lý Chung" },
+];
 
-        return { user, modalVisible, handleLogout, PLogo, IBanner };
+const menuItems = [
+    {
+        label: "Chi Tiết Ngân Hàng",
+        icon: withDraw,
+        href: "/my-bank",
+        category: 1,
     },
-};
+    {
+        label: "Lịch Sử Thao Tác",
+        icon: myFund,
+        href: "/transaction-record-page",
+        category: 1,
+    },
+    {
+        label: "Lịch Sử Dữ Liệu",
+        icon: record,
+        href: "/betting-record-page",
+        category: 2,
+    },
+    {
+        label: "Báo Cáo Cá Nhân",
+        icon: report,
+        href: "/personal-report-page",
+        category: 2,
+    },
+    {
+        label: "Tài Khoản Của Tôi",
+        icon: myAcc,
+        href: "/my-account-info",
+        category: 3,
+    },
+    {
+        label: "Quản Lý Mật Khẩu",
+        icon: password,
+        href: "/my-account-info-password",
+        category: 3,
+    },
+    {
+        label: "Cấp Độ Của Tôi",
+        icon: vip,
+        href: "/my-account-info-level",
+        category: 3,
+    },
+    {
+        label: "Xác Thực Hai Yếu Tố",
+        icon: verified,
+        href: "/my-account-info-verify",
+        category: 3,
+    },
+    {
+        label: "Nhạc Nền",
+        icon: music,
+        href: "/custom-music",
+        category: 4,
+    },
+    {
+        label: "Màu Chủ Đề",
+        icon: theme,
+        href: "/custom-theme",
+        category: 4,
+    },
+    {
+        label: "Cài Đặt Chip",
+        icon: chipSettings,
+        href: "/custom-bet-values",
+        category: 4,
+    },
+    {
+        label: "Cửa Sổ Nhắc Nhở Cá Lệnh",
+        icon: noti,
+        href: "/custom-notifications",
+        category: 4,
+    },
+    {
+        label: "Cài Đặt Ngôn Ngữ",
+        icon: language,
+        href: "/custom-language",
+        category: 4,
+    },
+    {
+        label: "Trung Tâm Tin Nhắn",
+        icon: msg,
+        href: "/message-center",
+        category: 5,
+    },
+    {
+        label: "Dịch Vụ Trả Lời Khách Hàng",
+        icon: qna,
+        href: "/customer-service",
+        category: 5,
+    },
+    {
+        label: "Về Chúng Tôi",
+        icon: aboutus,
+        href: "/about-us",
+        category: 5,
+    },
+    {
+        label: "Đăng Xuất Khỏi Tài Khoản Hiện tại",
+        icon: signout,
+        href: "/logout",
+        category: 5,
+    },
+];
 
-const progress = ref(0);
+const groupedMenuItems = computed(() => {
+    return menuItems.reduce((acc, item) => {
+        if (!acc[item.category]) acc[item.category] = [];
+        acc[item.category].push(item);
+        return acc;
+    }, {});
+});
+
+const openCategories = ref({});
 
 onMounted(() => {
-    setInterval(() => {
-        progress.value = progress.value === 0 ? 100 : 0;
-    }, 1000);
+    menuCategories.forEach(category => {
+        openCategories.value[category.id] = true;
+    });
 });
+
+const toggleCategory = (categoryId) => {
+    openCategories.value[categoryId] = !openCategories.value[categoryId];
+};
 </script>
+
+<style></style>

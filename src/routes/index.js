@@ -1,54 +1,78 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "@client/views/Home/index.vue";
-import EventView from "@client/views/Event/index.vue";
-import ReviewView from "@client/views/Review/index.vue";
-import ProfileView from "@client/views/Profile/index.vue";
-import HistoryView from "@client/views/Profile/History.vue";
-import BindView from "@client/views/Profile/Bind.vue";
-import SignupView from "@client/views/Profile/Signup.vue";
-import LoginView from "@client/views/Profile/Login.vue";
+import LoginView from "@/views/Auth/login.vue";
+import SignupView from "@/views/Auth/Signup.vue";
+import HomeView from "@/views/Home/index.vue";
+import ResultView from "@/views/Result/index.vue";
+import ContentView from "@/views/Content/index.vue";
+import ServiceView from "@/views/Service/index.vue";
+import ProfileView from "@/views/Profile/index.vue";
+import GameView from "@/views/Game/index.vue";
 
 const routes = [
     {
         path: "/",
+        name: "Home",
         component: HomeView,
-        meta: { layout: "DefaultLayout" },
-    },
-    {
-        path: "/event",
-        component: EventView,
-        meta: { layout: "DefaultLayout" },
-    },
-    {
-        path: "/review",
-        component: ReviewView,
-        meta: { layout: "DefaultLayout" },
-    },
-    {
-        path: "/mypage",
-        component: ProfileView,
-        meta: { layout: "DefaultLayout" },
-    },
-    {
-        path: "/history",
-        component: HistoryView,
-        meta: { layout: "DefaultLayout" },
-    },
-    {
-        path: "/mypage/bind",
-        component: BindView,
-        meta: { layout: "DefaultLayout" },
-    },
-    {
-        path: "/signup",
-        component: SignupView,
-        meta: { layout: "DefaultLayout" },
+        meta: {
+            layout: "DefaultLayout",
+        },
     },
     {
         path: "/login",
+        name: "Login",
         component: LoginView,
-        meta: { layout: "DefaultLayout" },
-    }
+        meta: {
+            layout: "AuthLayout",
+        },
+    },
+    {
+        path: "/signup",
+        name: "Signup",
+        component: SignupView,
+        meta: {
+            layout: "AuthLayout",
+        },
+    },
+    {
+        path: "/result",
+        name: "Result",
+        component: ResultView,
+        meta: {
+            layout: "DefaultLayout",
+        },
+    },
+    {
+        path: "/content",
+        name: "Content",
+        component: ContentView,
+        meta: {
+            layout: "DefaultLayout",
+        },
+    },
+    {
+        path: "/support",
+        name: "Service",
+        component: ServiceView,
+        meta: {
+            layout: "DefaultLayout",
+        },
+    },
+    {
+        path: "/profile",
+        name: "Profile",
+        component: ProfileView,
+        meta: {
+            layout: "DefaultLayout",
+        },
+    },
+    {
+        path: "/games",
+        name: "Game",
+        component: GameView,
+        meta: {
+            layout: null,
+        },
+    },
 ];
 
 const router = createRouter({

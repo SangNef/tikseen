@@ -1,23 +1,37 @@
 <template>
-    <div class="h-full">
-        <div class="h-[calc((100%-16px)/20)] w-full flex flex-row items-center">
-            <hr class="w-full border-[1px] border-[#e5e7eb]" />
-            <p class="whitespace-nowrap px-3 font-bold opacity-50">온리원 이벤트</p>
-            <hr class="w-full border-[1px] border-[#e5e7eb]" />
+    <div>
+        <Header title="ĐIỆN TOÁN VIỆT NAM" />
+        <div
+            :style="{
+                backgroundImage: `url(${MainBg})`,
+                backgroundPosition: '50%',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+            }"
+            class="overflow-y-auto h-[844px]">
+            <div class="min-h-[100vh]">
+                <div class="w-[80%] mx-auto pt-[10px] flex items-center justify-center">
+                    <img :src="ViLogo" alt="" class="w-[80%]" />
+                </div>
+                <div class="w-[80%] mx-auto py-[10px] text-justify [font-size:14px]">
+                    Công ty TNHH MTV Xổ số điện toán Việt Nam thành lập năm 2011 theo Quyết định số 1109/QĐ-TTg của Thủ
+                    tướng Chính phủ và được quản lý trực tiếp bởi Bộ Tài chính theo Quyết định số 2933/QĐ-BTC. Vietlott
+                    là doanh nghiệp xổ số Việt Nam tiên phong tham gia Dự án An Sinh - Xã Hội. thông qua các chương
+                    trình hỗ trợ cộng đồng trong lĩnh vực y tế, giáo dục.
+                </div>
+                <router-link class="w-[60%] mx-auto pt-50 text-center block" to="/games">
+                    <img :src="Asxh" alt="" />
+                </router-link> 
+            </div>
         </div>
-        <Carousel />
-        <div class="min-h-[calc((100%-16px)/20)] w-full flex flex-row items-center">
-            <hr class="w-full border-[1px] border-[#e5e7eb]" />
-            <p class="whitespace-nowrap px-3 font-bold opacity-50">전국 지명 순위</p>
-            <hr class="w-full border-[1px] border-[#e5e7eb]" />
-        </div>
-        <List />
     </div>
 </template>
 
 <script setup>
-import Carousel from "./Carousel.vue";
-import List from "./List.vue";
+import Header from "@/components/Header.vue";
+import ViLogo from "@/assets/images/home/vilogo.png";
+import MainBg from "@/assets/images/home/mainbg.png";
+import Asxh from "@/assets/images/home/asxh.png";
 </script>
 
 <style></style>

@@ -1,22 +1,31 @@
 <template>
-  <div class="h-[60px] px-3 pt-3 w-full flex flex-row justify-between items-center">
-    <img
-                :src="logo"
-                alt="onlyone"
-                loading="lazy"
-                width="160"
-                height="280"
-                decoding="async"
-                style="color: transparent;"
-                class="object-contain"
-            />
-  </div>
+    <div class="h-11">
+        <div class="p-0 bg-[#e72732] w-full fixed h-[calc(45px+env(safe-area-inset-top)/4)!important] z-999 top-0">
+            <ul class="flex justify-between pt-2">
+                <li class="ml-2.5 w-[30px]">
+                    <img :src=logo alt="">
+                </li>
+                <li class="text-white font-bold text-lg">{{ title }}</li>
+                <li class="mr-2.5 w-[20px] pt-1.25">
+                    <img :src=cskh alt="">
+                </li>
+            </ul>
+        </div>
+    </div>
 </template>
 
 <script setup>
-    import logo from '@client/assets/logo.png'
+import { defineProps } from "vue";
+
+import logo from "@/assets/images/header/logo.png";
+import cskh from "@/assets/images/header/cskh.png";
+
+defineProps({
+    title: {
+        type: String,
+        required: true
+    }
+});
 </script>
 
-<style>
-
-</style>
+<style></style>
