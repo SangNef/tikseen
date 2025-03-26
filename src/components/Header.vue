@@ -15,8 +15,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-
 import logo from "@/assets/images/header/logo.png";
 import cskh from "@/assets/images/header/cskh.png";
 

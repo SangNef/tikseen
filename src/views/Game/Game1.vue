@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, onMounted } from "vue"; 
+import { ref, onMounted } from "vue"; 
 
 import Dulieu from "./Dulieu.vue";
 import KhachHang from "./KhachHang.vue";

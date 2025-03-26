@@ -35,8 +35,6 @@
 <script setup>
 import logo from "@/assets/images/header/logo.png";
 
-import { defineProps } from "vue";
-
 defineProps({
     title: String
 });
