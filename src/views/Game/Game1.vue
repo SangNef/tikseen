@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"; 
+import { ref, defineProps, onMounted } from "vue"; 
 
 import Dulieu from "./Dulieu.vue";
 import KhachHang from "./KhachHang.vue";
@@ -45,4 +45,4 @@ const setActiveTab = (tab) => {
 };
 </script>
 
-<style></style>
+<style scope></style>

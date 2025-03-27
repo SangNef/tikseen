@@ -12,6 +12,7 @@
         ">
         <div style="float: left; position: absolute; left: 10px; top: 0px; line-height: 44px">
             <button
+                @click="goBack"
                 class="flex items-center justify-center mt-3"
                 style="outline: none; border: 0px; align-self: flex-start; padding: 0px">
                 <svg
@@ -34,10 +35,19 @@
 
 <script setup>
 import logo from "@/assets/images/header/logo.png";
+import { useRouter } from "vue-router";
+
+import { defineProps } from "vue";
 
 defineProps({
     title: String
 });
+
+const router = useRouter();
+
+const goBack = () => {
+    router.go(-1);
+}
 </script>
 
-<style></style>
+<style scope></style>

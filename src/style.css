@@ -3,3 +3,59 @@
 * {
     font-family: 'Roboto', sans-serif;
 }
+
+.navbar-container {
+    background-color: #fff;
+    padding: 10px;
+    font-size: 0;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.navbar-container ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.navbar-container ul li {
+    display: inline-block;
+    width: 100%;
+    font-size: 11px;
+}
+
+.navbar-container ul li a {
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    padding: 10px;
+    transition: color .5s;
+    justify-content: center;
+}
+
+.navbar-container .active-link a {
+    color: red !important;
+}
+
+.navbar-container ul li.active-link .underline {
+    width: 100%;
+    background-color: #e72732;
+    height: 3px;
+    margin: 0 auto;
+    transition: width 0.2s;
+}
+
+.page-content {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    height: calc(100% - env(safe-area-inset-bottom));
+    position: relative;
+    z-index: 1;
+}
+
+.page-content-94 {
+    height: calc(100vh - env(safe-area-inset-bottom) - 94px);
+}

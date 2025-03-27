@@ -9,6 +9,6 @@
 import BottomBar from '@/components/BottomBar.vue'
 </script>
 
-<style>
+<style scope>
 
 </style>

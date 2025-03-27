@@ -55,4 +55,4 @@ import prize2 from "@/assets/images/result/prize2.png";
 import prize3 from "@/assets/images/result/prize3.jpg";
 </script>
 
-<style></style>
+<style scope></style>
