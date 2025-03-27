@@ -226,7 +226,7 @@
 
 <script setup>
 import Header from "./Header.vue";
-import vlbg from "@/assets/images/bg/vlbg.png";
+import vlbg from "@client/assets/images/bg/vlbg.png";
 </script>
 
 <style>

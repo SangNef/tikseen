@@ -24,7 +24,6 @@
                             <i
                                 class="-ml-[10px] mr-[10px] w-[75px] h-[18px] relative"
                                 :style="{
-                                    backgroundImage: `url(${rich})`,
                                     backgroundRepeat: 'no-repeat',
                                     backgroundPositionX: 'center',
                                     backgroundPositionY: '0px',
@@ -120,7 +119,7 @@
                                         :to="item.href"
                                         class="flex items-center p-2 text-sm">
                                         <img :src="item.icon" alt="" width="25" />
-                                        <span style="font-size: 14px; margin-left: 15px;">{{ item.label }}</span>
+                                        <span style="font-size: 14px; margin-left: 15px">{{ item.label }}</span>
                                     </router-link>
                                 </div>
                             </div>
@@ -135,30 +134,30 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 
-import bgRed from "@/assets/images/bg/bg-red.png";
-import userDefault from "@/assets/images/profile/user-default.jpg";
-import rich from "@/assets/images/profile/rich.png";
-import balance from "@/assets/images/profile/balance.png";
-import dep from "@/assets/images/profile/icon_dep.png";
-import cashout from "@/assets/images/profile/icon_cashout.png";
+import bgRed from "@client/assets/images/bg/bg-red.png";
+import userDefault from "@client/assets/images/profile/user-default.jpg";
+// import rich from "@client/assets/images/profile/rich.png";
+import balance from "@client/assets/images/profile/balance.png";
+import dep from "@client/assets/images/profile/icon_dep.png";
+import cashout from "@client/assets/images/profile/icon_cashout.png";
 
-import withDraw from "@/assets/images/profile/withdraw.png";
-import myFund from "@/assets/images/profile/myfunds.png";
-import record from "@/assets/images/profile/record.png";
-import report from "@/assets/images/profile/report.png";
-import myAcc from "@/assets/images/profile/myacc.png";
-import password from "@/assets/images/profile/password.png";
-import vip from "@/assets/images/profile/vip.png";
-import verified from "@/assets/images/profile/verified.png";
-import music from "@/assets/images/profile/music.png";
-import theme from "@/assets/images/profile/theme.png";
-import chipSettings from "@/assets/images/profile/chipsettings.png";
-import noti from "@/assets/images/profile/noti.png";
-import language from "@/assets/images/profile/language.png";
-import msg from "@/assets/images/profile/msg.png";
-import qna from "@/assets/images/profile/qna.png";
-import aboutus from "@/assets/images/profile/aboutus.png";
-import signout from "@/assets/images/profile/signout.png";
+import withDraw from "@client/assets/images/profile/withdraw.png";
+import myFund from "@client/assets/images/profile/myfunds.png";
+import record from "@client/assets/images/profile/record.png";
+import report from "@client/assets/images/profile/report.png";
+import myAcc from "@client/assets/images/profile/myacc.png";
+import password from "@client/assets/images/profile/password.png";
+import vip from "@client/assets/images/profile/vip.png";
+import verified from "@client/assets/images/profile/verified.png";
+import music from "@client/assets/images/profile/music.png";
+import theme from "@client/assets/images/profile/theme.png";
+import chipSettings from "@client/assets/images/profile/chipsettings.png";
+import noti from "@client/assets/images/profile/noti.png";
+import language from "@client/assets/images/profile/language.png";
+import msg from "@client/assets/images/profile/msg.png";
+import qna from "@client/assets/images/profile/qna.png";
+import aboutus from "@client/assets/images/profile/aboutus.png";
+import signout from "@client/assets/images/profile/signout.png";
 
 const menuCategories = [
     { id: 1, label: "Quản lý cá nhân" },
@@ -284,7 +283,7 @@ const groupedMenuItems = computed(() => {
 const openCategories = ref({});
 
 onMounted(() => {
-    menuCategories.forEach(category => {
+    menuCategories.forEach((category) => {
         openCategories.value[category.id] = true;
     });
 });

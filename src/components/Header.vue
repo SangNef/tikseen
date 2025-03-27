@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-import logo from "@/assets/images/header/logo.png";
-import cskh from "@/assets/images/header/cskh.png";
+import logo from "@client/assets/images/header/logo.png";
+import cskh from "@client/assets/images/header/cskh.png";
 
 defineProps({
     title: {

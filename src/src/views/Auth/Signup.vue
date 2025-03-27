@@ -160,10 +160,10 @@
 <script setup>
 import Header from "./Header.vue";
 import { ref } from "vue";
-import vlbg from "@/assets/images/bg/vlbg.png";
+import vlbg from "@client/assets/images/bg/vlbg.png";
 
-import eyeClose from "@/assets/images/login/eye-close.png";
-import eyeOpen from "@/assets/images/login/eye-open.png";
+import eyeClose from "@client/assets/images/login/eye-close.png";
+import eyeOpen from "@client/assets/images/login/eye-open.png";
 
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);

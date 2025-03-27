@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import logo from "@/assets/images/header/logo.png";
+import logo from "@client/assets/images/header/logo.png";
 
 defineProps({
     title: String

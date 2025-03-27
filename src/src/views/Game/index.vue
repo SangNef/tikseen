@@ -305,8 +305,8 @@ import History from "./History.vue";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
 
-import safe from "@/assets/images/game/safe.png";
-import history from "@/assets/images/game/history.png";
+import safe from "@client/assets/images/game/safe.png";
+import history from "@client/assets/images/game/history.png";
 import NotifiModal from "./NotifiModal.vue";
 
 const activeTab = ref("safe");
@@ -315,8 +315,8 @@ const showMenu = ref(false);
 const showRightMenu = ref(false);
 const selectedDataType = ref("Cổ điển");
 
-import speakerOpen from "@/assets/images/game/speaker-open.png";
-import speakerMute from "@/assets/images/game/speaker-mute.png";
+import speakerOpen from "@client/assets/images/game/speaker-open.png";
+import speakerMute from "@client/assets/images/game/speaker-mute.png";
 import Result from "./Result.vue";
 
 const selectedMenu = ref(null);

@@ -193,7 +193,7 @@
 
 <script setup>
 import Header from "./Header.vue";
-import color from "@/assets/images/profile/color.png";
+import color from "@client/assets/images/profile/color.png";
 </script>
 
 <style scoped>

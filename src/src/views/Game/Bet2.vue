@@ -45,8 +45,8 @@
 </template>
 
 <script setup>
-import trash from "@/assets/images/game/trash.png";
-import shuffle from "@/assets/images/game/shuffle.png";
+import trash from "@client/assets/images/game/trash.png";
+import shuffle from "@client/assets/images/game/shuffle.png";
 </script>
 
 <style scope></style>

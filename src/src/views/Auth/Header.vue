@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import logo from "@/assets/images/header/logo.png";
+import logo from "@client/assets/images/header/logo.png";
 import { useRouter } from "vue-router";
 
 import { defineProps } from "vue";

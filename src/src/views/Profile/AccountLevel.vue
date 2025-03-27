@@ -28,18 +28,18 @@
 
 <script setup>
 import Header from "./Header.vue";
-import vlbg from "@/assets/images/bg/vlbg.png";
-import vip0 from "@/assets/images/profile/vip0.png";
-import vip1 from "@/assets/images/profile/vip1.png";
-import vip2 from "@/assets/images/profile/vip2.png";
-import vip3 from "@/assets/images/profile/vip3.png";
-import vip4 from "@/assets/images/profile/vip4.png";
-import vip5 from "@/assets/images/profile/vip5.png";
-import vip6 from "@/assets/images/profile/vip6.png";
-import vip7 from "@/assets/images/profile/vip7.png";
-import vip8 from "@/assets/images/profile/vip8.png";
-import vip9 from "@/assets/images/profile/vip9.png";
-import vip10 from "@/assets/images/profile/vip10.png";
+import vlbg from "@client/assets/images/bg/vlbg.png";
+import vip0 from "@client/assets/images/profile/vip0.png";
+import vip1 from "@client/assets/images/profile/vip1.png";
+import vip2 from "@client/assets/images/profile/vip2.png";
+import vip3 from "@client/assets/images/profile/vip3.png";
+import vip4 from "@client/assets/images/profile/vip4.png";
+import vip5 from "@client/assets/images/profile/vip5.png";
+import vip6 from "@client/assets/images/profile/vip6.png";
+import vip7 from "@client/assets/images/profile/vip7.png";
+import vip8 from "@client/assets/images/profile/vip8.png";
+import vip9 from "@client/assets/images/profile/vip9.png";
+import vip10 from "@client/assets/images/profile/vip10.png";
 
 const levels = [
     { name: "Cấp độ 0", img: vip0, value: "0" },

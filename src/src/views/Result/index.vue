@@ -48,11 +48,11 @@
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
-import VlBg from "@/assets/images/bg/vlbg.png";
-import prize1 from "@/assets/images/result/prize1.jpg";
-import prize2 from "@/assets/images/result/prize2.png";
-import prize3 from "@/assets/images/result/prize3.jpg";
+import Header from "@client/components/Header.vue";
+import VlBg from "@client/assets/images/bg/vlbg.png";
+import prize1 from "@client/assets/images/result/prize1.jpg";
+import prize2 from "@client/assets/images/result/prize2.png";
+import prize3 from "@client/assets/images/result/prize3.jpg";
 </script>
 
 <style scope></style>

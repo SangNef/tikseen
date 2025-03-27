@@ -35,8 +35,8 @@
 
 <script setup>
 import Header from "./Header.vue";
-import vlbg from "@/assets/images/bg/vlbg.png";
-import viFlag from "@/assets/images/profile/vi_flag.png";
+import vlbg from "@client/assets/images/bg/vlbg.png";
+import viFlag from "@client/assets/images/profile/vi_flag.png";
 </script>
 
 <style scoped>

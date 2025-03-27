@@ -58,7 +58,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import logo from "@/assets/images/header/logo.png";
+import logo from "@client/assets/images/header/logo.png";
 
 const router = useRouter();
 const activeIndex = ref(0); // Mặc định chọn mục đầu tiên

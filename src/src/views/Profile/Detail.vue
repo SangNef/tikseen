@@ -232,7 +232,7 @@
 <script setup>
 import Header from "./Header.vue";
 import { ChevronRightIcon } from "@heroicons/vue/24/outline";
-import userDefault from "@/assets/images/profile/user-default.jpg";
+import userDefault from "@client/assets/images/profile/user-default.jpg";
 </script>
 
 <style scoped>

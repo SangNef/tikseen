@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import trash from "@/assets/images/game/trash.png";
+import trash from "@client/assets/images/game/trash.png";
 </script>
 
 <style></style>

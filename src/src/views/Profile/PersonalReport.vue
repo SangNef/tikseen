@@ -101,7 +101,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
-import backdropBg from "@/assets/images/bg/backdrop-bg.png";
+import backdropBg from "@client/assets/images/bg/backdrop-bg.png";
 
 const router = useRouter();
 

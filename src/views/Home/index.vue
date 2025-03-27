@@ -28,10 +28,10 @@
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
-import ViLogo from "@/assets/images/home/vilogo.png";
-import MainBg from "@/assets/images/home/mainbg.png";
-import Asxh from "@/assets/images/home/asxh.png";
+import Header from "@client/components/Header.vue";
+import ViLogo from "@client/assets/images/home/vilogo.png";
+import MainBg from "@client/assets/images/home/mainbg.png";
+import Asxh from "@client/assets/images/home/asxh.png";
 </script>
 
 <style></style>

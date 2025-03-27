@@ -219,9 +219,9 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Header from "./Header.vue";
-import vlbg from "@/assets/images/bg/vlbg.png";
-import eyeClose from "@/assets/images/login/eye-close.png";
-import eyeOpen from "@/assets/images/login/eye-open.png";
+import vlbg from "@client/assets/images/bg/vlbg.png";
+import eyeClose from "@client/assets/images/login/eye-close.png";
+import eyeOpen from "@client/assets/images/login/eye-open.png";
 
 import { UserIcon, LockClosedIcon } from "@heroicons/vue/24/outline";
 

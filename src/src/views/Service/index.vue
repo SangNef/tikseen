@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
+import Header from "@client/components/Header.vue";
 import { ChevronLeftIcon } from "@heroicons/vue/24/outline";
 </script>
 

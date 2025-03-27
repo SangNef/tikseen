@@ -81,8 +81,8 @@
 <script setup>
 import { ref } from "vue";
 import Header from "./Header.vue";
-import eyeClose from "@/assets/images/login/eye-close.png";
-import eyeOpen from "@/assets/images/login/eye-open.png";
+import eyeClose from "@client/assets/images/login/eye-close.png";
+import eyeOpen from "@client/assets/images/login/eye-open.png";
 
 const showOldPassword = ref(false);
 const showNewPassword = ref(false);

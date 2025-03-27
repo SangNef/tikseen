@@ -22,7 +22,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import logo from "@/assets/images/header/logo.png";
+import logo from "@client/assets/images/header/logo.png";
 
 import { defineProps } from "vue";
 

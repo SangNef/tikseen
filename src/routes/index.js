@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import LoginView from "@/views/Auth/login.vue";
-import SignupView from "@/views/Auth/Signup.vue";
-import HomeView from "@/views/Home/index.vue";
-import ResultView from "@/views/Result/index.vue";
-import ContentView from "@/views/Content/index.vue";
-import ServiceView from "@/views/Service/index.vue";
-import ProfileView from "@/views/Profile/index.vue";
-import GameView from "@/views/Game/index.vue";
+import LoginView from "@client/views/Auth/login.vue";
+import SignupView from "@client/views/Auth/Signup.vue";
+import HomeView from "@client/views/Home/index.vue";
+import ResultView from "@client/views/Result/index.vue";
+import ContentView from "@client/views/Content/index.vue";
+import ServiceView from "@client/views/Service/index.vue";
+import ProfileView from "@client/views/Profile/index.vue";
+import GameView from "@client/views/Game/index.vue";
 
 const routes = [
     {

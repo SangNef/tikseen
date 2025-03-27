@@ -106,10 +106,10 @@
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
-import VlBg from "@/assets/images/bg/vlbg.png";
-import table1 from "@/assets/images/content/table1.png";
-import table2 from "@/assets/images/content/table2.png";
+import Header from "@client/components/Header.vue";
+import VlBg from "@client/assets/images/bg/vlbg.png";
+import table1 from "@client/assets/images/content/table1.png";
+import table2 from "@client/assets/images/content/table2.png";
 </script>
 
 <style></style>
