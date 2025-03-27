@@ -80,10 +80,11 @@
                                                 <div class="item-input item-input-field" style="display: inline-block">
                                                     <img
                                                         alt=""
-                                                        src="./static/media/eye-close.858fffa6.png"
+                                                        :src="showPassword ? eyeOpen : eyeClose"
+                                                        @click="toggleShowPassword()"
                                                         class="icon-eye"
                                                         style="right: 0px" /><input
-                                                        type="password"
+                                                        :type="showPassword ? 'text' : 'password'"
                                                         class="input-field"
                                                         placeholder="6-16 Kết hợp chữ và số"
                                                         maxlength="16"
@@ -103,10 +104,11 @@
                                                 <div class="item-input item-input-field" style="display: inline-block">
                                                     <img
                                                         alt=""
-                                                        src="./static/media/eye-close.858fffa6.png"
+                                                        :src="showConfirmPassword ? eyeOpen : eyeClose"
+                                                        @click="toggleShowConfirmPassword()"
                                                         class="icon-eye"
                                                         style="right: 0px" /><input
-                                                        type="password"
+                                                        :type="showConfirmPassword ? 'text' : 'password'"
                                                         class="input-field"
                                                         placeholder="Gõ lại mật khẩu"
                                                         maxlength="16"
@@ -148,112 +150,6 @@
                                 </div>
                             </div>
                         </div>
-                        <ul class="form-ul">
-                            <li>
-                                <div class="item-content">
-                                    <div class="item-media"><span>Mã mời</span></div>
-                                    <div class="item-inner">
-                                        <div class="item-input item-input-field">
-                                            <input
-                                                type="text"
-                                                class="input-field keyCookieInput"
-                                                placeholder="Người giới thiệu,Không bắt buộc,Chỉ chấp nhận chữ và số"
-                                                name="keyCookie"
-                                                id="regKeyInput"
-                                                value="" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-content">
-                                    <div class="item-media"><b class="text-danger">*</b><span>Tài Khoản</span></div>
-                                    <div class="item-inner">
-                                        <div class="item-input item-input-field">
-                                            <input
-                                                type="text"
-                                                class="input-field"
-                                                placeholder="6-14 ký tự, chỉ có thể nhập chữ thường hoặc số"
-                                                maxlength="14"
-                                                id="regusername"
-                                                name="loginName" />
-                                        </div>
-                                        <div class="item-title warning" style="display: block">
-                                            Tài khoản hội viên đã tồn tại!
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-content">
-                                    <div class="item-media"><b class="text-danger">*</b><span>Mật khẩu</span></div>
-                                    <div class="item-inner">
-                                        <div class="item-input item-input-field" style="display: inline-block">
-                                            <img
-                                                alt=""
-                                                src="./static/media/eye-close.858fffa6.png"
-                                                class="icon-eye"
-                                                style="right: 0px" /><input
-                                                type="password"
-                                                class="input-field"
-                                                placeholder="6-16 Kết hợp chữ và số"
-                                                maxlength="16"
-                                                id="loginPwd"
-                                                name="loginPwd" />
-                                        </div>
-                                        <div class="item-title warning" style="display: none"></div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-content">
-                                    <div class="item-media">
-                                        <b class="text-danger">*</b><span>Xác nhận mật khẩu</span>
-                                    </div>
-                                    <div class="item-inner">
-                                        <div class="item-input item-input-field" style="display: inline-block">
-                                            <img
-                                                alt=""
-                                                src="./static/media/eye-close.858fffa6.png"
-                                                class="icon-eye"
-                                                style="right: 0px" /><input
-                                                type="password"
-                                                class="input-field"
-                                                placeholder="Gõ lại mật khẩu"
-                                                maxlength="16"
-                                                id="checkLoginPwd"
-                                                name="confirmLoginPwd" />
-                                        </div>
-                                        <div class="item-title warning" style="display: none"></div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-content">
-                                    <div class="item-media"><b class="text-danger">*</b><span>Mã xác nhận</span></div>
-                                    <div class="item-inner">
-                                        <div class="item-input item-input-field item-code">
-                                            <input
-                                                type="text"
-                                                maxlength="6"
-                                                class="input-field"
-                                                id="validCode"
-                                                name="validCode" /><span class="phone-email-validcode-span">|</span
-                                            ><a class="phone-email-validcode-a emailSend" id="getValidCode"
-                                                >Lấy mã xác minh</a
-                                            ><img src="" alt="" id="validCodeImg" style="display: none" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <div class="list-block inputs-list" style="margin-top: 0px"><ul class="form-ul"></ul></div>
-                            <div class="store-data list-block">
-                                <ul></ul>
-                                <div class="content-block" style="margin-bottom: 30px; color: white">
-                                    <a class="f7-button button-fill register-button" style="color: white">Xác nhận</a>
-                                </div>
-                            </div>
-                        </ul>
                     </form>
                 </div>
             </div>
@@ -263,10 +159,25 @@
 
 <script setup>
 import Header from "./Header.vue";
-import vlbg from "@client/assets/images/bg/vlbg.png";
+import { ref } from "vue";
+import vlbg from "@/assets/images/bg/vlbg.png";
+
+import eyeClose from "@/assets/images/login/eye-close.png";
+import eyeOpen from "@/assets/images/login/eye-open.png";
+
+const showPassword = ref(false);
+const showConfirmPassword = ref(false);
+
+const toggleShowPassword = () => {
+    showPassword.value = !showPassword.value;
+};
+
+const toggleShowConfirmPassword = () => {
+    showConfirmPassword.value = !showConfirmPassword.value;
+};
 </script>
 
-<style>
+<style scoped>
 .list-block {
     margin: 5px 0;
 }
@@ -452,5 +363,16 @@ input {
     line-height: 40px !important;
     height: 40px !important;
     border-radius: 7px !important;
+}
+
+.icon-eye {
+    height: 27px;
+    width: 27px;
+    left: auto;
+    right: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: auto;
+    top: 5px;
 }
 </style>

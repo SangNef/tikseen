@@ -18,84 +18,23 @@
             <span>Lựa chọn vị trí:</span>
             <div class="mt-[5px] flex flex-nowrap self-center">
                 <button
-                    style="
-                        font-size: 11px;
-                        padding-left: 0px;
-                        padding-right: 0px;
-                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-                        background: #fff;
-                        border-radius: 6px;
-                        margin: 0 0 0 10px;
-                        text-align: center;
-                        color: #f44336;
-                        width: 100%;
-                        height: 24px;
-                    ">
-                    10k
-                </button>
-                <button
-                    style="
-                        font-size: 11px;
-                        padding-left: 0px;
-                        padding-right: 0px;
-                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-                        background: #fff;
-                        border-radius: 6px;
-                        margin: 0 0 0 10px;
-                        text-align: center;
-                        color: #f44336;
-                        width: 100%;
-                        height: 24px;
-                    ">
-                    1k
-                </button>
-                <button
-                    style="
-                        font-size: 11px;
-                        padding-left: 0px;
-                        padding-right: 0px;
-                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-                        background: #fff;
-                        border-radius: 6px;
-                        margin: 0 0 0 10px;
-                        text-align: center;
-                        color: #f44336;
-                        width: 100%;
-                        height: 24px;
-                    ">
-                    100
-                </button>
-                <button
-                    style="
-                        font-size: 11px;
-                        padding-left: 0px;
-                        padding-right: 0px;
-                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-                        background: #fff;
-                        border-radius: 6px;
-                        margin: 0 0 0 10px;
-                        text-align: center;
-                        color: #f44336;
-                        width: 100%;
-                        height: 24px;
-                    ">
-                    10
-                </button>
-                <button
-                    style="
-                        font-size: 11px;
-                        padding-left: 0px;
-                        padding-right: 0px;
-                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-                        background: #fff;
-                        border-radius: 6px;
-                        margin: 0 0 0 10px;
-                        text-align: center;
-                        color: #f44336;
-                        width: 100%;
-                        height: 24px;
-                    ">
-                    1
+                    v-for="(option, index) in ['10k', '1k', '100', '10', '1']"
+                    :key="index"
+                    @click="handleClick(option)"
+                    :style="{
+                        fontSize: '11px',
+                        paddingLeft: '0px',
+                        paddingRight: '0px',
+                        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+                        background: selectedOption === option ? 'red' : '#fff',
+                        borderRadius: '6px',
+                        margin: '0 0 0 10px',
+                        textAlign: 'center',
+                        color: selectedOption === option ? 'white' : '#f44336',
+                        width: '100%',
+                        height: '24px',
+                    }">
+                    {{ option }}
                 </button>
             </div>
         </div>
@@ -112,7 +51,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import Game2Data from "./Game2Data.vue";
 import Bet2 from "./Bet2.vue";
 
@@ -120,6 +59,13 @@ const props = defineProps({
     selectedMenu: String,
     selectedSubmenu: String,
 });
+
+const selectedOption = ref(null);
+
+const handleClick = (option) => {
+    selectedOption.value = option;
+    console.log("Người dùng đã chọn:", option);
+};
 
 // Map reward theo selectedSubmenu
 const reward = computed(() => {

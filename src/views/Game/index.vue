@@ -2,7 +2,7 @@
     <div class="fixed left-0 top-0 z-50 w-full">
         <div class="h-11 flex items-center justify-between bg-[#e72732] text-white">
             <div class="flex items-center">
-                <button class="cursor-pointer p-3">
+                <button class="cursor-pointer p-3" @click="goBack">
                     <svg
                         stroke="currentColor"
                         fill="currentColor"
@@ -170,16 +170,27 @@
             </div>
         </div>
 
-        <div class="fixed top-0 left-0 w-full h-screen bg-[#0006] z-999" @click="toggleRightMenu" v-if="showRightMenu">
+        <div
+            class="fixed top-0 left-0 w-full h-screen bg-[#0006] z-99999"
+            @click="toggleRightMenu"
+            v-if="showRightMenu">
             <div
-                class="bg-white fixed top-[22px] right-[15px] text-center text-black rounded-[5px] border border-[#c1c1c1] z-9999">
-                <div
-                    v-for="(item, index) in rightMenuItems"
-                    :key="index"
-                    class="px-[15px] leading-[35px] text-xs w-[40vw] text-left"
-                    @click="toggleRightMenu">
-                    {{ item.name }}
-                </div>
+                class="bg-white fixed top-[22px] right-[15px] text-center text-black rounded-[5px] border border-[#c1c1c1] z-999009">
+                <template v-for="(item, index) in rightMenuItems" :key="index">
+                    <router-link
+                        v-if="item.href"
+                        :to="item.href"
+                        class="block px-[15px] leading-[35px] text-xs w-[40vw] text-left"
+                        @click="toggleRightMenu">
+                        {{ item.name }}
+                    </router-link>
+                    <button
+                        v-else
+                        class="block px-[15px] leading-[35px] text-xs w-[40vw] text-left"
+                        @click="item.onclick">
+                        {{ item.name }}
+                    </button>
+                </template>
             </div>
         </div>
 
@@ -279,7 +290,9 @@
             <History v-if="activeTab === 'history'"></History>
         </template>
         <Result v-if="showResult" />
-        <div v-if="showModal" class="absolute top-0 left-0 w-[100vw] h-screen bg-[#0006] z-999 flex items-center justify-center">
+        <div
+            v-if="showModal"
+            class="absolute top-0 left-0 w-[100vw] h-screen bg-[#0006] z-999 flex items-center justify-center">
             <NotifiModal @close="showModal = false" />
         </div>
     </div>
@@ -290,9 +303,10 @@ import Game1 from "./Game1.vue";
 import Game2 from "./Game2.vue";
 import History from "./History.vue";
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import { useRouter } from "vue-router";
 
-import safe from "@client/assets/images/game/safe.png";
-import history from "@client/assets/images/game/history.png";
+import safe from "@/assets/images/game/safe.png";
+import history from "@/assets/images/game/history.png";
 import NotifiModal from "./NotifiModal.vue";
 
 const activeTab = ref("safe");
@@ -301,18 +315,33 @@ const showMenu = ref(false);
 const showRightMenu = ref(false);
 const selectedDataType = ref("Cổ điển");
 
-import speakerOpen from "@client/assets/images/game/speaker-open.png";
-import speakerMute from "@client/assets/images/game/speaker-mute.png";
+import speakerOpen from "@/assets/images/game/speaker-open.png";
+import speakerMute from "@/assets/images/game/speaker-mute.png";
 import Result from "./Result.vue";
 
 const selectedMenu = ref(null);
 const selectedSubmenu = ref(null);
-const timeLeft = ref(10);
+const timeLeft = ref(300);
 let timer = null;
+
+const router = useRouter();
+
+const goBack = () => {
+    router.go(-1);
+};
 
 const showModal = ref(false);
 
 const showResult = ref(false);
+
+const handleResetCache = () => {
+    localStorage.clear();
+    router.push("/");
+};
+
+const handleReload = () => {
+    location.reload();
+};
 
 const menuItems = ref([
     {
@@ -411,15 +440,15 @@ const menuItems = ref([
 const rightMenuItems = [
     {
         name: "Luật chơi",
-        href: "#",
+        href: "/gameRules",
     },
     {
         name: "Mô tả giải thưởng",
-        href: "#",
+        href: "/gaiaAwardDescriptionPage",
     },
     {
         name: "Kết quả trò chơi",
-        href: "#",
+        href: "/games-history",
     },
     {
         name: "Xu hướng",
@@ -435,15 +464,15 @@ const rightMenuItems = [
     },
     {
         name: "Cài đặt ngôn ngữ",
-        href: "#",
+        href: "/language-switch",
     },
     {
         name: "Xóa bộ nhớ cache",
-        href: "#",
+        onclick: handleResetCache,
     },
     {
         name: "Làm mới",
-        href: "#",
+        onclick: handleReload,
     },
 ];
 
@@ -506,7 +535,7 @@ const formatTime = (seconds) => {
 
 const startTimer = () => {
     if (timer) clearInterval(timer);
-    timeLeft.value = 10;
+    timeLeft.value = 300;
     timer = setInterval(() => {
         if (timeLeft.value > 0) {
             timeLeft.value--;
