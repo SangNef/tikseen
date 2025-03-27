@@ -1,7 +1,10 @@
 <template>
     <div>
         <Header title="Đăng nhập tài khoản" />
-        <div class="login-content page-content-44-new" style="overflow-x: hidden" :style="{ backgroundImage: `url(${vlbg})` }">
+        <div
+            class="login-content page-content-44-new"
+            style="overflow-x: hidden"
+            :style="{ backgroundImage: `url(${vlbg})` }">
             <div
                 class="react-swipeable-view-container"
                 style="
@@ -29,14 +32,9 @@
                                     position: relative;
                                 ">
                                 <div style="align-self: flex-end; min-height: 36px; margin-bottom: 6px; padding: 0px">
-                                    <div
-                                        class="icon-user"
-                                        style="
-                                            display: inline-block;
-                                            vertical-align: middle;
-                                            position: relative;
-                                            font-size: 27px;
-                                        "></div>
+                                    <div class="p-1 rounded-full border border-gray-500">
+                                        <UserIcon class="w-5 h-5 text-gray-500" style="font-size: 27px" />
+                                    </div>
                                 </div>
                                 <div
                                     style="
@@ -63,8 +61,8 @@
                                             placeholder="Tài khoản / Di động / Hộp thư"
                                             id="username"
                                             name="username"
+                                            v-model="username"
                                             class="inputType1"
-                                            value="mrl9999"
                                             style="
                                                 border: none;
                                                 display: block;
@@ -87,14 +85,9 @@
                                     position: relative;
                                 ">
                                 <div style="align-self: flex-end; min-height: 36px; margin-bottom: 6px; padding: 0px">
-                                    <div
-                                        class="icon-password"
-                                        style="
-                                            display: inline-block;
-                                            vertical-align: middle;
-                                            position: relative;
-                                            font-size: 27px;
-                                        "></div>
+                                    <div class="p-1 rounded-full border border-gray-500">
+                                        <LockClosedIcon class="w-5 h-5 text-gray-500" style="font-size: 27px" />
+                                    </div>
                                 </div>
                                 <div
                                     style="
@@ -118,13 +111,14 @@
                                         ">
                                         <img
                                             alt=""
-                                            src="./static/media/eye-close.858fffa6.png"
+                                            @click="togglePassword()"
+                                            :src="showPassword ? eyeOpen : eyeClose"
                                             class="icon-eye" /><input
-                                            type="password"
+                                            :type="showPassword ? 'text' : 'password'"
                                             placeholder="Mật khẩu"
                                             name="password"
                                             class="inputPType1"
-                                            value="1234567D"
+                                            v-model="password"
                                             style="
                                                 border: none;
                                                 display: block;
@@ -159,16 +153,12 @@
                                                     checked=""
                                                     style="margin-top: 17px; height: 0px; width: 0px" />
                                                 <div class="item-media" style="line-height: 18px">
-                                                    <i
-                                                        class="icon icon-form-checkbox"
-                                                        style="float: left; margin-right: 5px"></i
-                                                    ><span
-                                                        style="font-size: 12px; color: rgb(153, 153, 153); width: 100%"
-                                                        >Nhớ mật khẩu</span
-                                                    >
+                                                    <input type="checkbox" id="rememberMe" class="custom-checkbox" />
+                                                    <label for="rememberMe" class="remember-label">Nhớ mật khẩu</label>
                                                 </div></label
                                             >
-                                            <div
+                                            <router-link
+                                                to="/forgot-password"
                                                 style="
                                                     float: right;
                                                     font-size: 12px;
@@ -177,7 +167,7 @@
                                                     line-height: 32px;
                                                 ">
                                                 Quên mật khẩu
-                                            </div>
+                                            </router-link>
                                         </div>
                                     </li>
                                 </ul>
@@ -185,6 +175,7 @@
                             <div style="margin: 16px 0px; padding: 0px 30px">
                                 <div
                                     class="theme-background-color"
+                                    @click="handleLogin()"
                                     style="
                                         margin-top: 45px;
                                         height: 40px;
@@ -199,7 +190,7 @@
                             <div style="margin: 16px 0px; padding: 0px 30px; justify-content: center">
                                 <div>
                                     <div>
-                                        <router-link 
+                                        <router-link
                                             to="/signup"
                                             class="theme-background-color"
                                             style="
@@ -225,11 +216,38 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import Header from "./Header.vue";
 import vlbg from "@client/assets/images/bg/vlbg.png";
+import eyeClose from "@client/assets/images/login/eye-close.png";
+import eyeOpen from "@client/assets/images/login/eye-open.png";
+
+import { UserIcon, LockClosedIcon } from "@heroicons/vue/24/outline";
+
+const username = ref("");
+const password = ref("");
+const showPassword = ref(false);
+
+const router = useRouter();
+
+const handleLogin = () => {
+    console.log(username.value, password.value);
+    if (username.value === "mrl9999" && password.value === "1234567D") {
+        const user = { username: username.value };
+        localStorage.setItem("user", JSON.stringify(user));
+        router.push("/");
+    } else {
+        alert("Sai tài khoản hoặc mật khẩu!");
+    }
+};
+
+const togglePassword = () => {
+    showPassword.value = !showPassword.value;
+};
 </script>
 
-<style>
+<style scope>
 .page-content-44-new {
     background-position: center 5%;
     background-size: 330px 380px;
@@ -240,5 +258,50 @@ import vlbg from "@client/assets/images/bg/vlbg.png";
 
 .theme-background-color {
     background: #e72732 !important;
+}
+
+.icon-eye {
+    height: 27px;
+    width: 27px;
+    left: auto;
+    right: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: auto;
+    top: 5px;
+}
+
+.custom-checkbox {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid red;
+    border-radius: 16px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.custom-checkbox:checked {
+    background-color: red;
+    border: 2px solid red;
+}
+
+.custom-checkbox:checked::after {
+    content: "✔";
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+}
+
+.remember-label {
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    cursor: pointer;
 }
 </style>

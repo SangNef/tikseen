@@ -26,4 +26,4 @@ defineProps({
 });
 </script>
 
-<style></style>
+<style scope></style>

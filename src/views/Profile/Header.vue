@@ -24,8 +24,6 @@
 import { useRouter } from "vue-router";
 import logo from "@client/assets/images/header/logo.png";
 
-import { defineProps } from "vue";
-
 defineProps({
     title: String
 });

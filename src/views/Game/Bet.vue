@@ -25,4 +25,4 @@
 import trash from "@client/assets/images/game/trash.png";
 </script>
 
-<style></style>
+<style scope></style>

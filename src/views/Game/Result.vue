@@ -87,4 +87,4 @@ const result = ref([
 ]);
 </script>
 
-<style></style>
+<style scope></style>

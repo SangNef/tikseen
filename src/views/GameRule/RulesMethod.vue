@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, computed, defineEmits } from "vue";
+import { ref, computed } from "vue";
 
 const tabs = ref(["Chính Thức", "Cổ điển"]);
 const activeTab = ref(0);

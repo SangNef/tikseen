@@ -34,4 +34,4 @@ import MainBg from "@client/assets/images/home/mainbg.png";
 import Asxh from "@client/assets/images/home/asxh.png";
 </script>
 
-<style></style>
+<style scope></style>

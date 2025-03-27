@@ -4,7 +4,7 @@
             <p class="p text-white" style="margin-bottom: 0px; font-size: 15px">Trung Tâm Người Dùng</p>
         </div>
         <div
-            class="h-[calc(100vh-env(safe-area-inset-bottom)-92px)]"
+            class="min-h-[calc(100vh-env(safe-area-inset-bottom)-92px)]"
             :style="{
                 backgroundImage: `url(${bgRed})`,
                 backgroundRepeat: 'no-repeat',
@@ -15,27 +15,48 @@
             }">
             <div class="h-[110px] relative pt-[26px]">
                 <div class="absolute left-[35%] translate-x-[-30%]">
-                    <div class="flex">
-                        <div class="flex flex-col justify-center">
-                            <img
-                                :src="userDefault"
-                                alt=""
-                                class="rounded-full w-15 h-15 align-middle border-2 border-[#fff3]" />
-                            <i
-                                class="-ml-[10px] mr-[10px] w-[75px] h-[18px] relative"
-                                :style="{
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundPositionX: 'center',
-                                    backgroundPositionY: '0px',
-                                }"></i>
-                        </div>
-                        <div class="pt-[10px] pl-[10px] flex flex-col text-white">
-                            <div class="text-[16px] font-medium float-left">mrl9999</div>
-                            <div class="mt-[5px] w-[65vw] opacity-60 text-xs">
-                                <span>Lần đăng nhập cuối:23-03-2025 19:52:43</span>
+                    <template v-if="isLoginIn">
+                        <div class="flex">
+                            <div class="flex flex-col justify-center">
+                                <img
+                                    :src="userDefault"
+                                    alt=""
+                                    class="rounded-full w-15 h-15 align-middle border-2 border-[#fff3]" />
+                                <i
+                                    class="-ml-[10px] mr-[10px] w-[75px] h-[18px] relative"
+                                    :style="{
+                                        backgroundImage: `url(${vip0})`,
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundPositionX: 'center',
+                                        backgroundPositionY: '0px',
+                                    }"></i>
+                            </div>
+                            <div class="pt-[10px] pl-[10px] flex flex-col text-white">
+                                <div class="text-[16px] font-medium float-left">mrl9999</div>
+                                <div class="mt-[5px] w-[65vw] opacity-60 text-xs">
+                                    <span>Lần đăng nhập cuối:23-03-2025 19:52:43</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </template>
+                    <template v-else>
+                        <div
+                            class="max-w-50 mx-auto"
+                            style="
+                                display: block;
+                                background-image: none;
+                                padding-left: 10px;
+                                min-width: 155px;
+                                color: white;
+                            ">
+                            <div @click="router.push('/login')">
+                                <div class="item-title" style="font-size: 16px">Đăng ký / Đăng nhập</div>
+                            </div>
+                            <div class="item-subtitle" style="font-size: 14px">
+                                Đăng nhập vào tài khoản của bạn để kiếm thêm lợi ích
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
             <div class="mx-[30px] text-white rounded-[5px] px-[15px] py-[5px] bg-[#ffffff1a] mt-3">
@@ -69,12 +90,11 @@
                     style="
                         overflow-x: hidden;
                         border-radius: 0px 0px 10px 10px;
-                        margin-bottom: calc(0px + env(safe-area-inset-bottom));
+                        margin-bottom: calc(60px + env(safe-area-inset-bottom));
                     ">
                     <div
                         class=""
                         style="
-                            height: 1018px;
                             flex-direction: row;
                             transition: all;
                             transform: translate(0%, 0px);
@@ -112,17 +132,44 @@
                                         </g>
                                     </svg>
                                 </button>
-                                <div v-if="openCategories[category.id]" class="ml-6 transition-all duration-300">
-                                    <router-link
-                                        v-for="item in groupedMenuItems[category.id]"
-                                        :key="item.href"
-                                        :to="item.href"
-                                        class="flex items-center p-2 text-sm">
+                                <div
+                                    v-for="item in groupedMenuItems[category.id]"
+                                    :key="item.href"
+                                    class="ml-6 transition-all duration-300">
+                                    <router-link v-if="item.href" :to="item.href" class="flex items-center p-2 text-sm">
                                         <img :src="item.icon" alt="" width="25" />
                                         <span style="font-size: 14px; margin-left: 15px">{{ item.label }}</span>
                                     </router-link>
+
+                                    <button
+                                        v-else
+                                        @click="item.onclick"
+                                        class="flex items-center p-2 text-sm w-full text-left bg-transparent">
+                                        <img :src="item.icon" alt="" width="25" />
+                                        <span style="font-size: 14px; margin-left: 15px">{{ item.label }}</span>
+                                    </button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="openMusicModal" class="fixed inset-0 flex items-center justify-center bg-transparent z-50">
+                <div class="bg-white p-5 rounded-lg shadow-lg w-[85%] max-w-md text-center">
+                    <div class="modal-content">
+                        <div class="modal-header" style="display: block; padding: 10px 0px 0px">
+                            <h5 class="modal-title leading-[30px] text-xl">Nhạc nền</h5>
+                        </div>
+                        <div class="modal-body" style="color: rgb(117, 117, 117); padding: 0px">
+                            <p class="mb-4">Mời chọn có bật nhạc nền hay không</p>
+                        </div>
+                        <div class="p-3" style="display: block">
+                            <button class="btn theme-border-color m-1 rounded-[0.375rem] p-[0.375rem]" style="font-size: 14px; width: 100px" @click="openMusicModal = false">Hủy bỏ</button
+                            ><button
+                                class="btn active theme-background-color m-1 rounded-[0.375rem] p-[0.375rem]"
+                                style="font-size: 14px; width: 100px; color: white">
+                                Bật
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -133,10 +180,11 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 import bgRed from "@client/assets/images/bg/bg-red.png";
 import userDefault from "@client/assets/images/profile/user-default.jpg";
-// import rich from "@client/assets/images/profile/rich.png";
+import vip0 from "@client/assets/images/profile/vip0.png";
 import balance from "@client/assets/images/profile/balance.png";
 import dep from "@client/assets/images/profile/icon_dep.png";
 import cashout from "@client/assets/images/profile/icon_cashout.png";
@@ -158,6 +206,17 @@ import msg from "@client/assets/images/profile/msg.png";
 import qna from "@client/assets/images/profile/qna.png";
 import aboutus from "@client/assets/images/profile/aboutus.png";
 import signout from "@client/assets/images/profile/signout.png";
+
+const isLoginIn = !!localStorage.getItem("user");
+
+const router = useRouter();
+
+const openMusicModal = ref(false);
+
+const handleLogout = () => {
+    localStorage.removeItem("user");
+    router.push("/login");
+};
 
 const menuCategories = [
     { id: 1, label: "Quản lý cá nhân" },
@@ -213,19 +272,18 @@ const menuItems = [
     {
         label: "Xác Thực Hai Yếu Tố",
         icon: verified,
-        href: "/my-account-info-verify",
         category: 3,
     },
     {
         label: "Nhạc Nền",
         icon: music,
-        href: "/custom-music",
+        onclick: () => (openMusicModal.value = true),
         category: 4,
     },
     {
         label: "Màu Chủ Đề",
         icon: theme,
-        href: "/custom-theme",
+        href: "/customColor",
         category: 4,
     },
     {
@@ -243,32 +301,32 @@ const menuItems = [
     {
         label: "Cài Đặt Ngôn Ngữ",
         icon: language,
-        href: "/custom-language",
+        href: "/language-switch",
         category: 4,
     },
     {
         label: "Trung Tâm Tin Nhắn",
         icon: msg,
-        href: "/message-center",
+        href: "/message",
         category: 5,
     },
     {
         label: "Dịch Vụ Trả Lời Khách Hàng",
         icon: qna,
-        href: "/customer-service",
+        href: "/support",
         category: 5,
     },
     {
         label: "Về Chúng Tôi",
         icon: aboutus,
-        href: "/about-us",
+        href: "/docDetail",
         category: 5,
     },
     {
         label: "Đăng Xuất Khỏi Tài Khoản Hiện tại",
         icon: signout,
-        href: "/logout",
         category: 5,
+        onclick: handleLogout,
     },
 ];
 
@@ -293,4 +351,23 @@ const toggleCategory = (categoryId) => {
 };
 </script>
 
-<style></style>
+<style scope>
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+}
+
+.theme-border-color {
+    color: #e93330 !important;
+    border: 1px solid #e93330 !important;
+}
+</style>

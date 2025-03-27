@@ -112,4 +112,4 @@ import table1 from "@client/assets/images/content/table1.png";
 import table2 from "@client/assets/images/content/table2.png";
 </script>
 
-<style></style>
+<style scope></style>

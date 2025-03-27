@@ -45,4 +45,4 @@ const setActiveTab = (tab) => {
 };
 </script>
 
-<style></style>
+<style scope></style>

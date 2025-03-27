@@ -49,4 +49,4 @@ import trash from "@client/assets/images/game/trash.png";
 import shuffle from "@client/assets/images/game/shuffle.png";
 </script>
 
-<style></style>
+<style scope></style>
