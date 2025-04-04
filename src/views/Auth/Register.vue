@@ -1,5 +1,6 @@
 <template>
-    <div class="w-full max-w-[400px] mx-auto mt-10 rounded-lg shadow-lg bg-white p-4 text-black">
+    <div
+        class="w-full max-w-[400px] mx-auto mt-10 rounded-lg shadow-lg bg-white p-4 text-black register-form">
         <h1 class="text-2xl font-bold text-center mb-4 text-[#7b5e02]">Đăng ký tài khoản</h1>
         <form @submit.prevent="handleRegister">
             <!-- Tên tài khoản -->
@@ -20,7 +21,10 @@
                     placeholder="Mật khẩu"
                     class="w-full px-4 py-3 pl-10 pr-10 rounded-xl focus:outline-none focus:ring focus:ring-[#d9c8ab] backdrop-blur-md border border-[#d9c8ab]" />
                 <LockClosedIcon class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#d9c8ab]" />
-                <button type="button" @click="showPassword = !showPassword" class="absolute right-3 top-1/2 -translate-y-1/2">
+                <button
+                    type="button"
+                    @click="showPassword = !showPassword"
+                    class="absolute right-3 top-1/2 -translate-y-1/2">
                     <component :is="showPassword ? EyeSlashIcon : EyeIcon" class="w-5 h-5 text-[#d9c8ab]" />
                 </button>
             </div>
@@ -33,7 +37,10 @@
                     placeholder="Nhập lại mật khẩu"
                     class="w-full px-4 py-3 pl-10 pr-10 rounded-xl focus:outline-none focus:ring focus:ring-[#d9c8ab] backdrop-blur-md border border-[#d9c8ab]" />
                 <LockClosedIcon class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#d9c8ab]" />
-                <button type="button" @click="showPasswordConfirm = !showPasswordConfirm" class="absolute right-3 top-1/2 -translate-y-1/2">
+                <button
+                    type="button"
+                    @click="showPasswordConfirm = !showPasswordConfirm"
+                    class="absolute right-3 top-1/2 -translate-y-1/2">
                     <component :is="showPasswordConfirm ? EyeSlashIcon : EyeIcon" class="w-5 h-5 text-[#d9c8ab]" />
                 </button>
             </div>
@@ -77,9 +84,7 @@
         </form>
 
         <div class="mt-4 text-center text-[#d9c8ab]">
-            <router-link to="/login" class="text-[#7b5e02]">
-                Đã có tài khoản? Đăng nhập
-            </router-link>
+            <router-link to="/login" class="text-[#7b5e02]"> Đã có tài khoản? Đăng nhập </router-link>
         </div>
     </div>
 </template>
@@ -102,4 +107,33 @@ const handleRegister = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+/* CSS cho màn hình iPhone 5 trở xuống (width <= 320px) */
+@media screen and (max-width: 400px) {
+    .register-form {
+        margin-top: 5rem;
+        input {
+            font-size: 0.9rem;
+            padding-top: 0.55rem;
+            padding-bottom: 0.55rem;
+        }
+        button {
+            font-size: 0.9rem;
+            padding-top: 0.55rem;
+            padding-bottom: 0.55rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 0.85rem;
+        }
+
+        .mt-4 {
+            margin-top: 0.85rem;
+        }
+
+        a {
+            font-size: 0.85rem;
+        }
+    }
+}
+</style>
