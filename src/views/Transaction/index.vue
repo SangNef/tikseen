@@ -18,7 +18,7 @@
                     :key="item.id"
                     @click="activeMenu = item.id"
                     :class="activeMenu === item.id ? 'bg-linear-to-l from-[#b39773] to-[#5b442d]' : 'bg-[#2b2b2b]'"
-                    class="rounded-lg px-6 py-1 text-white text-sm">
+                    class="rounded-lg px-6 py-1 text-white text-sm w-[33.33%] text-center">
                     {{ item.name }}
                 </div>
             </div>
