@@ -1,0 +1,61 @@
+{
+  "language": "Vietnamese",
+  "project_structure": {
+    "src": {
+      "components": "Các component tái sử dụng",
+      "layouts": "Layout của ứng dụng (Default, Auth, Empty)",
+      "views": "Các trang giao diện người dùng",
+      "routes": "Cấu hình định tuyến Vue Router",
+      "assets": "Hình ảnh và tài nguyên tĩnh",
+      "helpers": "Các hàm tiện ích",
+      "data": "Dữ liệu mẫu và API"
+    }
+  },
+  "coding_principles": {
+    "style": {
+      "css": "Sử dụng Tailwind CSS với class-based styling",
+      "gradients": "Dùng linear-gradient và radial-gradient cho các nền",
+      "colors": {
+        "primary": ["#353228", "#241e1e", "#0a0a0a", "#211c16"],
+        "text": ["#d4cbaf", "#ffffff", "#f3f3f3", "#cccccc"],
+        "accent": ["#483b2b", "#d4cbaf"]
+      },
+      "spacing": "Tuân thủ spacing system của Tailwind"
+    },
+    "components": {
+      "naming": "PascalCase cho component (VD: BottomBar.vue)",
+      "structure": "Script setup + Template + Style"
+    },
+    "routing": {
+      "layouts": "Sử dụng meta.layout để xác định layout cho mỗi route",
+      "naming": "Đặt tên route dễ hiểu và phản ánh chức năng"
+    },
+    "file_organization": {
+      "views": "Mỗi tính năng có thư mục riêng trong views",
+      "components": "Component dùng chung đặt trong src/components"
+    }
+  },
+  "recommended_practices": {
+    "imports": "Ưu tiên sử dụng alias @ cho import",
+    "state_management": "Sử dụng ref và reactive cho state",
+    "component_composition": "Ưu tiên composition API qua script setup",
+    "code_comments": "Chỉ comment cho logic phức tạp",
+    "responsive": "Thiết kế mobile-first, max-w-md cho container chính"
+  },
+  "ui_guidelines": {
+    "layout": "Mobile-first, app-like UI",
+    "navigation": "Bottom navigation bar cho menu chính",
+    "cards": "Card design với rounded corners và gradient borders",
+    "buttons": "Sử dụng gradient và hover effects",
+    "icons": "Heroicons cho icon system",
+    "typography": {
+      "font": "Manrope và Roboto",
+      "sizes": {
+        "small": "text-xs hoặc text-sm",
+        "normal": "text-base",
+        "large": "text-lg hoặc text-xl",
+        "heading": "text-2xl trở lên"
+      }
+    }
+  }
+} 
