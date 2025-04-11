@@ -1,0 +1,272 @@
+{
+    "menu": {
+        "home": "Trang chủ",
+        "about": "Giới thiệu tập đoàn",
+        "activity": "Lĩnh vực hoạt động",
+        "activity1": "Công nghệ - Công nghiệp",
+        "activity2": "Thương mại Dịch vụ",
+        "activity3": "Thiện nguyện Xã hội",
+        "development": "Phát triển bền vững",
+        "relation": "Quan hệ cổ đông",
+        "news": "Tin tức sự kiện",
+        "hiring": "Tuyển dụng",
+        "contact": "Liên hệ"
+    },
+    "breadcrumb": {
+        "about": "Giới thiệu chung",
+        "development": "Phát triển bền vững",
+        "relation": "Quan hệ cổ đông"
+    },
+    "home": {
+        "title": "Vì một cuộc sống tốt đẹp hơn cho mọi người",
+        "news": "Tin tức sự kiện",
+        "newsItems": {
+            "1": "VINFAST ENERGY VÀ ĐIỆN NGHI SƠN 2 VẬN HÀNH HỆ THỐNG ĐIỆN MẶT TRỜI TÍCH HỢP PIN LƯU TRỮ NĂNG LƯỢNG",
+            "2": "TRUNG TÂM NGHỆ THUẬT ĐƯƠNG ĐẠI VINCOM (VCCA) VINH DỰ ĐÓN TIẾP PHÁI ĐOÀN NGOẠI GIAO CAO CẤP TRONG KHUÔN KHỔ CHUYẾN THĂM VIỆT NAM CẤP NHÀ NƯỚC CỦA NHÀ VUA VÀ HOÀNG HẬU VƯƠNG QUỐC BỈ",
+            "3": "VINGROUP TỔ CHỨC NGÀY HỘI XANH 2025 TẠI OCEAN CITY"
+        },
+        "pioneering": "Lĩnh vực",
+        "spirit": "Tiên phong",
+        "cateContent": "Với mong muốn đem đến cho thị trường những sản phẩm - dịch vụ theo tiêu chuẩn quốc tế và những trải nghiệm hoàn toàn mới về phong cách sống hiện đại, ở bất cứ lĩnh vực nào Vingroup cũng chứng tỏ vai trò tiên phong, dẫn dắt sự thay đổi xu hướng tiêu dùng.",
+        "slide": "Trượt để khám phá",
+        "cate": [
+            {
+                "title": "Công nghệ <br /> - Công nghiệp",
+                "content": ""
+            },
+            {
+                "title": "Thương mại <br /> Dịch vụ",
+                "content": "Vingroup cung cấp các dịch vụ thương mại đa dạng, từ bán lẻ đến dịch vụ tài chính, nhằm đáp ứng nhu cầu ngày càng cao của người tiêu dùng."
+            },
+            {
+                "title": "Thiện nguyện <br /> Xã hội",
+                "content": ""
+            }
+        ],
+        "relation": {
+            "title": "Quan hệ cổ đông",
+            "subTitle": "Giới thiệu tập đoàn",
+            "content": "Tiền thân của Vingroup là Tập đoàn Technocom, thành lập năm 1993 tại Ucraina. Đầu những năm 2000, Technocom trở về Việt Nam, tập trung đầu tư vào lĩnh vực du lịch và bất động sản với hai thương hiệu chiến lược ban đầu là Vinpearl và Vincom. Đến tháng 1/2012, công ty CP Vincom và Công ty CP Vinpearl sáp nhập, chính thức hoạt động dưới mô hình Tập đoàn với tên gọi Tập đoàn Vingroup – Công ty CP."
+        }
+    },
+    "about": {
+        "title": "TẬP ĐOÀN VINGROUP - CÔNG TY CP",
+        "content": {
+            "1": "Tiền thân của Vingroup là Tập đoàn Technocom, thành lập năm 1993 tại Ucraina. Đầu những năm 2000, Technocom trở về Việt Nam, tập trung đầu tư vào lĩnh vực du lịch và bất động sản với hai thương hiệu chiến lược ban đầu là Vinpearl và Vincom. Đến tháng 1/2012, công ty CP Vincom và Công ty CP Vinpearl sáp nhập, chính thức hoạt động dưới mô hình Tập đoàn với tên gọi Tập đoàn Vingroup – Công ty CP.",
+            "2": "3 nhóm hoạt động trọng tâm của Tập đoàn bao gồm:",
+            "3": "- Công nghệ - Công nghiệp",
+            "4": "- Thương mại Dịch vụ",
+            "5": "- Thiện nguyện Xã hội",
+            "6": "Với mong muốn đem đến cho thị trường những sản phẩm - dịch vụ theo tiêu chuẩn quốc tế và những trải nghiệm hoàn toàn mới về phong cách sống hiện đại, ở bất cứ lĩnh vực nào Vingroup cũng chứng tỏ vai trò tiên phong, dẫn dắt sự thay đổi xu hướng tiêu dùng.&nbsp;"
+        },
+        "items": [
+            {
+                "title": "Đội ngũ <br/> Nhân sự",
+                "content": "Trải qua chặng đường dài trưởng thành và phát triển, chính những con người Vingroup đã làm nên những giá trị tốt đẹp, đóng góp vào thành công của Tập đoàn hôm nay."
+            },
+            {
+                "title": "Tầm nhìn, Sứ mệnh <br/> và Giá trị cốt lõi",
+                "content": "Vingroup đặt cho mình sứ mệnh 'Vì một cuộc sống tốt đẹp hơn cho mọi người', với 3 trụ cột cốt lõi là Công nghệ - Công nghiệp, Thương mại Dịch vụ, Thiện nguyện Xã hội."
+            },
+            {
+                "title": "Đối với <br/> Khách hàng",
+                "content": "Tạo nên những sản phẩm, dịch vụ có chất lượng tối ưu, mang lại sự hài lòng cho khách hàng ở mức độ cao nhất."
+            }
+        ],
+        "brand": {
+            "title": "Các thương hiệu",
+            "content": "Với mong muốn đem đến cho thị trường những sản phẩm - dịch vụ theo tiêu chuẩn quốc tế và những trải nghiệm hoàn toàn mới về phong cách sống hiện đại, ở bất cứ lĩnh vực nào Vingroup cũng chứng tỏ vai trò tiên phong, dẫn dắt sự thay đổi xu hướng tiêu dùng. "
+        }
+    },
+    "activity": {
+        "heading": "Thông tin chi tiết",
+        "brand": "Các thương hiệu",
+        "notFound": "Không tìm thấy hoạt động phù hợp.",
+        "items": [
+            {
+                "title": "Công nghệ <br /> - Công nghiệp",
+                "description": "",
+                "info": "Vingroup đặt cho mình sứ mệnh 'Vì một cuộc sống tốt đẹp hơn cho mọi người', với 3 nhóm hoạt động trọng tâm là Công nghệ - Công nghiệp, Thương mại Dịch vụ, Thiện nguyện Xã hội."
+            },
+            {
+                "title": "Thương mại <br /> Dịch vụ",
+                "description": "Với mảng Thương mại Dịch vụ - Vingroup tiếp tục đẩy mạnh...",
+                "info": "Vingroup đặt cho mình sứ mệnh 'Vì một cuộc sống tốt đẹp hơn cho mọi người'..."
+            },
+            {
+                "title": "Thiện nguyện <br /> Xã hội",
+                "description": "",
+                "info": "Vingroup đặt cho mình sứ mệnh 'Vì một cuộc sống tốt đẹp hơn cho mọi người'..."
+            }
+        ],
+        "brands": {
+            "1": "Là thương hiệu ô tô Việt Nam, VinFast hướng tầm nhìn trở thành hãng xe điện thông minh toàn cầu.",
+            "2": "Công ty Cổ phần Nghiên cứu và Ứng dụng Trí tuệ nhân tạo VinAI, tiền thân là Viện nghiên cứu Trí tuệ nhân tạo VinAI.",
+            "3": "Công ty Cổ phần VinBigData được thành lập trên nền tảng thành quả nghiên cứu khoa học của Viện Nghiên cứu Dữ Liệu lớn (thuộc Tập đoàn Vingroup) trong lĩnh vực Khoa Học Dữ Liệu và Trí Tuệ Nhân Tạo, đặc biệt về xử lý hình ảnh và ngôn ngữ.",
+            "4": "Công ty Cổ phần Dịch vụ An ninh mạng VinCSS là đơn vị hàng đầu trong lĩnh vực an ninh mạng với sứ mệnh 'Tiên phong vì một môi trường số tốt đẹp hơn'. VinCSS cung cấp các giải pháp bảo mật toàn diện trên môi trường kỹ thuật số, bao gồm Quản lý Nhận dạng và Truy cập, Dịch vụ An ninh mạng Công nghệ Thông tin, An ninh Bảo mật cho thiết bị IoT, và An ninh Bảo mật cho Phương tiện Thông minh.",
+            "5": "VinHMS là công ty sản xuất và kinh doanh phần mềm, chuyên cung cấp những sản phẩm công nghệ chất lượng cao nhằm tối ưu hóa hoạt động kinh doanh của doanh nghiệp.",
+            "6": "Hệ thống căn hộ, biệt thự và nhà phố thương mại với dịch vụ đẳng cấp.",
+            "7": "Vinpearl là thương hiệu du lịch - nghỉ dưỡng - vui chơi giải trí lớn nhất Việt Nam, sở hữu chuỗi khách sạn, resort, spa cùng trung tâm hội nghị, ẩm thực và sân golf đẳng cấp 5 sao và các khu vui chơi giải trí theo tiêu chuẩn quốc tế, toạ lạc tại những danh thắng du lịch nổi tiếng nhất của Việt Nam.",
+            "8": "Vincom là thương hiệu bất động sản bán lẻ hàng đầu Việt Nam với 4 dòng sản phẩm là Vincom Center, Vincom Mega Mall, Vincom Plaza và Vincom+.",
+            "9": "Quỹ Vì tương lai xanh là một tổ chức phi lợi nhuận (Tập đoàn Vingroup là sáng lập viên) nhằm mục đích thực hiện các dự án, chương trình hành động thiết thực vì mục tiêu phát triển xanh bền vững thông qua các chương trình chuyển đổi xanh tại Việt Nam.",
+            "10": "Vinschool là hệ thống trường phổ thông liên cấp chất lượng cao tại Việt Nam, được thành lập với sứ mệnh mang lại nền giáo dục tốt nhất cho học sinh Việt Nam.Vinschool là hệ thống giáo dục không vì lợi nhuận, liên cấp từ bậc mầm non đến Trung học phổ thông do Tập đoàn Vingroup đầu tư phát triển, hướng đến một ngôi trường Việt Nam mang đẳng cấp quốc tế.",
+            "11": "Vinmec là hệ thống y tế không vì lợi nhuận do Tập đoàn Vingroup đầu tư phát triển, với tầm nhìn trở thành một hệ thống y tế hàn lâm vươn tầm quốc tế thông qua những nghiên cứu đột phá, nhằm mang lại chất lượng điều trị xuất sắc và dịch vụ chăm sóc hoàn hảo.",
+            "12": "Trường Đại học VinUniversity (VinUni) là trường đại học tinh hoa, tư thục, không vì lợi nhuận do Tập đoàn Vingroup sáng lập với khát vọng đào tạo nhân tài cho tương lai và đóng góp cho đất nước một đại học xuất sắc mang đẳng cấp thế giới.",
+            "13": "Quỹ VinFuture là một quỹ độc lập, không vì lợi nhuận tại Việt Nam.",
+            "14": "Quỹ Thiện Tâm là một tổ chức phi lợi nhuận thuộc Tập đoàn Vingroup, hoạt động vì mục đích nhân đạo, từ thiện, nhằm 'chuyển tải một cách nhanh chóng và hiệu quả nhất tấm lòng của người Vingroup đến với cộng đồng'.",
+            "15": "Quỹ Đổi mới sáng tạo Vingroup (VINIF) thuộc Viện Nghiên cứu Dữ liệu lớn (VNCDLL)",
+            "16": "Công ty TNHH Dịch vụ vận tải VinBus được thành lập năm 2019, hoạt động trong lĩnh vực vận tải hành khách công cộng theo mô hình phi lợi nhuận.ß"
+        }
+    },
+    "development": {
+        "heading": {
+            "1": "Khát vọng",
+            "2": "Tiên phong"
+        },
+        "content": {
+            "1": "Vingroup đặt cho mình sứ mệnh 'Vì một cuộc sống tốt đẹp hơn cho mọi người', với 3 nhóm hoạt động trọng tâ  là Công nghệ - Công nghiệp, Thương mại Dịch vụ, Thiện nguyện Xã hội.",
+            "2": "Báo cáo Phát triển Bền vững 2022",
+            "3": "Báo cáo Phát triển Bền vững 2023"
+        },
+        "items": [
+            {
+                "title": "Văn hóa <br/> doanh nghiệp",
+                "content": "Vingroup là nơi tập trung những con người ưu tú của Dân tộc Việt Nam và các bạn đồng nghiệp Quốc tế - những người có tư tưởng và hành động kỷ luật, có tài năng và bản lĩnh, có lòng yêu nước và tự tôn dân tộc, hướng thiện và có tinh thần làm việc quyết liệt, triệt để vì những mục đích tốt đẹp."
+            },
+            {
+                "title": "Chiến lược <br/> con người",
+                "content": "Vingroup luôn coi nguồn nhân lực là yếu tố cốt lõi và là tài sản quý giá. Với khẩu hiệu: “Vingroup - Mãi mãi tinh thần khởi nghiệp”, Tập đoàn đã xây dựng một đội ngũ nhân sự tinh gọn, có đủ cả Đức và Tài."
+            },
+            {
+                "title": "Môi trường và <br/> cộng đồng",
+                "content": "Với mục tiêu phát triển bền vững, Vingroup hiểu rõ tầm quan trọng của việc bảo vệ môi trường trong quá trình thiết kế, xây dựng và khai thác các tổ hợp du lịch, TTTM, khu đô thị, văn phòng và căn hộ."
+            },
+            {
+                "title": "Chính sách bảo vệ dữ liệu cá nhân",
+                "content": "Chính sách bảo vệ dữ liệu cá nhân này mô tả cách thức thu thập, sử dụng và xử lý dữ liệu cá nhân phát sinh trong quá trình hoạt động, kinh doanh của Tập đoàn Vingroup – Công ty CP."
+            }
+        ]
+    },
+    "relation": {
+        "heading": "Quan hệ Nhà đầu tư",
+        "row": {
+            "1": {
+                "title": "Tổng quan về Vingroup",
+                "pdf": "Hồ sơ doanh nghiệp"
+            },
+            "2": {
+                "title": "Lịch sự kiện"
+            },
+            "3": {
+                "title": "Báo cáo tài chính & thuyết trình",
+                "pdf": {
+                    "1": "Báo cáo tài chính hợp nhất đã kiểm toán năm 2024",
+                    "2": "Thuyết trình kết quả kinh doanh Quý IV, 2024"
+                }
+            },
+            "4": {
+                "title": "Liên hệ Quan hệ nhà đầu tư"
+            },
+            "5": {
+                "title": "Báo cáo thường niên",
+                "pdf": {
+                    "1": "Báo cáo thường niên Vingroup năm 2023"
+                }
+            },
+            "6": {
+                "title": "Tài liệu khác",
+                "label": {
+                    "1": "Thuyết trình doanh nghiệp",
+                    "2": "Công bố thông tin",
+                    "3": "Tài liệu doanh nghiệp",
+                    "4": "Phát triển bền vững"
+                }
+            },
+            "7": {
+                "title": "Các công ty con niêm yết"
+            }
+        }
+    },
+    "news": {
+        "heading": "Tin tức sự kiện",
+        "titles": {
+            "vin1": "TRUNG TÂM NGHỆ THUẬT ĐƯƠNG ĐẠI VINCOM (VCCA) VINH DỰ ĐÓN TIẾP PHÁI ĐOÀN NGOẠI GIAO CAO CẤP TRONG KHUÔN KHỔ CHUYẾN THĂM VIỆT NAM CẤP NHÀ NƯỚC CỦA NHÀ VUA VÀ HOÀNG HẬU VƯƠNG QUỐC BỈ",
+            "vin2": "VINGROUP TỔ CHỨC NGÀY HỘI XANH 2025 TẠI OCEAN CITY",
+            "vin3": "NGÀY HƯỞNG ỨNG BÁC TÀI XANH CÔNG NGHỆ - TÔN VINH TÀI XẾ XE XANH",
+            "vin4": "XANH SM TRI ÂN KHÁCH HÀNG VÀ TÀI XẾ HƠN 16 TỶ ĐỒNG, MỖI TUẦN TẶNG MỘT XE VF 3",
+            "vin5": "GREEN FUTURE CHO THUÊ 1.000 Ô TÔ ĐIỆN - PHÁT TRIỂN DU LỊCH XANH TẠI ĐÀ NẴNG",
+            "congnghe1": "GREEN FUTURE CHO THUÊ 1.000 Ô TÔ ĐIỆN - PHÁT TRIỂN DU LỊCH XANH TẠI ĐÀ NẴNG",
+            "congnghe2": "VINIF TÀI TRỢ 900 TỶ ĐỒNG PHÁT TRIỂN KHOA HỌC CÔNG NGHỆ",
+            "congnghe3": "VINGROUP THÀNH LẬP CÔNG TY NGHIÊN CỨU VÀ PHÁT TRIỂN NGƯỜI MÁY",
+            "congnghe4": "VINBIGDATA LỌT TOP 10 THẾ GIỚI VỀ CÔNG NGHỆ NHẬN DIỆN KHUÔN MẶT",
+            "congnghe5": "VINAI GIỚI THIỆU CÔNG NGHỆ PHÁT HIỆN TÌNH TRẠNG SAY RƯỢU CỦA TÀI XẾ MANG TÍNH ĐỘT PHÁ TẠI CHÂU ÂU",
+            "congnghiep1": "VINFAST MỞ BÁN MẪU B-SUV VF 6  VÀ CÔNG BỐ CHÍNH SÁCH MIỄN PHÍ SẠC Ô TÔ ĐIỆN TẠI PHILIPPINES",
+            "congnghiep2": "G7 MUA 899 Ô TÔ ĐIỆN VINFAST TỪ XANH SM - TRIỂN KHAI DỊCH VỤ TAXI XANH",
+            "congnghiep3": "VINFAST ENERGY VÀ ĐIỆN NGHI SƠN 2 VẬN HÀNH HỆ THỐNG ĐIỆN MẶT TRỜI TÍCH HỢP PIN LƯU TRỮ NĂNG LƯỢNG",
+            "congnghiep4": "VINFAST HỢP TÁC VỚI CÔNG TY LOGISTICS DHL, CUNG CẤP DỊCH VỤ GIAO PHỤ TÙNG TRONG VÒNG 24 TIẾNG TẠI CHÂU ÂU",
+            "congnghiep5": "V-GREEN VÀ CHARGEPOINT KÝ KẾT THOẢ THUẬN HỢP TÁC TRIỂN KHAI MÔ HÌNH TRẠM SẠC ĐA TIỆN ÍCH",
+            "bds1": "VINGROUP KHỞI CÔNG DỰ ÁN VINHOMES GREEN CITY TẠI LONG AN",
+            "bds2": "HỢP LONG CẦU HOÀNG GIA KẾT NỐI TRỰC TIẾP VINHOMES ROYAL ISLAND VỚI TRUNG TÂM HẢI PHÒNG",
+            "bds3": "VINHOMES RA MẮT VINHOMES WONDER CITY – THÀNH PHỐ CỦA NHỮNG TRẢI NGHIỆM THỜI THƯỢNG PHÍA TÂY HÀ NỘI",
+            "bds4": "QUẢNG TRỊ RA MẮT CÔNG VIÊN VINCOM ĐÔNG HÀ - TÂM ĐIỂM GIẢI TRÍ SÔI ĐỘNG BẬC NHẤT",
+            "bds5": "SẮP KHỞI ĐỘNG LỄ HỘI XUÂN LỚN NHẤT VIỆT NAM - ÁNH SÁNG PHƯƠNG ĐÔNG 2025 OCEAN CITY",
+            "dl1": "ĐẠI NHẠC HỘI ROAD TO 8WONDER MỞ CỔNG BÁN VÉ VỚI LOẠT TRẢI NGHIỆM LẦN ĐẦU TIÊN XUẤT HIỆN TẠI VIỆT NAM",
+            "dl2": "VINPEARL SAFARI PHÚ QUỐC LỌT TOP ĐẦU VƯỜN THÚ VÀ THỦY CUNG TẠI CHÂU Á",
+            "dl3": "VINPEARL LỌT TOP 3 THƯƠNG HIỆU MẠNH NHẤT ĐÔNG NAM Á",
+            "dl4": "IMAGINE DRAGONS SẼ TRÌNH DIỄN TRONG SUPERSHOW 8WONDER TẠI TP.HCM",
+            "dl5": "VINPEARL GOLF QUẢN LÝ VÀ VẬN HÀNH SÂN GOLF SỐ 1 NƯỚC ÚC",
+            "yt1": "VINMEC VÀ VFF HỢP TÁC CHIẾN LƯỢC NÂNG CAO CHẤT LƯỢNG Y HỌC THỂ THAO",
+            "yt2": "VINMEC LÀ HỆ THỐNG Y TẾ SỐ 1 VIỆT NAM DÀNH CHO NGƯỜI NƯỚC NGOÀI",
+            "yt3": "KHAI TRƯƠNG BỆNH VIỆN ĐA KHOA VINMEC CẦN THƠ",
+            "yt4": "VINMEC 2 NĂM LIÊN TIẾP NHẬN GIẢI THƯỞNG QUỐC TẾ VỀ TRÁCH NHIỆM XÃ HỘI VÀ PHÁT TRIỂN BỀN VỮNG",
+            "yt5": "KHAI TRƯƠNG BỆNH VIỆN ĐA KHOA QUỐC TẾ VINMEC SMART CITY",
+            "gd1": "TRƯỜNG ĐẠI HỌC VINUNI VÀ ĐẠI HỌC NTU– SINGAPORE KÝ KẾT HỢP TÁC LIÊN MINH CHIẾN LƯỢC",
+            "gd2": "THÀNH LẬP CÔNG TY ĐÀO TẠO VÀ SÁT HẠCH LÁI XE THUẦN ĐIỆN VINDT",
+            "gd3": "VINUNI CHÍNH THỨC ĐẢM NHẬN VỊ TRÍ UNESCO CHAIR ĐẦU TIÊN TẠI VIỆT NAM",
+            "gd4": "KHOÁ BÁC SĨ NỘI TRÚ ĐẦU TIÊN CỦA VINUNI CHÍNH THỨC TỐT NGHIỆP",
+            "gd5": "VINSCHOOL TRAO HỌC BỔNG KIẾN TẠO CHO 30 HỌC SINH XUẤT SẮC VƯỢT KHÓ",
+            "bl1": "VINCOM RETAIL ĐƯỢC VINH DANH TRONG TOP 25 THƯƠNG HIỆU DẪN ĐẦU VÀ TOP 50 DOANH NGHIỆP QUẢN TRỊ XUẤT SẮC NHẤT TẠI VIỆT NAM",
+            "bl2": "KHAI TRƯƠNG VINCOM PLAZA ĐÔNG HÀ TẠI QUẢNG TRỊ",
+            "bl3": "SINH NHẬT VINCOM 20 NĂM KHAI MÀN MÙA LỄ HỘI RỰC RỠ NHẤT TRONG NĂM",
+            "bl4": "VINCOM KHỞI ĐỘNG LỄ HỘI TRUNG THU 2024 “MOON MALLIDAY – TÙNG DINH DINH, LINH ĐÌNH PHÁ CỖ’",
+            "bl5": "VINCOM KHAI TRƯƠNG TẠI HÀ GIANG VÀ ĐIỆN BIÊN PHỦ"
+        },
+        "cates": {
+            "tất cả": "Tất cả",
+            "vingroup": "Vingroup",
+            "công nghệ": "Công nghệ",
+            "công nghiệp": "Công nghiệp",
+            "bất động sản": "Bất động sản",
+            "du lịch - vui chơi - giải trí": "du lịch - vui chơi - giải trí",
+            "y tế": "y tế",
+            "giáo dục": "giáo dục",
+            "bán lẻ": "bán lẻ"
+        },
+        "h4": "Tin"
+    },
+    "footer": {
+        "left": {
+            "1": "Tập đoàn Vingroup (Vingroup JSC)",
+            "2": "© Bản quyền Vingroup 2019",
+            "3": "Kết nối với chúng tôi:"
+        },
+        "right": {
+            "links": {
+                "1": "Trang chủ",
+                "2": "Giới thiệu tập đoàn",
+                "3": "Lĩnh vực hoạt động",
+                "4": "Quan hệ cổ đông",
+                "5": "Phát triển bền vững"
+            },
+            "subLinks": {
+                "1": "Tin tức sự kiện",
+                "2": "Tuyển dụng",
+                "3": "Liên hệ"
+            }
+        },
+        "bottom": "Chính sách bảo vệ dữ liệu cá nhân"
+    },
+    "all": "Xem tất cả",
+    "detail": "Xem chi tiết",
+    "more": "Xem thêm"
+}

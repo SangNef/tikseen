@@ -1,14 +1,16 @@
 <template>
-  <div class="max-w-md mx-auto bg-white relative mt-[env(safe-area-inset-top)]">
-    <slot />
-    <BottomBar />
-  </div>
+    <div class="bg-white flex flex-col lg:flex-row overflow-x-hidden">
+        <NavBar />
+        <div class="pt-[50px] lg:pt-0 lg:pl-[95px] flex-1 flex flex-col">
+            <slot />
+            <Footer />
+        </div>
+    </div>
 </template>
 
 <script setup>
-import BottomBar from '@/components/BottomBar.vue';
+import NavBar from "@/components/NavBar.vue";
+import Footer from "@/components/Footer.vue";
 </script>
 
-<style scope>
-
-</style>
+<style scope></style>

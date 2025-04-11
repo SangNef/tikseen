@@ -1,12 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+    font-family: 'Rift';
+    src: url(@/assets/fonts/Rift-Regular.otf) format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Rift';
+    src: url(@/assets/fonts/Rift-Bold.otf) format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF';
+    src: url(@/assets/fonts/SF-Regular.otf) format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF';
+    src: url(@/assets/fonts/SF-Bold.otf) format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
 @import "tailwindcss";
 
 body {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Rift', sans-serif;
     margin: 0;
     padding: 0;
 }
 
+.font-sf {
+    font-family: 'SF', sans-serif;
+}
+
+.font-sf-bold {
+    font-family: 'SF', sans-serif;
+    font-weight: 700;
+}
+
+.font-arial {
+    font-family: Arial, sans-serif;
+}
+
 .custom-gradient {
     background: radial-gradient(circle at top right, #483b2b 0%, #211c19 20%, #131313 45%, #131313 100%);
+}
+
+@keyframes rotateMouse {
+    0%, 100%, 30% {
+        transform: rotateZ(0deg);
+    }
+    10% {
+        transform: rotateZ(10deg);
+    }
+    20% {
+        transform: rotateZ(-10deg);
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 10px;
+    margin: 0 auto;
+    position: relative;
+}
+
+h2 {
+    line-height: 1.15385;
+}
+
+p {
+    line-height: 1.3;
 }

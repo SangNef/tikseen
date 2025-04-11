@@ -1,0 +1,118 @@
+import * as partner from "@/assets/images/partner.js";
+
+export default function useAllBrands(t) {
+    return [
+        {
+            id: 1,
+            name: "Vinfast",
+            logo: partner.vinfast,
+            href: "vinfastauto.com",
+            content: t("activity.brands.1"),
+        },
+        {
+            id: 2,
+            name: "VinAi",
+            logo: partner.vinai,
+            href: "www.vinai.io",
+            content: t("activity.brands.2"),
+        },
+        {
+            id: 3,
+            name: "VinBigData",
+            logo: partner.vinbigdata,
+            href: "vinbigdata.org",
+            content: t("activity.brands.3"),
+        },
+        {
+            id: 4,
+            name: "VinCss",
+            logo: partner.css,
+            href: "vincss.net",
+            content: t("activity.brands.4"),
+        },
+        {
+            id: 5,
+            name: "VinHms",
+            logo: partner.hms,
+            href: "www.vinhms.com",
+            content: t("activity.brands.5"),
+        },
+        {
+            id: 6,
+            name: "VinHomes",
+            logo: partner.vinhomes,
+            href: "vinhomes.vn",
+            content: t("activity.brands.6"),
+        },
+        {
+            id: 7,
+            name: "VinPearl",
+            logo: partner.vinpearl,
+            href: "vinpearl.com",
+            content: t("activity.brands.7"),
+        },
+        {
+            id: 8,
+            name: "Vincom",
+            logo: partner.vincom,
+            href: "vincom.com.vn",
+            content: t("activity.brands.8"),
+        },
+        {
+            id: 9,
+            name: "Quỹ vì Tuơng lai xanh",
+            logo: partner.tlx,
+            href: "vingroup.net",
+            content: t("activity.brands.9"),
+        },
+        {
+            id: 10,
+            name: "Vinschool",
+            logo: partner.vinschool,
+            href: "vinschool.edu.vn",
+            content: t("activity.brands.10"),
+        },
+        {
+            id: 11,
+            name: "VinMec",
+            logo: partner.vinmec,
+            href: "vinmec.com",
+            content: t("activity.brands.11"),
+        },
+        {
+            id: 12,
+            name: "vinuni",
+            logo: partner.vinu,
+            href: "vinuni.edu.vn",
+            content: t("activity.brands.12"),
+        },
+        {
+            id: 13,
+            name: "VinFuture",
+            logo: partner.vinfuture,
+            href: "vinfutureprize.org",
+            content: t("activity.brands.13"),
+        },
+        {
+            id: 14,
+            name: "Quỹ thiện tâm",
+            logo: partner.qtt,
+            href: "quythientam.com",
+            content: t("activity.brands.14"),
+        },
+        {
+            id: 15,
+            name: "VinIf",
+            logo: partner.vinif,
+            href: "vinif.org",
+            content: t("activity.brands.15"),
+        },
+        {
+            id: 16,
+            name: "vinbus",
+            logo: partner.vinbus,
+            href: "vinbus.vn",
+            content: t("activity.brands.16"),
+        },
+    ];
+}
