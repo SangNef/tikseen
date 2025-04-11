@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "@/views/Home/index.vue";
-import About from "@/views/About/index.vue";
-import Activity from "@/views/Activity/index.vue";
-import Development from "@/views/Development/index.vue";
-import Relation from "@/views/Relation/index.vue";
-import Event from "@/views/Event/index.vue";
-import Contact from "@/views/Contact/index.vue";
+import HomeView from "@landing/views/Home/index.vue";
+import About from "@landing/views/About/index.vue";
+import Activity from "@landing/views/Activity/index.vue";
+import Development from "@landing/views/Development/index.vue";
+import Relation from "@landing/views/Relation/index.vue";
+import Event from "@landing/views/Event/index.vue";
+import Contact from "@landing/views/Contact/index.vue";
 
 const routes = [
     {

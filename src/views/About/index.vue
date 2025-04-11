@@ -43,7 +43,7 @@ import { ChevronRightIcon } from "@heroicons/vue/24/outline";
 import { HomeIcon } from "@heroicons/vue/24/solid";
 import PageWrap from "./PageWrap.vue";
 
-import about1 from "@/assets/images/about1.jpg";
+import about1 from "@landing/assets/images/about1.jpg";
 import Partner from "./Partner.vue";
 
 import { useI18n } from "vue-i18n";

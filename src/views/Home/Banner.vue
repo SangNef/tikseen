@@ -20,8 +20,8 @@
 </template>
 
 <script setup>
-import homeBg from "@/assets/images/bg/home-bg.jpg";
-import scrollDown from "@/assets/images/btn/scrolldown.png";
+import homeBg from "@landing/assets/images/bg/home-bg.jpg";
+import scrollDown from "@landing/assets/images/btn/scrolldown.png";
 
 import { useI18n } from "vue-i18n";
 
@@ -38,7 +38,7 @@ const scrollToNextSection = () => {
 <style scoped>
 @media (max-width: 768px) {
     .bannerHome {
-        background: url("@/assets/images/bg/home-bg.jpg") no-repeat center center;
+        background: url("@landing/assets/images/bg/home-bg.jpg") no-repeat center center;
         height: calc(100vh-50px);
         position: relative;
         background-position: center right 32% !important;

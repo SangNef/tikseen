@@ -65,9 +65,9 @@
 import { ChevronRightIcon } from "@heroicons/vue/24/outline";
 import { HomeIcon } from "@heroicons/vue/24/solid";
 
-import development from "@/assets/images/bg/development.jpg";
-import developments from "@/data/development.js";
-import btnArG from "@/assets/images/btn/ar-g.png";
+import development from "@landing/assets/images/bg/development.jpg";
+import developments from "@landing/data/development.js";
+import btnArG from "@landing/assets/images/btn/ar-g.png";
 
 import { useI18n } from "vue-i18n";
 import { ref, watch } from "vue";

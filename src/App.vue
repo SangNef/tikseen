@@ -1,8 +1,8 @@
 <script setup>
 import { useRoute } from "vue-router";
-import DefaultLayout from "@/layouts/DefaultLayout.vue";
-import AuthLayout from "@/layouts/AuthLayout.vue";
-import EmptyLayout from "@/layouts/EmptyLayout.vue";
+import DefaultLayout from "@landing/layouts/DefaultLayout.vue";
+import AuthLayout from "@landing/layouts/AuthLayout.vue";
+import EmptyLayout from "@landing/layouts/EmptyLayout.vue";
 import "./style.css";
 
 const route = useRoute();

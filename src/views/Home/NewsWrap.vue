@@ -32,11 +32,11 @@
 </template>
 
 <script setup>
-import btnArG from "@/assets/images/btn/ar-g.png";
-import btnArR from "@/assets/images/btn/ar-r.png";
-import news1 from "@/assets/images/news-1.jpg";
-import news2 from "@/assets/images/news-2.jpg";
-import news3 from "@/assets/images/news-3.jpg";
+import btnArG from "@landing/assets/images/btn/ar-g.png";
+import btnArR from "@landing/assets/images/btn/ar-r.png";
+import news1 from "@landing/assets/images/news-1.jpg";
+import news2 from "@landing/assets/images/news-2.jpg";
+import news3 from "@landing/assets/images/news-3.jpg";
 
 import { useI18n } from "vue-i18n";
 

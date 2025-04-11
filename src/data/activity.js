@@ -19,7 +19,7 @@ export const activityMeta = [
     },
 ];
 
-import * as activityImg from "@/assets/images/bg/activity.js";
+import * as activityImg from "@landing/assets/images/bg/activity.js";
 import useAllBrands from "./brand";
 
 export { useAllBrands}

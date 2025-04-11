@@ -1,4 +1,4 @@
-import * as partner from "@/assets/images/partner.js";
+import * as partner from "@landing/assets/images/partner.js";
 
 export default function useAllBrands(t) {
     return [

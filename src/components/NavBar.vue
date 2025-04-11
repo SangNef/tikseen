@@ -112,8 +112,8 @@
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
-import Logo from "@/assets/images/logo.png";
-import bgMenu from "@/assets/images/bg-menu.png";
+import Logo from "@landing/assets/images/logo.png";
+import bgMenu from "@landing/assets/images/bg-menu.png";
 
 const route = useRoute();
 

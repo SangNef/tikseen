@@ -78,18 +78,18 @@
 
 <script setup>
 import { ref } from "vue";
-import btnArW from "@/assets/images/btn/ar-w.png";
-import ArDragL from "@/assets/images/btn/ar-drag-l.png";
-import ArDragR from "@/assets/images/btn/ar-drag-r.png";
-import mouse from "@/assets/images/mouse.png";
+import btnArW from "@landing/assets/images/btn/ar-w.png";
+import ArDragL from "@landing/assets/images/btn/ar-drag-l.png";
+import ArDragR from "@landing/assets/images/btn/ar-drag-r.png";
+import mouse from "@landing/assets/images/mouse.png";
 
-import iconCate1 from "@/assets/images/ico/ico-cate-1.png";
-import iconCate2 from "@/assets/images/ico/ico-cate-2.png";
-import iconCate3 from "@/assets/images/ico/ico-cate-3.png";
-import iconCateHv1 from "@/assets/images/ico/ico-cate-1-hv.png";
-import iconCateHv2 from "@/assets/images/ico/ico-cate-2-hv.png";
-import iconCateHv3 from "@/assets/images/ico/ico-cate-3-hv.png";
-import cate2Bg from "@/assets/images/cate-2.jpg";
+import iconCate1 from "@landing/assets/images/ico/ico-cate-1.png";
+import iconCate2 from "@landing/assets/images/ico/ico-cate-2.png";
+import iconCate3 from "@landing/assets/images/ico/ico-cate-3.png";
+import iconCateHv1 from "@landing/assets/images/ico/ico-cate-1-hv.png";
+import iconCateHv2 from "@landing/assets/images/ico/ico-cate-2-hv.png";
+import iconCateHv3 from "@landing/assets/images/ico/ico-cate-3-hv.png";
+import cate2Bg from "@landing/assets/images/cate-2.jpg";
 
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();

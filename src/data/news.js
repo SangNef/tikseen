@@ -243,4 +243,4 @@ const news = [
 
 export default news;
 
-import * as newsImg from "@/assets/images/news/index.js";
+import * as newsImg from "@landing/assets/images/news/index.js";
