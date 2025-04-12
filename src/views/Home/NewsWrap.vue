@@ -1,5 +1,5 @@
 <template>
-      <section class="py-[65px]">
+      <section class="py-[30px] md:py-[50px]">
         <div class="w-full max-w-[1200px] px-2.5 mx-auto relative">
             <router-link to="/tin-tuc-su-kien">
                 <h2 class="text-[40px] md:text-[54px] pb-5 text-[#424d54] uppercase font-normal">{{ t('home.news') }}</h2>

@@ -1,5 +1,10 @@
 <template>
     <Banner />
+    <div class="container">
+        <div class="mt-[30px] md:mt-[50px]">
+            <button class="font-sf px-6 py-2 bg-[#d13138] text-white rounded-lg shadow-lg">Tài khoản nội bộ</button>
+        </div>
+    </div>
     <NewsWrap />
     <CateWrap />
     <section class="py-[50px]">
@@ -34,7 +39,6 @@ import home2 from "@/assets/images/home2.jpg";
 
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
-
 </script>
 
 <style scoped>
