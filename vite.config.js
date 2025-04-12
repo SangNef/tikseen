@@ -10,14 +10,4 @@ export default defineConfig({
       "@landing": "/src",
     },
   },
-  build: {
-    outDir: "dist",
-    assetsDir: "landing/assets",
-    index: "landing.html",
-    rollupOptions: {
-      input: {
-        main: "./index.html",
-      },
-    },
-  },
 }) 

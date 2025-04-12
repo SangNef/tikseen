@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <slot />
-    </div>
+    <div>chat</div>
 </template>
 
 <script setup></script>
