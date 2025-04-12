@@ -54,7 +54,11 @@ const username = ref("");
 const password = ref("");
 const showPassword = ref(false);
 
+import { useRouter } from "vue-router";
+const router = useRouter();
+
 const handleLogin = () => {
     // xử lý login
+    router.push("/$/home"); // chuyển hướng đến trang home sau khi đăng nhập thành công
 };
 </script>

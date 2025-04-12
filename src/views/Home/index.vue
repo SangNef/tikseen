@@ -2,7 +2,7 @@
     <Banner />
     <div class="container">
         <div class="mt-[30px] md:mt-[50px]">
-            <button class="font-sf px-6 py-2 bg-[#d13138] text-white rounded-lg shadow-lg">Tài khoản nội bộ</button>
+            <router-link to="/$/login" class="font-sf px-6 py-2 bg-[#d13138] text-white rounded-lg shadow-lg">Tài khoản nội bộ</router-link>
         </div>
     </div>
     <NewsWrap />
@@ -18,7 +18,7 @@
                 <div class="md:pt-[18px] md:w-1/2 md:float-left md:pr-10">
                     <h3
                         class="uppercase text-[#111] text-sm font-arial font-bold border-b-2 border-[#ededed] relative pb-2.5 h3-title">
-                        {{ t("home.relation.subtitle") }}
+                        {{ t("home.relation.subTitle") }}
                     </h3>
                     <img :src="home2" alt="" class="w-full my-5 align-middle object-cover" />
                     <p class="font-sf text-[13px] md:text-[17px] leading-[1.3] text-[#424d54] mt-2.5">
