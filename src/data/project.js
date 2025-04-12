@@ -161,6 +161,6 @@ const data = [
     },
 ];
 
-import * as images from "@/assets/images/projects/index.js";
+import * as images from "@landing/assets/images/projects/index.js";
 
 export default data;

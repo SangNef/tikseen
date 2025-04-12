@@ -38,8 +38,8 @@
 
 <script setup>
 import { computed, ref } from "vue";
-import logo2 from "@/assets/images/logo2.png";
-import Header from "@/components/Header.vue";
+import logo2 from "@landing/assets/images/logo2.png";
+import Header from "@landing/components/Header.vue";
 
 const balance = ref(12345678);
 const formattedBalance = balance.value.toLocaleString("en-US");

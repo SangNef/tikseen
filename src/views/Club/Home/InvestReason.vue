@@ -71,8 +71,8 @@
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
-import { pic10, pic11, pic12, pic13, pic14, pic15 } from "@/assets/images/homeClub";
+import Header from "@landing/components/Header.vue";
+import { pic10, pic11, pic12, pic13, pic14, pic15 } from "@landing/assets/images/homeClub";
 </script>
 
 <style></style>

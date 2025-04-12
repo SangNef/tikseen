@@ -1,5 +1,19 @@
 {
   "language": "Vietnamese",
+  "project_information": {
+    "name": "VinGroup Website",
+    "description": "Website chính thức của Tập đoàn Vingroup phát triển với Vue 3 và Vite",
+    "repository": "https://github.com/vingroup/vingroup-website",
+    "version": "1.0.0"
+  },
+  "tech_stack": {
+    "frontend": "Vue 3 (Composition API với script setup)",
+    "build_tool": "Vite 6.2+",
+    "router": "Vue Router 4.5+",
+    "i18n": "Vue I18n 11.1+",
+    "css": "Tailwind CSS 4.0+",
+    "icons": "@heroicons/vue 2.2+"
+  },
   "project_structure": {
     "src": {
       "components": "Các component tái sử dụng",
@@ -8,7 +22,18 @@
       "routes": "Cấu hình định tuyến Vue Router",
       "assets": "Hình ảnh và tài nguyên tĩnh",
       "helpers": "Các hàm tiện ích",
-      "data": "Dữ liệu mẫu và API"
+      "data": "Dữ liệu mẫu và API",
+      "locales": "File ngôn ngữ (vi.json, en.json)"
+    },
+    "views": {
+      "Home": "Trang chủ giới thiệu Vingroup",
+      "About": "Giới thiệu về tập đoàn",
+      "Activity": "Lĩnh vực hoạt động kinh doanh",
+      "Development": "Phát triển bền vững",
+      "Relation": "Quan hệ cổ đông",
+      "Event": "Tin tức và sự kiện",
+      "Contact": "Liên hệ",
+      "Auth": "Đăng nhập/Đăng ký"
     }
   },
   "coding_principles": {
@@ -20,19 +45,39 @@
         "text": ["#d4cbaf", "#ffffff", "#f3f3f3", "#cccccc"],
         "accent": ["#483b2b", "#d4cbaf"]
       },
-      "spacing": "Tuân thủ spacing system của Tailwind"
+      "spacing": "Tuân thủ spacing system của Tailwind",
+      "breakpoints": {
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "xl": "1280px",
+        "2xl": "1536px"
+      }
     },
     "components": {
       "naming": "PascalCase cho component (VD: BottomBar.vue)",
-      "structure": "Script setup + Template + Style"
+      "structure": "Script setup + Template + Style",
+      "props": "Sử dụng defineProps với TypeScript interface",
+      "emits": "Sử dụng defineEmits cho các events",
+      "composition": "Ưu tiên Composition API, tránh Options API"
     },
     "routing": {
       "layouts": "Sử dụng meta.layout để xác định layout cho mỗi route",
-      "naming": "Đặt tên route dễ hiểu và phản ánh chức năng"
+      "naming": "Đặt tên route dễ hiểu và phản ánh chức năng",
+      "lazy_loading": "Sử dụng dynamic import cho các trang lớn",
+      "nested_routes": "Áp dụng cho các chức năng có nhiều màn hình con"
     },
     "file_organization": {
       "views": "Mỗi tính năng có thư mục riêng trong views",
-      "components": "Component dùng chung đặt trong src/components"
+      "components": "Component dùng chung đặt trong src/components",
+      "helper_functions": "Hàm tiện ích đặt trong src/helpers",
+      "data_models": "Model và service đặt trong src/data"
+    },
+    "i18n": {
+      "format": "Sử dụng key nested trong file JSON",
+      "naming": "Đặt tên key ngắn gọn, mô tả nội dung",
+      "required": "Mọi text hiển thị phải sử dụng i18n, không hardcode",
+      "files": "Cập nhật đồng thời cả vi.json và en.json"
     }
   },
   "recommended_practices": {
@@ -40,7 +85,13 @@
     "state_management": "Sử dụng ref và reactive cho state",
     "component_composition": "Ưu tiên composition API qua script setup",
     "code_comments": "Chỉ comment cho logic phức tạp",
-    "responsive": "Thiết kế mobile-first, max-w-md cho container chính"
+    "responsive": "Thiết kế mobile-first, max-w-md cho container chính",
+    "error_handling": "Xử lý lỗi đầy đủ với try/catch và thông báo người dùng",
+    "performance": {
+      "lazy_loading": "Sử dụng dynamic import cho components lớn",
+      "image_optimization": "Tối ưu hình ảnh trước khi đưa vào dự án",
+      "code_splitting": "Tách code thành các chunk nhỏ hơn"
+    }
   },
   "ui_guidelines": {
     "layout": "Mobile-first, app-like UI",
@@ -48,6 +99,11 @@
     "cards": "Card design với rounded corners và gradient borders",
     "buttons": "Sử dụng gradient và hover effects",
     "icons": "Heroicons cho icon system",
+    "animations": {
+      "transitions": "Sử dụng Vue transitions cho hiệu ứng chuyển trang",
+      "hover_effects": "Nhẹ nhàng, không phô trương",
+      "loading_states": "Skeleton loader cho nội dung đang tải"
+    },
     "typography": {
       "font": "Manrope và Roboto",
       "sizes": {
@@ -55,7 +111,37 @@
         "normal": "text-base",
         "large": "text-lg hoặc text-xl",
         "heading": "text-2xl trở lên"
+      },
+      "line_height": "Tuân thủ quy tắc leading của Tailwind",
+      "font_weight": {
+        "normal": "font-normal",
+        "medium": "font-medium",
+        "semibold": "font-semibold",
+        "bold": "font-bold"
       }
+    },
+    "dark_mode": {
+      "support": "Hỗ trợ chế độ tối theo cài đặt hệ thống",
+      "colors": "Có bảng màu riêng cho dark mode"
+    }
+  },
+  "development_guidelines": {
+    "git": {
+      "branching": "feature/{feature-name}, bugfix/{bug-name}, hotfix/{fix-name}",
+      "commit_message": "feat/fix/docs/style/refactor/test/chore: nội dung commit",
+      "pull_request": "Mô tả chi tiết thay đổi và test case"
+    },
+    "code_review": {
+      "criteria": "Đúng quy tắc, không lỗi, tương thích mobile",
+      "checklist": "UI/UX, performance, i18n, responsive"
+    },
+    "testing": {
+      "unit_tests": "Viết test cho logic phức tạp",
+      "e2e_tests": "Test cho các luồng chính của ứng dụng"
+    },
+    "deployment": {
+      "environments": "dev, staging, production",
+      "ci_cd": "Sử dụng GitHub Actions cho CI/CD"
     }
   }
 } 

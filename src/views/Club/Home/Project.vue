@@ -20,8 +20,8 @@
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
-import data from "@/data/project.js";
+import Header from "@landing/components/Header.vue";
+import data from "@landing/data/project.js";
 import ProjectCard from "./ProjectCard.vue";
 </script>
 

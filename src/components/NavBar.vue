@@ -69,6 +69,7 @@
                         <li v-for="subItem in item.submenu" :key="subItem.name" class="py-[5px]">
                             <router-link
                                 :to="subItem.href"
+                                @click="isMenuOpen = false"
                                 class="text-[17px] md:text-[22px] text-[#424d54] hover:text-[#d13138] leading-[1.3] font-sf"
                                 :class="route.path === subItem.href ? 'text-[#d13138]' : ''">
                                 {{ subItem.name }}
@@ -112,8 +113,8 @@
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
-import Logo from "@/assets/images/logo.png";
-import bgMenu from "@/assets/images/bg-menu.png";
+import Logo from "@landing/assets/images/logo.png";
+import bgMenu from "@landing/assets/images/bg-menu.png";
 
 const route = useRoute();
 

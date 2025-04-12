@@ -1,32 +1,32 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "@/views/Home/index.vue";
-import About from "@/views/About/index.vue";
-import Activity from "@/views/Activity/index.vue";
-import Development from "@/views/Development/index.vue";
-import Relation from "@/views/Relation/index.vue";
-import Event from "@/views/Event/index.vue";
-import Contact from "@/views/Contact/index.vue";
+import HomeView from "@landing/views/Home/index.vue";
+import About from "@landing/views/About/index.vue";
+import Activity from "@landing/views/Activity/index.vue";
+import Development from "@landing/views/Development/index.vue";
+import Relation from "@landing/views/Relation/index.vue";
+import Event from "@landing/views/Event/index.vue";
+import Contact from "@landing/views/Contact/index.vue";
 
-import Login from "@/views/Auth/Login.vue";
-import HomeClub from "@/views/Club/Home/index.vue";
-import TransactionView  from "@/views/Club/Transaction/index.vue";
-import WelfareView from "@/views/Club/Home/welfare.vue";
-import AwardView from "@/views/Club/Home/Award.vue";
-import TargetView from "@/views/Club/Home/Target.vue";
-import ProductView from "@/views/Club/Home/Product.vue";
-import ProjectView from "@/views/Club/Home/Project.vue";
-import ProjectDetail from "@/views/Club/Home/ProjectDetail.vue";
-import BiddingView from "@/views/Club/Home/Bidding.vue";
-import InvestReason from "@/views/Club/Home/InvestReason.vue";
-import NewsView from "@/views/Club/Home/News.vue";
-import AccountView from "@/views/Club/Account/index.vue";
-import RegisterView from "@/views/Auth/Register.vue";
-import ProfitView from "@/views/Club/Account/Profit.vue";
-import BankView from "@/views/Club/Account/Bank.vue";
-import PasswordView from "@/views/Club/Account/Password.vue";
-import MoneyView from "@/views/Club/Account/Money.vue";
-import RechargeView from "@/views/Club/Account/Recharge.vue";
-import WithdrawalView from "@/views/Club/Account/Withdrawal.vue";
+import Login from "@landing/views/Auth/Login.vue";
+import HomeClub from "@landing/views/Club/Home/index.vue";
+import TransactionView  from "@landing/views/Club/Transaction/index.vue";
+import WelfareView from "@landing/views/Club/Home/welfare.vue";
+import AwardView from "@landing/views/Club/Home/Award.vue";
+import TargetView from "@landing/views/Club/Home/Target.vue";
+import ProductView from "@landing/views/Club/Home/Product.vue";
+import ProjectView from "@landing/views/Club/Home/Project.vue";
+import ProjectDetail from "@landing/views/Club/Home/ProjectDetail.vue";
+import BiddingView from "@landing/views/Club/Home/Bidding.vue";
+import InvestReason from "@landing/views/Club/Home/InvestReason.vue";
+import NewsView from "@landing/views/Club/Home/News.vue";
+import AccountView from "@landing/views/Club/Account/index.vue";
+import RegisterView from "@landing/views/Auth/Register.vue";
+import ProfitView from "@landing/views/Club/Account/Profit.vue";
+import BankView from "@landing/views/Club/Account/Bank.vue";
+import PasswordView from "@landing/views/Club/Account/Password.vue";
+import MoneyView from "@landing/views/Club/Account/Money.vue";
+import RechargeView from "@landing/views/Club/Account/Recharge.vue";
+import WithdrawalView from "@landing/views/Club/Account/Withdrawal.vue";
 
 const routes = [
     {
@@ -249,7 +249,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory('/landing'),
     routes,
 });
 

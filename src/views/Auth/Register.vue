@@ -84,7 +84,7 @@
         </form>
 
         <div class="mt-4 text-center text-[#d9c8ab]">
-            <router-link to="/login" class="text-[#7b5e02]"> Đã có tài khoản? Đăng nhập </router-link>
+            <router-link to="/$/login" class="text-[#7b5e02]"> Đã có tài khoản? Đăng nhập </router-link>
         </div>
     </div>
 </template>

@@ -88,10 +88,10 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import { activityMeta, useAllBrands } from "@/data/activity.js";
+import { activityMeta, useAllBrands } from "@landing/data/activity.js";
 import { ref, watch, computed } from "vue";
 
-import btnArG from "@/assets/images/btn/ar-g.png";
+import btnArG from "@landing/assets/images/btn/ar-g.png";
 
 import { useI18n } from "vue-i18n";
 const { t, locale } = useI18n();

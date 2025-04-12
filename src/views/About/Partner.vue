@@ -73,9 +73,9 @@ import {
     vinai,
     vinbigdata,
     css,
-} from "@/assets/images/partner";
-import prevBtn from "@/assets/images/btn/prev.png";
-import nextBtn from "@/assets/images/btn/next.png";
+} from "@landing/assets/images/partner";
+import prevBtn from "@landing/assets/images/btn/prev.png";
+import nextBtn from "@landing/assets/images/btn/next.png";
 
 // Gốc ảnh
 const images = [

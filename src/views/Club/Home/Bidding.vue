@@ -49,11 +49,11 @@
 
 <script setup>
 import { computed } from "vue";
-import Header from "@/components/Header.vue";
+import Header from "@landing/components/Header.vue";
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/vue/24/outline";
 
-import data from "@/data/project.js";
-import { formatCurrency } from "@/helpers";
+import data from "@landing/data/project.js";
+import { formatCurrency } from "@landing/helpers";
 
 import { useRoute } from "vue-router";
 const route = useRoute();

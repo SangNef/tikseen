@@ -2,28 +2,28 @@
 
 @font-face {
     font-family: 'Rift';
-    src: url(@/assets/fonts/Rift-Regular.otf) format('opentype');
+    src: url(@landing/assets/fonts/Rift-Regular.otf) format('opentype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Rift';
-    src: url(@/assets/fonts/Rift-Bold.otf) format('opentype');
+    src: url(@landing/assets/fonts/Rift-Bold.otf) format('opentype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'SF';
-    src: url(@/assets/fonts/SF-Regular.otf) format('opentype');
+    src: url(@landing/assets/fonts/SF-Regular.otf) format('opentype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'SF';
-    src: url(@/assets/fonts/SF-Bold.otf) format('opentype');
+    src: url(@landing/assets/fonts/SF-Bold.otf) format('opentype');
     font-weight: 700;
     font-style: normal;
 }

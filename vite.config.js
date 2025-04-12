@@ -7,7 +7,17 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": "/src",
-      "@client": "/src",
+      "@landing": "/src",
     },
-  }
+  },
+  build: {
+    outDir: "dist",
+    assetsDir: "landing/assets",
+    index: "landing.html",
+    rollupOptions: {
+      input: {
+        main: "./index.html",
+      },
+    },
+  },
 }) 

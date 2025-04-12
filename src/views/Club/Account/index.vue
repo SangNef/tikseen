@@ -74,9 +74,9 @@
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
-import logo2 from "@/assets/images/logo2.png";
-import avt from "@/assets/images/avt.webp";
+import Header from "@landing/components/Header.vue";
+import logo2 from "@landing/assets/images/logo2.png";
+import avt from "@landing/assets/images/avt.webp";
 import { ArchiveBoxIcon, BanknotesIcon, CreditCardIcon, LockClosedIcon, UserIcon } from "@heroicons/vue/24/outline";
 import { useRouter } from "vue-router";
 

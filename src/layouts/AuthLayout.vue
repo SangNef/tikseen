@@ -22,8 +22,8 @@
 </template>
 
 <script setup>
-import LoginBg from "@/assets/images/bg/login-bg.png";
-import logo from "@/assets/images/logo.png";
+import LoginBg from "@landing/assets/images/bg/login-bg.png";
+import logo from "@landing/assets/images/logo.png";
 </script>
 
 <style scoped>

@@ -68,8 +68,8 @@
 </template>
 
 <script setup>
-import contact from "@/assets/images/bg/contact.png";
-import btnArW from "@/assets/images/btn/ar-w.png";
+import contact from "@landing/assets/images/bg/contact.png";
+import btnArW from "@landing/assets/images/btn/ar-w.png";
 </script>
 
 <style></style>

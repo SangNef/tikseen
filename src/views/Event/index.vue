@@ -61,7 +61,7 @@
 <script setup>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import news from "@/data/news.js";
+import news from "@landing/data/news.js";
 
 import { useI18n } from "vue-i18n";
 

@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import BottomBar from "@/components/BottomBar.vue";
+import BottomBar from "@landing/components/BottomBar.vue";
 </script>
 
 <style scope></style>

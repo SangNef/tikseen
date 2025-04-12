@@ -166,13 +166,13 @@ import { useI18n } from "vue-i18n";
 import { ChevronRightIcon } from "@heroicons/vue/24/outline";
 import { HomeIcon } from "@heroicons/vue/24/solid";
 
-import pdf from "@/assets/images/ico/pdf.png";
-import contact from "@/assets/images/contact.jpg";
-import relation1 from "@/assets/images/relation1.png";
-import relation2 from "@/assets/images/relation2.png";
-import relation3 from "@/assets/images/relation3.png";
-import vinhomes from "@/assets/images/vinhomes.png";
-import vinretail from "@/assets/images/vinretail.png";
+import pdf from "@landing/assets/images/ico/pdf.png";
+import contact from "@landing/assets/images/contact.jpg";
+import relation1 from "@landing/assets/images/relation1.png";
+import relation2 from "@landing/assets/images/relation2.png";
+import relation3 from "@landing/assets/images/relation3.png";
+import vinhomes from "@landing/assets/images/vinhomes.png";
+import vinretail from "@landing/assets/images/vinretail.png";
 import { computed } from "vue";
 
 const { t, locale, messages } = useI18n();

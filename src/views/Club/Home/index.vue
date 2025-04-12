@@ -132,11 +132,11 @@ import {
     BuildingOfficeIcon,
     ChartBarIcon,
 } from "@heroicons/vue/24/outline";
-import logo from "@/assets/images/logoClub.png";
-import logo2 from "@/assets/images/logo2.png";
-import rong from "@/assets/images/rong.png";
-import avt from "@/assets/images/avt.webp";
-import vin from "@/assets/images/home/vin.png";
+import logo from "@landing/assets/images/logoClub.png";
+import logo2 from "@landing/assets/images/logo2.png";
+import rong from "@landing/assets/images/rong.png";
+import avt from "@landing/assets/images/avt.webp";
+import vin from "@landing/assets/images/home/vin.png";
 
 const items = [
     {

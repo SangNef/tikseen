@@ -95,11 +95,11 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { computed } from "vue";
-import Header from "@/components/Header.vue";
-import { formatCurrency } from "@/helpers";
+import Header from "@landing/components/Header.vue";
+import { formatCurrency } from "@landing/helpers";
 
-import data from "@/data/project.js";
-import { formattedInterest } from "@/helpers";
+import data from "@landing/data/project.js";
+import { formattedInterest } from "@landing/helpers";
 
 const route = useRoute();
 const projectId = parseInt(route.params.id);

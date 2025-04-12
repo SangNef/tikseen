@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import btnArG from "@/assets/images/btn/ar-g.png";
+import btnArG from "@landing/assets/images/btn/ar-g.png";
 
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();

@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import { formattedInterest, formatCurrency } from "@/helpers";
+import { formattedInterest, formatCurrency } from "@landing/helpers";
 import { computed } from "vue";
 const props = defineProps({
     id: Number,

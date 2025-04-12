@@ -35,7 +35,7 @@
 import Banner from "./Banner.vue";
 import CateWrap from "./CateWrap.vue";
 import NewsWrap from "./NewsWrap.vue";
-import home2 from "@/assets/images/home2.jpg";
+import home2 from "@landing/assets/images/home2.jpg";
 
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
@@ -43,7 +43,7 @@ const { t } = useI18n();
 
 <style scoped>
 .arg-group:hover img {
-    content: url("@/assets/images/btn/ar-r.png");
+    content: url("@landing/assets/images/btn/ar-r.png");
 }
 
 .cate-group:hover img {

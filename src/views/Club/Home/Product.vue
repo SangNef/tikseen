@@ -100,8 +100,8 @@
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
-import { pic9 } from "@/assets/images/homeClub";
+import Header from "@landing/components/Header.vue";
+import { pic9 } from "@landing/assets/images/homeClub";
 </script>
 
 <style></style>
