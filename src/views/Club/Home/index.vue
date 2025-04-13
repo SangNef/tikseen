@@ -6,7 +6,7 @@
         <div class="flex items-center gap-4 z-20">
             <BellIcon
                 class="w-6 h-6 text-white hover:text-gray-700 cursor-pointer z-20"
-                @click="router.push('/$/notification')" />
+                @click="router.push('/notification')" />
             <PowerIcon class="w-6 h-6 text-white hover:text-gray-700 cursor-pointer" @click="handleLogout" />
         </div>
     </nav>
@@ -43,7 +43,7 @@
             </div>
             <div
                 class="w-full flex items-center justify-between bg-linear-to-l from-[#27221f] to-[#1a1819] py-1 text-[#d4cbaf] text-sm">
-                <router-link to="/$/transactions" class="w-full flex items-center justify-center gap-2">
+                <router-link to="/transactions" class="w-full flex items-center justify-center gap-2">
                     <!-- SVG Gửi tiền (Ví tiền) -->
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +134,7 @@
             <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
         </div>
         <router-link
-            to="/$/account/news"
+            to="/account/news"
             class="w-full h-12 bg-linear-to-l from-[#241e1e] via-[#353228] to-[#241e1e] flex items-center justify-center text-white font-semibold">
             TIN TỨC
         </router-link>
@@ -181,37 +181,37 @@ import { BellIcon, ChevronRightIcon, PowerIcon } from "@heroicons/vue/24/outline
 const items = [
     {
         label: "Tham vấn phúc lợi",
-        href: "/$/account/welfare",
+        href: "/account/welfare",
         img: gift,
     },
     {
         label: "Ưu đãi phúc lợi",
-        href: "/$/account/award",
+        href: "/account/award",
         img: bag,
     },
     {
         label: "Mục tiêu",
-        href: "/$/account/targets",
+        href: "/account/targets",
         img: cup,
     },
     {
         label: "Sản phẩm",
-        href: "/$/account/product",
+        href: "/account/product",
         img: cart,
     },
     {
         label: "Dự án",
-        href: "/$/account/project",
+        href: "/account/project",
         img: project,
     },
     {
         label: "Lý do nên đầu tư",
-        href: "/$/account/invest-reason",
+        href: "/account/invest-reason",
         img: invest,
     },
     {
         label: "Vòng quay may mắn",
-        href: "/$/account/spin",
+        href: "/account/spin",
         img: spin,
     },
 ];
@@ -247,7 +247,7 @@ const router = useRouter();
 
 const handleLogout = () => {
     localStorage.removeItem("token");
-    router.push("/$/login");
+    router.push("/login");
 };
 </script>
 

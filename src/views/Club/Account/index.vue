@@ -18,7 +18,7 @@
                 </div>
                 <div
                     class="w-full flex items-center justify-between bg-linear-to-l from-[#27221f] to-[#1a1819] py-1 text-white text-sm rounded-b-xl">
-                    <router-link to="/$/account/recharge" class="w-full flex items-center justify-center gap-2">
+                    <router-link to="/account/recharge" class="w-full flex items-center justify-center gap-2">
                         <!-- SVG Gửi tiền (Ví tiền) -->
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@
                         <span>Gửi tiền</span>
                     </router-link>
                     <div class="h-8 border-l-2 border-gray-500"></div>
-                    <router-link to="/$/account/withdrawal" class="w-full flex items-center justify-center gap-2">
+                    <router-link to="/account/withdrawal" class="w-full flex items-center justify-center gap-2">
                         <!-- SVG Rút tiền (Túi tiền) -->
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -85,34 +85,34 @@ const router = useRouter();
 const menuItems = [
     {
         label: "Lịch sử giao dịch",
-        href: "/$/transactions",
+        href: "/transactions",
         icon: ArchiveBoxIcon,
     },
     {
         label: "Thông tin hồ sơ",
-        href: "/$/account/profit",
+        href: "/account/profit",
         icon: UserIcon,
     },
     {
         label: "Liên kết ngân hàng",
-        href: "/$/account/bank",
+        href: "/account/bank",
         icon: CreditCardIcon,
     },
     {
         label: "Thay đổi mật khẩu",
-        href: "/$/account/password",
+        href: "/account/password",
         icon: LockClosedIcon,
     },
     {
         label: "Khoản tiền gửi",
-        href: "/$/account/history-project",
+        href: "/account/history-project",
         icon: BanknotesIcon,
     },
 ];
 
 const handleLogout = () => {
     localStorage.removeItem("token");
-    router.push("/$/login");
+    router.push("/login");
 };
 </script>
 

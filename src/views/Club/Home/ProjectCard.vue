@@ -24,7 +24,7 @@
                 <div class="text-gray-300 mb-2">Quỹ mở dự án: {{ fmtMaxInvest }}VND</div>
                 <div class="text-gray-300 mb-4">Hoàn lãi hàng ngày, trả gốc khi đáo hạn</div>
             </div>
-            <router-link :to="`/$/detail-item/${props.id}`" class=" flex justify-center w-1/3 bg-[#8a7e57] text-white py-1 rounded-lg hover:bg-blue-600 transition-colors">
+            <router-link :to="`/detail-item/${props.id}`" class=" flex justify-center w-1/3 bg-[#8a7e57] text-white py-1 rounded-lg hover:bg-blue-600 transition-colors">
                 Gửi tiền ngay
             </router-link>
         </div>

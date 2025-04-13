@@ -2,7 +2,7 @@
     <Banner />
     <div class="container">
         <div class="mt-[30px] md:mt-[50px]">
-            <router-link to="/$/login" class="font-sf px-6 py-2 bg-[#d13138] text-white rounded-lg shadow-lg">Tài khoản nội bộ</router-link>
+            <router-link to="/login" class="font-sf px-6 py-2 bg-[#d13138] text-white rounded-lg shadow-lg">Tài khoản nội bộ</router-link>
         </div>
     </div>
     <NewsWrap />

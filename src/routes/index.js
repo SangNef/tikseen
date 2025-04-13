@@ -31,63 +31,69 @@ import NotifyView from "@landing/views/Club/Home/Notify.vue";
 
 const routes = [
     {
-        path: "/",
-        name: "Home",
-        component: HomeView,
-        meta: {
-            layout: "DefaultLayout",
-        },
+        path: "/landing",
+        redirect: "/home",
+        children: [
+            {
+                path: "/",
+                name: "Home",
+                component: HomeView,
+                meta: {
+                    layout: "DefaultLayout",
+                },
+            },
+            {
+                path: "/gioi-thieu",
+                name: "About",
+                component: About,
+                meta: {
+                    layout: "DefaultLayout",
+                },
+            },
+            {
+                path: "/linh-vuc-hoat-dong/:pathMatch(.*)*",
+                name: "Activity",
+                component: Activity,
+                meta: {
+                    layout: "DefaultLayout",
+                },
+            },
+            {
+                path: "/phat-trien-ben-vung",
+                name: "Development",
+                component: Development,
+                meta: {
+                    layout: "DefaultLayout",
+                },
+            },
+            {
+                path: "/quan-he-co-dong",
+                name: "Relation",
+                component: Relation,
+                meta: {
+                    layout: "DefaultLayout",
+                },
+            },
+            {
+                path: "/tin-tuc-su-kien/:cate?",
+                name: "Event",
+                component: Event,
+                meta: {
+                    layout: "DefaultLayout",
+                },
+            },
+            {
+                path: "/lien-he",
+                name: "Contact",
+                component: Contact,
+                meta: {
+                    layout: "DefaultLayout",
+                },
+            },
+        ],
     },
     {
-        path: "/gioi-thieu",
-        name: "About",
-        component: About,
-        meta: {
-            layout: "DefaultLayout",
-        },
-    },
-    {
-        path: "/linh-vuc-hoat-dong/:pathMatch(.*)*",
-        name: "Activity",
-        component: Activity,
-        meta: {
-            layout: "DefaultLayout",
-        },
-    },
-    {
-        path: "/phat-trien-ben-vung",
-        name: "Development",
-        component: Development,
-        meta: {
-            layout: "DefaultLayout",
-        },
-    },
-    {
-        path: "/quan-he-co-dong",
-        name: "Relation",
-        component: Relation,
-        meta: {
-            layout: "DefaultLayout",
-        },
-    },
-    {
-        path: "/tin-tuc-su-kien/:cate?",
-        name: "Event",
-        component: Event,
-        meta: {
-            layout: "DefaultLayout",
-        },
-    },
-    {
-        path: "/lien-he",
-        name: "Contact",
-        component: Contact,
-        meta: {
-            layout: "DefaultLayout",
-        },
-    },
-    {
-        path: "/$/login",
+        path: "/login",
         name: "Login",
         component: Login,
         meta: {
@@ -95,7 +101,7 @@ const routes = [
         },
     },
     {
-        path: "/$/home",
+        path: "/home",
         name: "HomeClub",
         component: HomeClub,
         meta: {
@@ -104,7 +110,7 @@ const routes = [
     },
     ,
     {
-        path: "/$/transactions",
+        path: "/transactions",
         name: "Transaction",
         component: TransactionView,
         meta: {
@@ -112,7 +118,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/welfare",
+        path: "/account/welfare",
         name: "Welfare",
         component: WelfareView,
         meta: {
@@ -120,7 +126,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/award",
+        path: "/account/award",
         name: "Award",
         component: AwardView,
         meta: {
@@ -128,7 +134,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/targets",
+        path: "/account/targets",
         name: "Target",
         component: TargetView,
         meta: {
@@ -136,7 +142,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/product",
+        path: "/account/product",
         name: "Product",
         component: ProductView,
         meta: {
@@ -144,7 +150,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/project",
+        path: "/account/project",
         name: "Project",
         component: ProjectView,
         meta: {
@@ -152,7 +158,7 @@ const routes = [
         },
     },
     {
-        path: "/$/detail-item/:id",
+        path: "/detail-item/:id",
         name: "ProjectDetail",
         component: ProjectDetail,
         meta: {
@@ -160,7 +166,7 @@ const routes = [
         },
     },
     {
-        path: "/$/bidding",
+        path: "/bidding",
         name: "Bidding",
         component: BiddingView,
         meta: {
@@ -168,7 +174,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/invest-reason",
+        path: "/account/invest-reason",
         name: "InvestReason",
         component: InvestReason,
         meta: {
@@ -176,7 +182,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/news",
+        path: "/account/news",
         name: "News",
         component: NewsView,
         meta: {
@@ -184,7 +190,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/mine",
+        path: "/account/mine",
         name: "Account",
         component: AccountView,
         meta: {
@@ -192,7 +198,7 @@ const routes = [
         },
     },
     {
-        path: "/$/register",
+        path: "/register",
         name: "Register",
         component: RegisterView,
         meta: {
@@ -200,7 +206,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/profit",
+        path: "/account/profit",
         name: "Profit",
         component: ProfitView,
         meta: {
@@ -208,7 +214,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/bank",
+        path: "/account/bank",
         name: "Bank",
         component: BankView,
         meta: {
@@ -216,7 +222,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/password",
+        path: "/account/password",
         name: "Password",
         component: PasswordView,
         meta: {
@@ -224,7 +230,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/history-project",
+        path: "/account/history-project",
         name: "HistoryProject",
         component: MoneyView,
         meta: {
@@ -232,7 +238,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/recharge",
+        path: "/account/recharge",
         name: "Recharge",
         component: RechargeView,
         meta: {
@@ -240,7 +246,7 @@ const routes = [
         },
     },
     {
-        path: "/$/account/withdrawal",
+        path: "/account/withdrawal",
         name: "Withdrawal",
         component: WithdrawalView,
         meta: {
@@ -248,13 +254,13 @@ const routes = [
         },
     },
     {
-        path: "/$/notification",
+        path: "/notification",
         name: "Notify",
         component: NotifyView,
         meta: {
             layout: "ClubLayout",
         },
-    }
+    },
 ];
 
 const router = createRouter({

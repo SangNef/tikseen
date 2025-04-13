@@ -4,7 +4,7 @@
             <ArrowLeftIcon class="w-6 h-6" :class="titleColor" @click="$router.back()" />
             <p class="text-lg" :class="titleColor">{{ title }}</p>
         </div>
-        <HomeIcon class="w-6 h-6 text-[#d9c8ab]" @click="$router.push('/$/home')" />
+        <HomeIcon class="w-6 h-6 text-[#d9c8ab]" @click="$router.push('/home')" />
     </div>
 </template>
 

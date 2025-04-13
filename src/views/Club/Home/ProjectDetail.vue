@@ -5,7 +5,7 @@
             <img :src="project.image" alt="" class="w-full h-[292px] object-cover" />
             <h2 class="text-lg mb-4">{{ project.name }}</h2>
             <div data-v-c9c6256c="" class="left-0 right-0 p-4">
-                <router-link :to="`/$/bidding/?id=${projectId}`" data-v-c9c6256c="" class="w-full flex justify-center bg-[#8a7e57] text-white py-3 rounded-md">Gửi tiền ngay</router-link>
+                <router-link :to="`/bidding/?id=${projectId}`" data-v-c9c6256c="" class="w-full flex justify-center bg-[#8a7e57] text-white py-3 rounded-md">Gửi tiền ngay</router-link>
             </div>
             <div data-v-c9c6256c="" class="flex justify-between gap-4 mb-6 bg-gray-100 p-4 rounded-lg text-xs">
                 <div data-v-c9c6256c="" class="text-center">

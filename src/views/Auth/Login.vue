@@ -42,7 +42,7 @@
     </form>
 
     <div class="mt-4 text-center text-[#d9c8ab]">
-        <router-link to="/$/register" class="text-[#d9c8ab] hover:text-[#7b5e02]"> Đăng ký tài khoản </router-link>
+        <router-link to="/register" class="text-[#d9c8ab] hover:text-[#7b5e02]"> Đăng ký tài khoản </router-link>
     </div>
 </template>
 
@@ -59,6 +59,6 @@ const router = useRouter();
 
 const handleLogin = () => {
     // xử lý login
-    router.push("/$/home"); // chuyển hướng đến trang home sau khi đăng nhập thành công
+    router.push("/home"); // chuyển hướng đến trang home sau khi đăng nhập thành công
 };
 </script>
