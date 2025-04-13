@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 import { ArrowLeftIcon, HomeIcon } from "@heroicons/vue/24/outline";
 defineProps({
     title: {
