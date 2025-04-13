@@ -27,6 +27,7 @@ import PasswordView from "@landing/views/Club/Account/Password.vue";
 import MoneyView from "@landing/views/Club/Account/Money.vue";
 import RechargeView from "@landing/views/Club/Account/Recharge.vue";
 import WithdrawalView from "@landing/views/Club/Account/Withdrawal.vue";
+import NotifyView from "@landing/views/Club/Home/Notify.vue";
 
 const routes = [
     {
@@ -242,6 +243,14 @@ const routes = [
         path: "/$/account/withdrawal",
         name: "Withdrawal",
         component: WithdrawalView,
+        meta: {
+            layout: "ClubLayout",
+        },
+    },
+    {
+        path: "/$/notification",
+        name: "Notify",
+        component: NotifyView,
         meta: {
             layout: "ClubLayout",
         },

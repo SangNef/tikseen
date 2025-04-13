@@ -1,15 +1,17 @@
 <template>
-    <nav class="flex absolute w-full justify-between items-center p-4 z-999">
+    <nav class="flex absolute w-full justify-between items-center p-4 z-50">
         <div class="flex items-center gap-2">
             <img :src="logo" alt="Logo" class="w-16 h-auto object-cover" />
         </div>
-        <div class="flex items-center gap-4">
-            <BellIcon class="w-6 h-6 text-white hover:text-gray-700 cursor-pointer" @click="$emit('notification')" />
+        <div class="flex items-center gap-4 z-20">
+            <BellIcon
+                class="w-6 h-6 text-white hover:text-gray-700 cursor-pointer z-20"
+                @click="router.push('/$/notification')" />
             <PowerIcon class="w-6 h-6 text-white hover:text-gray-700 cursor-pointer" @click="handleLogout" />
         </div>
     </nav>
     <div
-        class="h-55 relative w-full flex items-center justify-center overflow-hidden"
+        class="h-55 relative w-full flex items-center justify-center overflow-hidden z-"
         style="
             background: linear-gradient(
                 0deg,
@@ -21,27 +23,32 @@
         <div
             class="absolute inset-0 rotated-image"
             :style="`background-image: url(${rong}); background-size: cover; background-position: center; mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.57) 0%, rgba(0, 0, 0, 0) 100%);`"></div>
+        <div
+            class="absolute inset-0 pointer-events-none z-1"
+            style="background: radial-gradient(circle at top right, #483b2b 0%, rgba(255, 255, 255, 0) 40%)"></div>
     </div>
-    <div class="absolute top-30 left-[5%] w-[90%] rounded-xl shadow-xl rounded-corners-effect p-0.25">
-        <div class="relative w-full h-full bg-linear-to-l from-[#353228] to-[#241e1e] rounded-xl min-h-20">
+    <img :src="whiteGlow" alt="White Glow" class="absolute top-60 left-1/2 -translate-x-1/2 w-66 h-10" />
+    <div class="absolute top-28 left-[5%] w-[90%] rounded-xl shadow-xl rounded-corners-effect p-0.25 z-10">
+        <div
+            class="relative w-full h-full bg-gradient-to-bl from-[#483b2b] via-[#211c19] to-[#131313] rounded-xl min-h-20 overflow-hidden">
             <div class="w-full px-4 pt-2 flex flex-col">
                 <div class="flex items-center gap-2">
                     <img :src="avt" alt="Avatar" class="w-8 h-8 rounded-full object-cover border-2 border-[#383129]" />
                     <div class="flex flex-col">
-                        <span class="text-white block text-sm font-semibold uppercase">JACK SPARROW</span>
+                        <span class="block text-sm font-semibold uppercase text-[#d4cbaf]">JACK SPARROW</span>
                         <span class="text-xs text-gray-400">Hạng Titan</span>
                     </div>
                 </div>
-                <p class="text-white font-semibold text-sm my-2">Số dư: 0 VND</p>
+                <p class="text-[#d4cbaf] font-semibold text-sm my-2">Số dư: 0 VND</p>
             </div>
             <div
-                class="w-full flex items-center justify-between bg-linear-to-l from-[#27221f] to-[#1a1819] py-1 text-white text-sm rounded-b-xl">
+                class="w-full flex items-center justify-between bg-linear-to-l from-[#27221f] to-[#1a1819] py-1 text-[#d4cbaf] text-sm">
                 <router-link to="/$/transactions" class="w-full flex items-center justify-center gap-2">
                     <!-- SVG Gửi tiền (Ví tiền) -->
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         version="1.0"
-                        class="text-white w-5 h-5"
+                        class="text-[#d4cbaf] w-5 h-5"
                         viewBox="0 0 512.000000 512.000000"
                         preserveAspectRatio="xMidYMid meet">
                         <g
@@ -62,7 +69,7 @@
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         version="1.0"
-                        class="text-white w-5 h-5"
+                        class="text-[#d4cbaf] w-5 h-5"
                         viewBox="0 0 512.000000 512.000000"
                         preserveAspectRatio="xMidYMid meet">
                         <g
@@ -78,22 +85,56 @@
                     <span>Tài khoản & Thẻ</span>
                 </div>
             </div>
+            <div
+                class="w-full flex items-center justify-between bg-linear-to-l from-[#27221f] to-[#1a1819] py-2 px-4 text-[#d4cbaf] text-sm rounded-b-xl">
+                <span class="flex items-center gap-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-4 h-4 text-[#d4cbaf]"
+                        viewBox="0 0 16 16"
+                        fill="currentColor">
+                        <path
+                            d="M10 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4zM6 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H6z" />
+                        <path
+                            d="M8 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM1.599 4.058a.5.5 0 0 1 .208.676A6.967 6.967 0 0 0 1 8c0 1.18.292 2.292.807 3.266a.5.5 0 0 1-.884.468A7.968 7.968 0 0 1 0 8c0-1.347.334-2.619.923-3.734a.5.5 0 0 1 .676-.208zm12.802 0a.5.5 0 0 1 .676.208A7.967 7.967 0 0 1 16 8a7.967 7.967 0 0 1-.923 3.734.5.5 0 0 1-.884-.468A6.967 6.967 0 0 0 15 8c0-1.18-.292-2.292-.807-3.266a.5.5 0 0 1 .208-.676zM3.057 5.534a.5.5 0 0 1 .284.648A4.986 4.986 0 0 0 3 8c0 .642.12 1.255.34 1.818a.5.5 0 1 1-.93.364A5.986 5.986 0 0 1 2 8c0-.769.145-1.505.41-2.182a.5.5 0 0 1 .647-.284zm9.886 0a.5.5 0 0 1 .648.284C13.855 6.495 14 7.231 14 8c0 .769-.145 1.505-.41 2.182a.5.5 0 0 1-.93-.364C12.88 9.255 13 8.642 13 8c0-.642-.12-1.255-.34-1.818a.5.5 0 0 1 .283-.648z" />
+                    </svg>
+                    Chuyên viên chăm sóc khách hàng
+                </span>
+
+                <ChevronRightIcon class="w-4 h-4 text-[#d4cbaf]" />
+            </div>
             <img :src="logo2" width="80" height="80" class="absolute top-0 right-2 w-20 h-auto" alt="logo2" />
+            <img
+                :src="sun"
+                alt=""
+                class="absolute top-0 right-0 w-30 rotate-90 translate-x-[45%] -translate-y-[50%] opacity-60" />
         </div>
     </div>
-    <div class="min-h-20 w-full bg-linear-to-b from-[#0a0a0a] via-[#211c16] to-[#0a0a0a]">
-        <div class="grid grid-cols-2 gap-1 p-4 pt-16">
+    <div class="min-h-20 w-full bg-[#211c16]">
+        <div
+            class="grid grid-cols-3 gap-1 p-4 pt-16 bg-linear-to-b"
+            style="background: linear-gradient(to bottom, #0a0a0a 0%, #211c16 40%, #1a1611 70%, #000 100%)">
             <div v-for="item in items" :key="item.label" class="flex flex-col items-center p-4 cursor-pointer">
-                <router-link :to="item.href" class="p-1">
-                    <component
-                        :is="item.icon"
-                        class="w-8 h-8 text-[#d4cbaf] cursor-pointer"
-                        @click="$emit('navigate', item.href)" />
+                <router-link :to="item.href" class="p-1" style="color: #d4cbaf">
+                    <img
+                        :src="item.img"
+                        alt=""
+                        class="w-8 h-8 object-cover"
+                        style="
+                            filter: brightness(0) saturate(100%) invert(84%) sepia(24%) saturate(243%) hue-rotate(14deg)
+                                brightness(93%) contrast(91%);
+                        " />
                 </router-link>
-                <span class="text-[#d4cbaf] text-sm mt-2">{{ item.label }}</span>
+                <span class="text-[#d4cbaf] text-sm mt-2 text-center">{{ item.label }}</span>
             </div>
         </div>
-        <router-link to="/$/account/news"
+
+        <div class="w-full relative">
+            <img :src="vin" alt="Vin" class="w-full h-auto object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+        </div>
+        <router-link
+            to="/$/account/news"
             class="w-full h-12 bg-linear-to-l from-[#241e1e] via-[#353228] to-[#241e1e] flex items-center justify-center text-white font-semibold">
             TIN TỨC
         </router-link>
@@ -102,72 +143,76 @@
             DANH SÁCH PHÚC LỢI
         </div>
     </div>
-    <div class="w-full h-70 overflow-hidden relative bg-linear-to-b from-[#211e19] to-[#0a0a0a]">
+    <div class="w-full h-90 overflow-hidden relative bg-linear-to-b from-[#211e19] to-[#0a0a0a] pb-20">
         <ul class="p-5 h-full overflow-hidden" ref="winnerList">
             <li v-for="(winner, index) in winners" :key="index" class="py-3 text-white flex justify-between">
                 <div class="flex flex-col">
                     <span class="text-white font-bold">{{ winner.fullname }}</span>
                     <span class="text-gray-400 text-sm font-semibold">Tên người dùng: {{ winner.username }}</span>
                 </div>
-                <span class="text-white font-bold"><span class="text-red-500">+ {{ winner.reward }}</span> VND</span>
+                <span class="text-white font-bold"
+                    ><span class="text-red-500">+ {{ winner.reward }}</span> VND</span
+                >
             </li>
         </ul>
-    </div>
-    <div class="w-full relative">
-        <img :src="vin" alt="Vin" class="w-full h-auto object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import {
-    PowerIcon,
-    BellIcon,
-    GiftIcon,
-    BriefcaseIcon,
-    TrophyIcon,
-    ShoppingCartIcon,
-    BuildingOfficeIcon,
-    ChartBarIcon,
-} from "@heroicons/vue/24/outline";
 import logo from "@landing/assets/images/logoClub.png";
 import logo2 from "@landing/assets/images/logo2.png";
 import rong from "@landing/assets/images/rong.png";
 import avt from "@landing/assets/images/avt.webp";
 import vin from "@landing/assets/images/home/vin.png";
+import sun from "@landing/assets/images/sun.png";
+import whiteGlow from "@landing/assets/images/whiteGlow.png";
+
+import gift from "@landing/assets/images/ico/gift.svg";
+import bag from "@landing/assets/images/ico/bag.svg";
+import cup from "@landing/assets/images/ico/cup.svg";
+import cart from "@landing/assets/images/ico/cart.svg";
+import project from "@landing/assets/images/ico/project.svg";
+import invest from "@landing/assets/images/ico/invest.svg";
+import spin from "@landing/assets/images/ico/spin.svg";
+import { BellIcon, ChevronRightIcon, PowerIcon } from "@heroicons/vue/24/outline";
 
 const items = [
     {
         label: "Tham vấn phúc lợi",
         href: "/$/account/welfare",
-        icon: GiftIcon,
+        img: gift,
     },
     {
         label: "Ưu đãi phúc lợi",
         href: "/$/account/award",
-        icon: BriefcaseIcon,
+        img: bag,
     },
     {
         label: "Mục tiêu",
         href: "/$/account/targets",
-        icon: TrophyIcon,
+        img: cup,
     },
     {
         label: "Sản phẩm",
         href: "/$/account/product",
-        icon: ShoppingCartIcon,
+        img: cart,
     },
     {
         label: "Dự án",
         href: "/$/account/project",
-        icon: BuildingOfficeIcon,
+        img: project,
     },
     {
         label: "Lý do nên đầu tư",
         href: "/$/account/invest-reason",
-        icon: ChartBarIcon,
+        img: invest,
+    },
+    {
+        label: "Vòng quay may mắn",
+        href: "/$/account/spin",
+        img: spin,
     },
 ];
 
