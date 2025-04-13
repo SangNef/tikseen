@@ -258,7 +258,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory('/landing'),
+    history: createWebHistory(),
     routes,
 });
 
