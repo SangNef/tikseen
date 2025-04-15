@@ -4,16 +4,18 @@
         <!-- Phần chính -->
         <div
             class="relative w-full bg-[#1a1819] py-2 shadow-md flex items-center justify-evenly rounded-[50px] overflow-hidden">
-            <router-link to="/home" class="w-8 h-full flex flex-col items-center justify-center">
-                <component :is="HomeIcon" class="w-6 h-6 text-white" />
-                <span class="text-xs text-white whitespace-nowrap mt-1">Trang chủ</span>
-            </router-link>
-            <div class="w-10 h-10 flex items-center justify-center bg-[#b08d57] rounded-full">
-                <component :is="QrCodeIcon" class="w-7 h-7 text-white" />
-            </div>
-            <router-link to="/account/mine" class="w-8 h-full flex flex-col items-center justify-center">
-                <component :is="UserIcon" class="w-6 h-6 text-white" />
-                <span class="text-xs text-white whitespace-nowrap mt-1">Cá nhân</span>
+            <!-- <div class="w-10 h-10 flex items-center justify-center bg-[#b08d57] rounded-full">
+                <component :is="ClipboardDocumentCheckIcon" class="w-7 h-7 text-white" />
+            </div> -->
+
+            <router-link
+                v-for="(item, index) in menuItems"
+                :key="index"
+                :to="item.route"
+                class="w-8 h-full flex flex-col items-center justify-center"
+                >
+                <component :is="item.icon" class="w-6 h-6" :class="currentRoute === item.route ? 'text-[#b08d57]' : 'text-white'" />
+                <span class="text-xs whitespace-nowrap mt-1" :class="currentRoute === item.route ? 'text-[#b08d57]' : 'text-white'">{{ item.label }}</span>
             </router-link>
         </div>
 
@@ -35,5 +37,28 @@
 </template>
 
 <script setup>
-import { QrCodeIcon, ChatBubbleLeftEllipsisIcon, HomeIcon, UserIcon } from "@heroicons/vue/24/outline";
+import { useRoute } from "vue-router";
+import { ClipboardDocumentCheckIcon, ChatBubbleLeftEllipsisIcon, HomeIcon, UserIcon } from "@heroicons/vue/24/outline";
+import { computed } from "vue";
+const route = useRoute();  // Lấy route hiện tại
+
+const currentRoute = computed(() => route.path);
+
+const menuItems = [
+    {
+        label: "Trang chủ",
+        icon: HomeIcon,
+        route: "/home"
+    },
+    {
+        label: "Đánh giá",
+        icon: ClipboardDocumentCheckIcon,
+        route: "/rate"
+    },
+    {
+        label: "Cá nhân",
+        icon: UserIcon,
+        route: "/account/mine"
+    }
+]
 </script>

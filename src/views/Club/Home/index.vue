@@ -1,7 +1,7 @@
 <template>
     <nav class="flex absolute w-full justify-between items-center p-4 z-50">
         <div class="flex items-center gap-2">
-            <img :src="logo" alt="Logo" class="w-16 h-auto object-cover" />
+            <img :src="ame" alt="Logo" class="w-14 h-auto object-cover rounded shadow" />
         </div>
         <div class="flex items-center gap-4 z-20">
             <BellIcon
@@ -103,7 +103,7 @@
 
                 <ChevronRightIcon class="w-4 h-4 text-[#d4cbaf]" />
             </div>
-            <img :src="logo2" width="80" height="80" class="absolute top-0 right-2 w-20 h-auto" alt="logo2" />
+            <img :src="logo2" width="80" height="80" class="absolute top-1 right-2 w-20 h-auto" alt="logo2" />
             <img
                 :src="sun"
                 alt=""
@@ -148,11 +148,17 @@
             <li v-for="(winner, index) in winners" :key="index" class="py-3 text-white flex justify-between">
                 <div class="flex flex-col">
                     <span class="text-white font-bold">{{ winner.fullname }}</span>
-                    <span class="text-gray-400 text-sm font-semibold">Tên người dùng: {{ winner.username }}</span>
+                    <span class="text-gray-400 text-sm font-semibold">Tên người dùng: {{ winner.username.length > 12 ? winner.username.slice(0, 12) + '...' : winner.username }}</span>
                 </div>
-                <span class="text-white font-bold"
-                    ><span class="text-red-500">+ {{ winner.reward }}</span> VND</span
-                >
+                <div class="flex items-center gap-1">
+                    <span
+                        v-for="star in 5"
+                        :key="star"
+                        class="text-xl"
+                        :class="star <= winner.rate ? 'text-yellow-400' : 'text-gray-500'">
+                        <StarIcon class="w-5 h-5" />
+                    </span>
+                </div>
             </li>
         </ul>
     </div>
@@ -161,8 +167,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import logo from "@landing/assets/images/logoClub.png";
-import logo2 from "@landing/assets/images/logo2.png";
+import { faker } from "@faker-js/faker";
+
+import ame from "@landing/assets/images/logo/ame.jpg";
+import logo2 from "@landing/assets/images/logo/logo2.png";
 import rong from "@landing/assets/images/rong.png";
 import avt from "@landing/assets/images/avt.webp";
 import vin from "@landing/assets/images/home/vin.png";
@@ -177,6 +185,7 @@ import project from "@landing/assets/images/ico/project.svg";
 import invest from "@landing/assets/images/ico/invest.svg";
 import spin from "@landing/assets/images/ico/spin.svg";
 import { BellIcon, ChevronRightIcon, PowerIcon } from "@heroicons/vue/24/outline";
+import { StarIcon } from "@heroicons/vue/24/solid";
 
 const items = [
     {
@@ -216,15 +225,32 @@ const items = [
     },
 ];
 
-function formatCurrency(amount) {
-    return amount.toLocaleString("vi-VN"); // Thêm dấu chấm ngăn cách theo chuẩn VN
+function getWeightedRate() {
+    const weights = [
+        { rate: 1, weight: 1 }, // xuất hiện ít
+        { rate: 2, weight: 2 },
+        { rate: 3, weight: 4 },
+        { rate: 4, weight: 6 },
+        { rate: 5, weight: 10 }, // xuất hiện nhiều
+    ];
+
+    const totalWeight = weights.reduce((acc, item) => acc + item.weight, 0);
+    const random = Math.random() * totalWeight;
+
+    let sum = 0;
+    for (let i = 0; i < weights.length; i++) {
+        sum += weights[i].weight;
+        if (random <= sum) return weights[i].rate;
+    }
+
+    return 5; // fallback
 }
 
 const winners = ref(
     Array.from({ length: 100 }, (_, i) => ({
-        fullname: `Winner ${i + 1}`,
-        username: `user${i + 1}`,
-        reward: formatCurrency(Math.floor(Math.random() * 100000000)),
+        fullname: faker.person.fullName(), // tên ngẫu nhiên
+        username: faker.internet.userName(),
+        rate: getWeightedRate(),
     }))
 );
 

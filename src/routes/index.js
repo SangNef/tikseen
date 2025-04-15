@@ -28,6 +28,7 @@ import MoneyView from "@landing/views/Club/Account/Money.vue";
 import RechargeView from "@landing/views/Club/Account/Recharge.vue";
 import WithdrawalView from "@landing/views/Club/Account/Withdrawal.vue";
 import NotifyView from "@landing/views/Club/Home/Notify.vue";
+import RateView from "@landing/views/Club/Rate/index.vue";
 
 const routes = [
     {
@@ -261,6 +262,14 @@ const routes = [
             layout: "ClubLayout",
         },
     },
+    {
+        path: "/rate",
+        name: "Rate",
+        component: RateView,
+        meta: {
+            layout: "ClubLayout",
+        },
+    }
 ];
 
 const router = createRouter({
