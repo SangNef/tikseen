@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from "vue-router";
-import { Fragment } from "vue";
+import { computed, Fragment } from "vue";
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import AuthLayout from "@/layouts/AuthLayout.vue";
 import "./style.css";
@@ -8,13 +8,17 @@ import "./style.css";
 const route = useRoute();
 
 const layouts = {
-  DefaultLayout,
-  AuthLayout,
+    DefaultLayout,
+    AuthLayout,
 };
+
+const currentLayout = computed(() => {
+    return layouts[route.meta.layout] || 'div';
+});
 </script>
 
 <template>
-  <component :is="layouts[route.meta.layout] || DefaultLayout">
-    <router-view />
-  </component>
+    <component :is="currentLayout">
+        <router-view />
+    </component>
 </template>

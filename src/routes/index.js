@@ -4,6 +4,7 @@ import Login from "@/views/Auth/Login.vue";
 import Register from "@/views/Auth/Register.vue";
 import Chat from "@/views/Chat/index.vue";
 import Setting from "@/views/Setting/index.vue";
+import BubbleChat from "@/views/BubbleChat/index.vue"
 
 const routes = [
     {
@@ -27,7 +28,7 @@ const routes = [
         name: "Chat",
         component: Chat,
         meta: {
-            layout: "MainLayout",
+            layout: "DefaultLayout",
         },
     },
     {
@@ -35,8 +36,13 @@ const routes = [
         name: "Setting",
         component: Setting,
         meta: {
-            layout: "MainLayout",
+            layout: "DefaultLayout",
         },
+    },
+    {
+        path: "/chat",
+        name: "BubbleChat",
+        component: BubbleChat,
     }
 ]
 
