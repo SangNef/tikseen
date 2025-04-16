@@ -1,51 +1,69 @@
 {
   "language": "Vietnamese",
   "project_information": {
-    "name": "VinGroup Website",
-    "description": "Website chính thức của Tập đoàn Vingroup phát triển với Vue 3 và Vite",
-    "repository": "https://github.com/vingroup/vingroup-website",
+    "name": "LiveChat",
+    "description": "Ứng dụng chat trực tuyến được phát triển với Vue 3 và Vite",
+    "repository": "https://github.com/livechat/livechat-app",
     "version": "1.0.0"
   },
   "tech_stack": {
     "frontend": "Vue 3 (Composition API với script setup)",
-    "build_tool": "Vite 6.2+",
-    "router": "Vue Router 4.5+",
-    "i18n": "Vue I18n 11.1+",
-    "css": "Tailwind CSS 4.0+",
-    "icons": "@heroicons/vue 2.2+"
+    "build_tool": "Vite",
+    "router": "Vue Router",
+    "css": "Tailwind CSS",
+    "icons": "@heroicons/vue/24/outline"
   },
   "project_structure": {
     "src": {
-      "components": "Các component tái sử dụng",
-      "layouts": "Layout của ứng dụng (Default, Auth, Empty)",
+      "components": "Các component tái sử dụng được chia thành Auth, Common và Main",
+      "layouts": "Layout của ứng dụng (Default, Auth)",
       "views": "Các trang giao diện người dùng",
       "routes": "Cấu hình định tuyến Vue Router",
       "assets": "Hình ảnh và tài nguyên tĩnh",
       "helpers": "Các hàm tiện ích",
       "data": "Dữ liệu mẫu và API",
-      "locales": "File ngôn ngữ (vi.json, en.json)"
+      "App.vue": "Component gốc của ứng dụng",
+      "main.js": "Điểm khởi đầu của ứng dụng",
+      "style.css": "Global CSS styles"
     },
     "views": {
-      "Home": "Trang chủ giới thiệu Vingroup",
-      "About": "Giới thiệu về tập đoàn",
-      "Activity": "Lĩnh vực hoạt động kinh doanh",
-      "Development": "Phát triển bền vững",
-      "Relation": "Quan hệ cổ đông",
-      "Event": "Tin tức và sự kiện",
-      "Contact": "Liên hệ",
-      "Auth": "Đăng nhập/Đăng ký"
+      "Chat": "Giao diện chat chính với các component như InputMessage, MessageItem",
+      "Auth": "Các trang xác thực như đăng nhập, đăng ký",
+      "Setting": "Trang cài đặt và tùy chỉnh người dùng",
+      "Hiring": "Thông tin tuyển dụng"
+    },
+    "components": {
+      "Auth": "Các component liên quan đến xác thực người dùng",
+      "Common": "Các component dùng chung cho toàn ứng dụng",
+      "Main": "Các component chính của ứng dụng như SideBar, Header"
     }
   },
   "coding_principles": {
     "style": {
       "css": "Sử dụng Tailwind CSS với class-based styling",
-      "gradients": "Dùng linear-gradient và radial-gradient cho các nền",
+      "layout": "Flexbox là chủ đạo với flex-row và flex-col",
       "colors": {
-        "primary": ["#353228", "#241e1e", "#0a0a0a", "#211c16"],
-        "text": ["#d4cbaf", "#ffffff", "#f3f3f3", "#cccccc"],
-        "accent": ["#483b2b", "#d4cbaf"]
+        "background": [
+          "#ffffff",
+          "#f3f4f6"
+        ],
+        "primary": [
+          "#3b82f6",
+          "#2563eb"
+        ],
+        "text": [
+          "#111827",
+          "#374151",
+          "#6b7280"
+        ],
+        "accent": [
+          "#ef4444",
+          "#10b981"
+        ]
       },
-      "spacing": "Tuân thủ spacing system của Tailwind",
+      "spacing": "Tuân thủ spacing system của Tailwind (gap-2, p-2)",
+      "rounded": "Ưu tiên rounded-xl cho các container chính",
+      "shadow": "shadow-xl cho các component nổi bật",
       "breakpoints": {
         "sm": "640px",
         "md": "768px",
@@ -55,93 +73,126 @@
       }
     },
     "components": {
-      "naming": "PascalCase cho component (VD: BottomBar.vue)",
-      "structure": "Script setup + Template + Style",
+      "naming": "PascalCase cho component (VD: InputMessage.vue)",
+      "structure": "Sử dụng <script setup>, <template> và <style scoped>",
       "props": "Sử dụng defineProps với TypeScript interface",
       "emits": "Sử dụng defineEmits cho các events",
-      "composition": "Ưu tiên Composition API, tránh Options API"
+      "composition": "Ưu tiên Composition API, sử dụng ref và reactive cho state",
+      "imports": "Sử dụng alias @ cho import từ thư mục src"
     },
     "routing": {
-      "layouts": "Sử dụng meta.layout để xác định layout cho mỗi route",
+      "layouts": "Sử dụng route.meta.layout để xác định layout cho mỗi route",
       "naming": "Đặt tên route dễ hiểu và phản ánh chức năng",
-      "lazy_loading": "Sử dụng dynamic import cho các trang lớn",
-      "nested_routes": "Áp dụng cho các chức năng có nhiều màn hình con"
+      "structure": "Mỗi trang chính có file index.vue trong thư mục riêng"
     },
     "file_organization": {
       "views": "Mỗi tính năng có thư mục riêng trong views",
-      "components": "Component dùng chung đặt trong src/components",
+      "components": "Component dùng chung đặt trong src/components và phân loại theo chức năng",
       "helper_functions": "Hàm tiện ích đặt trong src/helpers",
-      "data_models": "Model và service đặt trong src/data"
+      "data_models": "Dữ liệu tĩnh và mockup đặt trong src/data"
     },
-    "i18n": {
-      "format": "Sử dụng key nested trong file JSON",
-      "naming": "Đặt tên key ngắn gọn, mô tả nội dung",
-      "required": "Mọi text hiển thị phải sử dụng i18n, không hardcode",
-      "files": "Cập nhật đồng thời cả vi.json và en.json"
-    }
-  },
-  "recommended_practices": {
-    "imports": "Ưu tiên sử dụng alias @ cho import",
-    "state_management": "Sử dụng ref và reactive cho state",
-    "component_composition": "Ưu tiên composition API qua script setup",
-    "code_comments": "Chỉ comment cho logic phức tạp",
-    "responsive": "Thiết kế mobile-first, max-w-md cho container chính",
-    "error_handling": "Xử lý lỗi đầy đủ với try/catch và thông báo người dùng",
-    "performance": {
-      "lazy_loading": "Sử dụng dynamic import cho components lớn",
-      "image_optimization": "Tối ưu hình ảnh trước khi đưa vào dự án",
-      "code_splitting": "Tách code thành các chunk nhỏ hơn"
+    "naming_conventions": {
+      "variables": "camelCase cho biến và hàm",
+      "components": "PascalCase cho components",
+      "constants": "UPPER_SNAKE_CASE cho hằng số",
+      "files": "PascalCase cho components, camelCase cho helpers"
     }
   },
   "ui_guidelines": {
-    "layout": "Mobile-first, app-like UI",
-    "navigation": "Bottom navigation bar cho menu chính",
-    "cards": "Card design với rounded corners và gradient borders",
-    "buttons": "Sử dụng gradient và hover effects",
-    "icons": "Heroicons cho icon system",
+    "layout": "Mobile-first, responsive design",
+    "navigation": "SideBar bên trái và Header ở trên",
+    "cards": "Card design với rounded-xl và shadow",
+    "buttons": "Sử dụng rounded corners và hover effects",
+    "inputs": "Border và outline styles nhất quán",
+    "icons": "Sử dụng Heroicons cho icon system",
     "animations": {
-      "transitions": "Sử dụng Vue transitions cho hiệu ứng chuyển trang",
-      "hover_effects": "Nhẹ nhàng, không phô trương",
+      "transitions": "Sử dụng transition duration-300 cho hiệu ứng",
+      "hover_effects": "hover:bg-gray-100 cho các item có thể click",
       "loading_states": "Skeleton loader cho nội dung đang tải"
     },
     "typography": {
-      "font": "Manrope và Roboto",
+      "font": "Hệ thống font sans-serif mặc định",
       "sizes": {
         "small": "text-xs hoặc text-sm",
         "normal": "text-base",
         "large": "text-lg hoặc text-xl",
         "heading": "text-2xl trở lên"
       },
-      "line_height": "Tuân thủ quy tắc leading của Tailwind",
-      "font_weight": {
+      "weight": {
         "normal": "font-normal",
         "medium": "font-medium",
         "semibold": "font-semibold",
         "bold": "font-bold"
       }
     },
-    "dark_mode": {
-      "support": "Hỗ trợ chế độ tối theo cài đặt hệ thống",
-      "colors": "Có bảng màu riêng cho dark mode"
+    "dropdown_menus": {
+      "positioning": "absolute bottom-full mb-2 left-0",
+      "styling": "bg-white border border-gray-300 rounded shadow",
+      "items": "px-4 py-2 hover:bg-gray-100 text-sm cursor-pointer"
+    },
+    "modals": {
+      "overlay": "fixed inset-0 bg-black/50 flex items-center justify-center z-50",
+      "container": "bg-white rounded-xl shadow-xl p-6 relative",
+      "close_button": "absolute top-2 right-2 text-gray-500 hover:text-gray-700"
     }
   },
-  "development_guidelines": {
-    "git": {
-      "branching": "feature/{feature-name}, bugfix/{bug-name}, hotfix/{fix-name}",
-      "commit_message": "feat/fix/docs/style/refactor/test/chore: nội dung commit",
-      "pull_request": "Mô tả chi tiết thay đổi và test case"
+  "component_patterns": {
+    "chat": {
+      "input_message": "Container với textarea và actions (emoji, attachment, etc.)",
+      "message_item": "Hiển thị tin nhắn với user info, time, và content",
+      "chat_list": "Danh sách các tin nhắn với infinite scroll"
     },
-    "code_review": {
-      "criteria": "Đúng quy tắc, không lỗi, tương thích mobile",
-      "checklist": "UI/UX, performance, i18n, responsive"
+    "auth": {
+      "login_form": "Email/username và password với remember me",
+      "register_form": "Thông tin đăng ký với validation",
+      "forgot_password": "Form lấy lại mật khẩu"
+    },
+    "common": {
+      "dropdown": "Toggle và content với click outside handling",
+      "modal": "Overlay và container với close button",
+      "toast": "Thông báo tạm thời với auto-hide"
+    }
+  },
+  "best_practices": {
+    "reactive_data": "Sử dụng ref cho primitive values, reactive cho objects",
+    "event_handling": "Đặt tên sự kiện rõ ràng (handle*, toggle*, add*)",
+    "component_communication": "Props down, events up",
+    "lifecycle_hooks": "Sử dụng onMounted, onBeforeUnmount khi cần",
+    "side_effects": "Sử dụng watchEffect hoặc watch cho side effects",
+    "form_handling": "Sử dụng v-model và validation functions",
+    "error_handling": "Try/catch blocks và error states",
+    "performance": {
+      "lazy_loading": "Dynamic import cho components lớn",
+      "memoization": "computed và useMemo cho calculations phức tạp",
+      "list_rendering": "Sử dụng key cho v-for loops"
+    }
+  },
+  "development_workflows": {
+    "git": {
+      "branching": "feature/*, bugfix/*, hotfix/*",
+      "commit_message": "feat/fix/docs/style/refactor/test/chore: nội dung commit",
+      "pull_request": "Mô tả chi tiết thay đổi và test cases"
+    },
+    "coding_steps": {
+      "feature": [
+        "1. Xác định requirements",
+        "2. Tạo components cần thiết",
+        "3. Implement logic cơ bản",
+        "4. Style components",
+        "5. Test functionality",
+        "6. Refactor và tối ưu"
+      ]
     },
     "testing": {
-      "unit_tests": "Viết test cho logic phức tạp",
-      "e2e_tests": "Test cho các luồng chính của ứng dụng"
-    },
-    "deployment": {
-      "environments": "dev, staging, production",
-      "ci_cd": "Sử dụng GitHub Actions cho CI/CD"
+      "functional": "Kiểm tra các chức năng hoạt động đúng",
+      "responsive": "Kiểm tra UI trên các kích thước màn hình khác nhau",
+      "cross_browser": "Kiểm tra trên các browser chính"
     }
+  },
+  "accessibility": {
+    "semantic_html": "Sử dụng thẻ HTML đúng mục đích",
+    "keyboard_navigation": "Đảm bảo tất cả chức năng đều có thể sử dụng bằng bàn phím",
+    "screen_readers": "ARIA labels cho UI elements",
+    "color_contrast": "Đảm bảo tỷ lệ tương phản giữa văn bản và nền đủ cao"
   }
-} 
+}
