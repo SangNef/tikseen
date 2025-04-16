@@ -1,10 +1,11 @@
 <template>
-  <div>
-    st
+  <div class="flex flex-nowrap">
+    <Menu />
   </div>
 </template>
 
 <script setup>
+import Menu from './Menu.vue';
 
 </script>
 

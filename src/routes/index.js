@@ -13,6 +13,30 @@ const routes = [
         meta: {
             layout: "AuthLayout",
         },
+    },
+    {
+        path: "/register",
+        name: "Register",
+        component: Register,
+        meta: {
+            layout: "AuthLayout",
+        },
+    },
+    {
+        path: "/",
+        name: "Chat",
+        component: Chat,
+        meta: {
+            layout: "MainLayout",
+        },
+    },
+    {
+        path: "/settings",
+        name: "Setting",
+        component: Setting,
+        meta: {
+            layout: "MainLayout",
+        },
     }
 ]
 
