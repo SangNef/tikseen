@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [tailwindcss(), vue()],
   resolve: {
     alias: {
-      "@": "/src",
-      "@landing": "/src",
+      '@': '/src',
+      '@landing': '/src',
     },
   },
-}) 
+});

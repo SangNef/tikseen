@@ -5,17 +5,14 @@
       <slot />
     </div>
     <div class="absolute bottom-0 left-0 p-4 w-full">
-      <img :src="footer" alt="" class="max-h-13 max-w-[90%] mx-auto">
+      <img :src="footer" alt="" class="max-h-13 max-w-[90%] mx-auto" />
     </div>
   </div>
 </template>
 
 <script setup>
 import Header from '@/components/Auth/Header.vue';
-import footer from '@/assets/images/footer.png'
-
+import footer from '@/assets/images/footer.png';
 </script>
 
-<style>
-
-</style>
+<style></style>

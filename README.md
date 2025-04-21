@@ -4,11 +4,11 @@
 
 ## Công Nghệ
 
--   **Framework**: Vue 3 (Composition API với `<script setup>`)
--   **Build Tool**: Vite
--   **Router**: Vue Router
--   **UI/CSS**: Tailwind CSS, @heroicons/vue
--   **Layout**: Thiết kế mobile-first, responsive
+- **Framework**: Vue 3 (Composition API với `<script setup>`)
+- **Build Tool**: Vite
+- **Router**: Vue Router
+- **UI/CSS**: Tailwind CSS, @heroicons/vue
+- **Layout**: Thiết kế mobile-first, responsive
 
 ## Cấu Trúc Dự Án
 
@@ -42,28 +42,28 @@ livechat/
 
 ## Tính Năng
 
--   **Chat Trực Tuyến**: Giao diện chat thời gian thực với emoji, attachment
--   **Authentication**: Đăng nhập, đăng ký, quên mật khẩu
--   **Custom Messages**: Tin nhắn nhanh, tag và emoji
--   **File Sharing**: Tính năng chia sẻ file
--   **Responsive Design**: Hỗ trợ đầy đủ trên mọi thiết bị
--   **User Settings**: Tùy chỉnh giao diện, thông báo
+- **Chat Trực Tuyến**: Giao diện chat thời gian thực với emoji, attachment
+- **Authentication**: Đăng nhập, đăng ký, quên mật khẩu
+- **Custom Messages**: Tin nhắn nhanh, tag và emoji
+- **File Sharing**: Tính năng chia sẻ file
+- **Responsive Design**: Hỗ trợ đầy đủ trên mọi thiết bị
+- **User Settings**: Tùy chỉnh giao diện, thông báo
 
 ## UI Design System
 
--   **Colors**: Bảng màu chính bao gồm:
-    -   Background: #ffffff, #f3f4f6
-    -   Primary: #3b82f6, #2563eb
-    -   Text: #111827, #374151, #6b7280
-    -   Accent: #ef4444, #10b981
--   **Typography**:
-    -   Font: Hệ thống font sans-serif mặc định
-    -   Kích thước text: text-xs, text-sm, text-base, text-lg, text-xl, text-2xl
--   **Components**:
-    -   Cards với rounded-xl và shadow
-    -   Buttons với hover effects
-    -   Dropdown menus và modals
-    -   Icon system sử dụng Heroicons
+- **Colors**: Bảng màu chính bao gồm:
+  - Background: #ffffff, #f3f4f6
+  - Primary: #3b82f6, #2563eb
+  - Text: #111827, #374151, #6b7280
+  - Accent: #ef4444, #10b981
+- **Typography**:
+  - Font: Hệ thống font sans-serif mặc định
+  - Kích thước text: text-xs, text-sm, text-base, text-lg, text-xl, text-2xl
+- **Components**:
+  - Cards với rounded-xl và shadow
+  - Buttons với hover effects
+  - Dropdown menus và modals
+  - Icon system sử dụng Heroicons
 
 ## Cài Đặt & Phát Triển
 
@@ -89,12 +89,12 @@ npm run preview
 
 ## Quy Tắc Code
 
--   **Cấu trúc Component**: Sử dụng `<script setup>` + `<template>` + `<style scoped>`
--   **Naming Convention**: PascalCase cho components (VD: InputMessage.vue)
--   **State Management**: Sử dụng `ref` và `reactive` cho quản lý state
--   **Import Path**: Ưu tiên sử dụng alias `@` cho import
--   **Event Handling**: Đặt tên sự kiện rõ ràng (handle*, toggle*, add\*)
--   **Responsive Design**: Mobile-first approach
+- **Cấu trúc Component**: Sử dụng `<script setup>` + `<template>` + `<style scoped>`
+- **Naming Convention**: PascalCase cho components (VD: InputMessage.vue)
+- **State Management**: Sử dụng `ref` và `reactive` cho quản lý state
+- **Import Path**: Ưu tiên sử dụng alias `@` cho import
+- **Event Handling**: Đặt tên sự kiện rõ ràng (handle*, toggle*, add\*)
+- **Responsive Design**: Mobile-first approach
 
 Xem file `.cursorrules` để biết chi tiết đầy đủ về quy ước coding và design system.
 

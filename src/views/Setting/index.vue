@@ -6,9 +6,6 @@
 
 <script setup>
 import Menu from './Menu.vue';
-
 </script>
 
-<style>
-
-</style>
+<style></style>

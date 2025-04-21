@@ -1,11 +1,11 @@
 <template>
-    <div class="flex flex-row">
-        <SideBar />
-        <div class="ml-16 w-full h-screen bg-gray-100 flex flex-col">
-            <Header />
-            <slot />
-        </div>
+  <div class="flex flex-row h-screen max-h-screen">
+    <SideBar />
+    <div class="ml-16 w-full h-screen bg-gray-100 flex flex-col">
+      <Header />
+      <slot />
     </div>
+  </div>
 </template>
 
 <script setup>
