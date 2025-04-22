@@ -18,8 +18,8 @@
 import '@/styles/message.css';
 import InputMessage from './InputMessage.vue';
 const messages = [
-  { send_by: 'cskh', msg: 'Yo, WTF?' },
-  { send_by: 'user', msg: 'vlxx' },
+  { send_by: 'cskh', msg: 'Xin chào, tôi có thể giúp gì cho bạn?' },
+  { send_by: 'user', msg: 'Tôi cần hỗ trợ về dịch vụ' },
 ];
 </script>
 

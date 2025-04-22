@@ -1,11 +1,11 @@
 <template>
-  <div class="w-80 h-[calc(100vh-40px)] bg-white border-r border-gray-300">
+  <div class="w-80 h-[calc(100vh-var(--header-height))] bg-white border-r border-gray-300">
     <div class="border-b border-gray-300 p-3 flex justify-between items-center text-sm font-bold">
       <span>My Chats ({{ chats.length }})</span>
       <span>Newest</span>
     </div>
 
-    <div class="overflow-y-auto max-h-[calc(100vh-100px)] divide-gray-200">
+    <div class="overflow-y-auto max-h-[calc(100vh-var(--header-height))] divide-gray-200">
       <div
         v-for="chat in chats"
         :key="chat.id"

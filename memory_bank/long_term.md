@@ -54,10 +54,59 @@ livechat/
 ## UI/UX Guidelines
 
 - **Layout**: Mobile-first, responsive design
-- **Colors**: Sử dụng bảng màu được định nghĩa trong .cursorrules
-- **Components**: Card, buttons với gradient và hover effects
-- **Typography**: Manrope và Roboto, kích thước từ text-xs đến text-2xl
-- **Responsive**: Thiết kế mobile-first, container max-width phù hợp với breakpoints
+- **Colors**:
+
+  - Primary: #0f766e (cyan-700)
+  - Secondary: #7e22ce (purple-700)
+  - Text: --text-dark, --text-light, --text-gray, --text-muted
+  - Background: --bg-light, --bg-gray, --bg-dark
+  - Status: success, warning, error, info
+
+- **Components**:
+
+  - Border radius: --rounded-custom (0.75rem)
+  - Shadows: --shadow-custom
+  - Transitions: duration-200, duration-300
+  - Spacing: px-4 py-2 (buttons), px-3 py-2 (inputs)
+
+- **Typography**:
+
+  - Fonts: Inter sans-serif
+  - Weights: font-normal, font-medium, font-semibold
+  - Sizes: text-xs, text-sm, text-base, text-lg
+
+- **Icons**:
+
+  - @heroicons/vue/24/outline và @heroicons/vue/24/solid
+  - Kích thước: w-5 h-5 (standard), w-6 h-6 (large)
+
+- **Responsive**:
+  - Mobile: < 640px
+  - Tablet: 640px - 1024px
+  - Desktop: > 1024px
+
+## Component patterns
+
+- **Button**:
+
+  - Variants: primary, secondary, danger, outline, link
+  - Size: px-4 py-2 rounded-custom text-sm
+  - States: normal, hover, disabled
+
+- **Input**:
+
+  - Size: h-11 px-3 py-2 rounded-custom
+  - States: normal, focus, error
+  - Types: text, password, email, tel
+
+- **Dropdowns**:
+
+  - Container: border border-light rounded-custom shadow-custom
+  - Items: px-4 py-2 hover:bg-gray
+
+- **Cards**:
+  - Container: bg-light rounded-custom shadow-custom
+  - Header/Footer: border-b/border-t border-light p-3
 
 ## Tính năng chính
 

@@ -1,8 +1,8 @@
 <template>
-  <div class="flex justify-between py-6 px-5">
-    <img :src="logo" alt="" class="h-8 w-auto" />
+  <div class="flex justify-between items-center py-4 px-4">
+    <img :src="logo" alt="LiveChat Logo" class="h-8 w-auto" />
     <button
-      class="px-4 py-2 border border-[#c9c9cd] rounded-lg text-[#131317] text-sm font-semibold leading-[20px] cursor-pointer"
+      class="px-4 py-2 border border-medium rounded-custom text-dark text-sm font-medium transition-colors duration-200 hover:bg-gray"
       @click="handleClick">
       {{ buttonText }}
     </button>

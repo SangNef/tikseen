@@ -67,7 +67,7 @@ defineExpose({
 
 <template>
   <div class="flex flex-col gap-1" :class="customClass">
-    <div v-if="label" :for="id" class="text-[13px] leading-[20px] text-[#131317]">
+    <div v-if="label" :for="id" class="text-sm text-dark">
       <slot name="label">{{ label }}</slot>
     </div>
     <div class="relative">
@@ -78,18 +78,18 @@ defineExpose({
         :value="modelValue"
         @input="handleInput"
         @blur="handleValidate"
-        class="w-full h-11 p-[13px] border rounded-lg outline-none"
-        :class="error ? 'border-red-500' : 'border-[#ababb1]'" />
+        class="w-full h-11 px-3 py-2 border rounded-custom outline-none transition-colors duration-200"
+        :class="error ? 'border-error focus:border-error' : 'border-medium focus:border-primary'" />
       <div
         v-if="type === 'password'"
         @click="togglePasswordVisibility"
         class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer">
-        <EyeSlashIcon v-if="!isPasswordVisible" class="w-6 h-6 text-gray-600" />
-        <EyeIcon v-if="isPasswordVisible" class="w-6 h-6 text-gray-600" />
+        <EyeSlashIcon v-if="!isPasswordVisible" class="w-5 h-5 text-gray" />
+        <EyeIcon v-if="isPasswordVisible" class="w-5 h-5 text-gray" />
       </div>
     </div>
-    <div class="h-4">
-      <p v-if="error" class="text-red-500 text-xs mt-1">{{ error }}</p>
+    <div class="h-5">
+      <p v-if="error" class="text-error text-xs mt-1">{{ error }}</p>
     </div>
   </div>
 </template>

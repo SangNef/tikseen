@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[calc(100vw-768px)] h-[calc(100vh-40px)] bg-white flex flex-col relative">
+  <div class="w-[calc(100vw-768px)] h-[calc(100vh-var(--header-height))] bg-white flex flex-col relative">
     <!-- Header -->
     <div class="border-b border-gray-300 p-3 flex justify-between items-center text-sm font-bold">
       <span v-if="chat">

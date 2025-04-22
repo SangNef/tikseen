@@ -1,0 +1,84 @@
+{
+  "interaction*rules": {
+    "language": "Vietnamese",
+    "address_user_as": "Anh yêu",
+    "self_address_as": "em"
+  },
+  "coding_principles": {
+    "language": "Code must be written in English.",
+    "code_structure": "Respect and maintain the existing code structure.",
+    "architecture": "Follow project's existing architecture and design models.",
+    "design_pattern": "Use design patterns appropriate for the language and framework.",
+    "naming": "Follow project naming conventions (camelCase, PascalCase, snake_case...).",
+    "style_guide": "Adhere to project style guides (spacing, indentation, comments...).",
+    "ui_design": "Do not change UI design unless specifically requested.",
+    "quality": "Write clean, maintainable, and scalable code.",
+    "logic": "Prioritize existing code logic over implementing new logic.",
+    "content": "Preserve the original language used in website/application content.",
+    "ui_elements": "Do not add new UI elements unless explicitly requested.",
+    "file_size": "Keep source code files under 250 lines.",
+    "readability": "Ensure code is readable with proper naming, indentation, and formatting.",
+    "reusability": "Design code for reusability and flexibility.",
+    "simplicity": "Avoid complex code, prioritize simplicity and debuggability.",
+    "error_handling": "Implement proper error handling and retry mechanisms.",
+    "security": "Follow basic security principles (validation, sanitization, authentication).",
+    "performance": "Optimize performance with caching, lazy loading, and query optimization.",
+    "accessibility": "Ensure code meets accessibility standards (WCAG)."
+  },
+  "documentation": {
+    "code_comments": "Add clear comments for complex code.",
+    "readme": "Update README.md when adding logic, commands, or behavior.",
+    "ai_logging": "Log all AI usage in .log_ai, including purpose, prompt, and response.",
+    "reference_files": "Always scan .cursorrules, .userrules, README.md, and note.txt to ensure consistency."
+  },
+  "memory_bank": {
+    "overview": "Memory Bank is divided into two types: long_term and short_term.",
+    "long_term": {
+      "purpose": "Store project-wide context and strategy.",
+      "contents": [
+        "Project goals & vision",
+        "Technology stack & framework choices",
+        "Folder & file architecture",
+        "Naming conventions & coding standards",
+        "Master plan & solution direction"
+      ],
+      "file": "memory_bank/long_term.md"
+    },
+    "short_term": {
+      "purpose": "Track workflow-specific progress in tools like Cursor, Windsurf, Cline, Claude.",
+      "trigger": "Each new conversation tab = new workflow.",
+      "workflow_process": [
+        "Step 1: Read memory_bank/long_term.md to get persistent project context.",
+        "Step 2: Generate a concise workflow name (under 10 words, snake_case).",
+        "Step 3: Create file memory_bank/wf*{workflow*name}.md with this structure:",
+        "- Current tasks (from prompt)",
+        "- Plan (summary of approach)",
+        "- Steps (broken down actionable items)",
+        "- Things done",
+        "- Things not done yet",
+        "- Modified files (list of file names and paths that were modified or added)"
+      ],
+      "conversation_cycle": [
+        "Always read current wf*{workflow_name}.md. Do not skip content.",
+        "Update 'Plan' and 'Steps' if strategy changes.",
+        "After completing tasks, move them to 'Things done'. Maintain accuracy of progress tracking.",
+        "Keep a running list of all files and directories modified or created during the workflow."
+      ]
+    }
+  },
+  "shortcut_actions": {
+    "init_rule": "Index and analyze the entire project deeply and thoroughly to supplement .cursorrules, README.md, and memory_bank with highly detailed and structured information. Extract all implicit and explicit user-defined rules from the application and codebase, and integrate them clearly into .cursorrules. Ensure the updates are precise, exhaustive, and aligned with existing project conventions. Optimize .cursorrules by grouping rules logically, removing duplicates, and clarifying vague definitions. All changes must be specific, informative, and add value for future development and collaboration."
+  },
+  "shortcut_instructions": "When a user types the exact syntax for a shortcut command, execute the requested action for that command.",
+  "ai_optimization": {
+    "token_usage": "Optimize responses to reduce token usage and cost.",
+    "response_format": "Provide clear, concise, and structured answers.",
+    "code_generation": "Generate high-quality, concise, and readable code."
+  },
+  "important": [
+    "Always update memory_bank after each chat completion, never skip this step.",
+    "Adhere to the project's existing architecture and conventions.",
+    "Only introduce new technologies/libraries when necessary and appropriate.",
+    "Always scan for .userrules files and apply their guidelines to the entire project."
+  ]
+}

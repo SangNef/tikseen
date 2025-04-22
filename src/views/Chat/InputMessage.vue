@@ -6,13 +6,13 @@
         v-for="item in fastMsg.slice(0, 2)"
         :key="item.id"
         @click="addFastMsg(item.msg)"
-        class="p-2 bg-gray-100 rounded-xl shadow-xl text-sm cursor-pointer">
+        class="p-2 bg-gray-100 rounded-custom shadow-custom text-sm cursor-pointer hover:bg-gray-200 transition-colors duration-200">
         {{ item.msg.length > 20 ? item.msg.slice(0, 20) + '...' : item.msg }}
       </div>
     </div>
 
     <!-- Input & Icon area -->
-    <div class="p-2 rounded-xl border border-gray-300 relative">
+    <div class="p-2 rounded-custom border border-gray-300 hover:border-primary transition-colors duration-200 relative">
       <textarea
         v-model="message"
         placeholder="Enter message here..."
@@ -22,7 +22,7 @@
         <!-- Fast Message Dropdown Trigger -->
         <div ref="fastDropdownRef" class="relative">
           <div
-            class="flex gap-2 items-center pr-2 border-r-2 border-gray-300 cursor-pointer"
+            class="flex gap-2 items-center pr-2 border-r-2 border-gray-300 cursor-pointer hover:text-primary transition-colors duration-200"
             @click="toggleFastDropdown">
             <ChatBubbleOvalLeftIcon class="w-6 h-6" />
             <span class="text-sm font-semibold">Message</span>
@@ -31,12 +31,12 @@
 
           <div
             v-if="showFastDropdown"
-            class="absolute bottom-full mb-2 left-4 bg-white border border-gray-300 rounded shadow w-60 z-50">
+            class="absolute bottom-full mb-2 left-4 bg-white border border-gray-300 rounded-custom shadow-custom w-60 z-50">
             <div
               v-for="item in fastMsg"
               :key="item.id"
               @click="addFastMsg(item.msg)"
-              class="px-4 py-2 hover:bg-gray-100 text-sm cursor-pointer">
+              class="px-4 py-2 hover:bg-gray-100 text-sm cursor-pointer transition-colors duration-200">
               {{ item.msg.length > 20 ? item.msg.slice(0, 20) + '...' : item.msg }}
             </div>
           </div>
@@ -44,36 +44,36 @@
 
         <!-- Hashtag Dropdown Trigger -->
         <div ref="tagDropdownRef" class="relative cursor-pointer">
-          <div @click="toggleTagDropdown">
+          <div @click="toggleTagDropdown" class="hover:text-primary transition-colors duration-200">
             <HashtagIcon class="w-5 h-5 stroke-2" />
           </div>
 
           <div
             v-if="showTagDropdown"
-            class="absolute bottom-full mb-2 left-0 bg-white border border-gray-300 rounded shadow w-60 z-50">
+            class="absolute bottom-full mb-2 left-0 bg-white border border-gray-300 rounded-custom shadow-custom w-60 z-50">
             <div
               v-for="item in tags"
               :key="item.id"
               @click="addTag(item.tag)"
-              class="px-4 py-2 hover:bg-gray-100 text-sm cursor-pointer">
+              class="px-4 py-2 hover:bg-gray-100 text-sm cursor-pointer transition-colors duration-200">
               {{ item.tag }}
             </div>
           </div>
         </div>
 
-        <div class="cursor-pointer" @click="openFilePicker">
+        <div class="cursor-pointer hover:text-primary transition-colors duration-200" @click="openFilePicker">
           <PaperClipIcon class="w-5 h-5 stroke-2" />
         </div>
 
         <div ref="emojiDropdownRef" class="relative cursor-pointer">
-          <div @click="toggleEmojiPicker">
+          <div @click="toggleEmojiPicker" class="hover:text-primary transition-colors duration-200">
             <FaceSmileIcon class="w-5 h-5 stroke-2" />
           </div>
 
           <div
             v-if="showEmojiPicker"
             :key="showEmojiPicker"
-            class="absolute bottom-full mb-2 left-0 bg-white border border-gray-300 rounded shadow w-60 z-50">
+            class="absolute bottom-full mb-2 left-0 bg-white border border-gray-300 rounded-custom shadow-custom w-60 z-50">
             <EmojiPicker @select="addEmoji" />
           </div>
         </div>
@@ -81,7 +81,9 @@
     </div>
 
     <!-- Tag Section -->
-    <div class="flex items-center gap-2 ml-2 cursor-pointer" @click="toggleTagModal">
+    <div
+      class="flex items-center gap-2 ml-2 cursor-pointer hover:text-primary transition-colors duration-200"
+      @click="toggleTagModal">
       <TagIcon class="w-5 h-5 stroke-2" />
       <span class="text-sm font-semibold">Add tag</span>
     </div>
@@ -96,8 +98,10 @@
           <input
             type="text"
             placeholder="Enter new tag"
-            class="border border-gray-300 w-full rounded-lg px-3 py-1 outline-none" />
-          <button class="bg-blue-500 px-3 rounded-lg text-white hover:bg-blue-600 duration-300" @click="handleAddTag">
+            class="border border-gray-300 w-full rounded-lg px-3 py-1 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200" />
+          <button
+            class="bg-primary px-3 rounded-lg text-white hover:bg-primary-dark duration-300"
+            @click="handleAddTag">
             Add
           </button>
         </div>
@@ -106,12 +110,14 @@
           <div
             v-for="item in tags"
             :key="item.id"
-            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded cursor-pointer text-sm w-max">
+            class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer text-sm w-max transition-colors duration-200">
             {{ item.tag }}
           </div>
         </div>
 
-        <button @click="showTagModal = false" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+        <button
+          @click="showTagModal = false"
+          class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition-colors duration-200">
           <XMarkIcon class="w-6 h-6" />
         </button>
       </div>

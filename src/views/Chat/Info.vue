@@ -1,5 +1,5 @@
 <template>
-  <div class="w-96 h-[calc(100vh-40px)] bg-white border-l border-gray-300 flex flex-col">
+  <div class="w-96 h-[calc(100vh-var(--header-height))] bg-white border-l border-gray-300 flex flex-col">
     <!-- Header icons -->
     <div class="h-[45px] border-b border-gray-300 flex gap-4 px-4">
       <div class="h-full px-1 flex items-center border-b-2 border-blue-500">
