@@ -29,8 +29,4 @@ export default defineConfig({
     brotliSize: false,
     minify: 'esbuild',
   },
-  server: {
-    port: 3000,
-    host: true,
-  },
 });

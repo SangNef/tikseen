@@ -1,20 +1,19 @@
 <template>
-  <div class="fixed inset-0 z-50 overflow-y-auto" v-if="isChatOpen">
+  <div :class="{ 'h-screen': isMobile }" v-if="isChatOpen">
     <!-- Backdrop trên mobile -->
-    <div class="md:hidden fixed inset-0 bg-black/50" @click="closePopup"></div>
+    <!-- <div class="md:hidden fixed inset-0 bg-black/50" @click="closePopup"></div> -->
 
     <!-- Container của chat -->
-    <div class="flex items-center justify-center min-h-screen md:items-end md:justify-end md:p-0">
+    <div class="flex items-center justify-center md:items-end md:justify-end md:p-0" :class="{ 'h-screen': isMobile }">
       <div
-        class="flex flex-col bg-white rounded-none md:rounded-xl shadow-xl w-full h-[100vh] md:h-[600px] md:max-h-[80vh] max-w-full md:max-w-md md:w-[400px] md:mr-10 md:mb-10 overflow-hidden z-[99999]">
+        :style="[!isMobile ? 'position: fixed; bottom: 0;right: 0' : '']"
+        class="flex flex-col bg-white rounded-none md:rounded-xl shadow-xl w-full md:h-[600px] md:max-h-[80vh] max-w-full md:max-w-md md:w-[400px] md:mr-10 md:mb-10 overflow-hidden z-[99999]"
+        :class="{ 'h-[600px]': !isMobile, 'h-screen': isMobile }">
         <!-- Header -->
         <div
           class="relative p-4 text-white flex-shrink-0"
           :style="{
             backgroundColor: widgetSettings.themeColor,
-            backgroundImage: widgetSettings.headerImage ? `url(${widgetSettings.headerImage})` : 'none',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
           }">
           <button @click="closePopup" class="absolute top-2 right-2 text-white hover:text-gray-200 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
@@ -77,6 +76,9 @@ import Message from './Message.vue';
 import { onMounted, ref, reactive } from 'vue';
 import { getWidgetSettings } from '@/helpers/widgetSettingsHelper';
 
+import mobile from 'is-mobile';
+
+const isMobile = ref(mobile());
 const isChatOpen = defineModel();
 const hasUser = ref(false);
 const widgetSettings = reactive(getWidgetSettings());

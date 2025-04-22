@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-col h-full bg-gray-50">
     <!-- Messages area -->
-    <div class="flex-grow p-4 overflow-y-auto message-scroll-area" ref="messageContainer">
+    <div
+      class="flex-grow p-4 overflow-y-auto message-scroll-area"
+      :style="{ height: !isMobile ? '500px' : 'auto' }"
+      ref="messageContainer">
       <div class="flex flex-col gap-3">
         <div
           v-for="(item, index) in messages"
@@ -94,6 +97,10 @@ import '@/styles/chat.css';
 import InputMessage from './InputMessage.vue';
 import { ref, onMounted, onUpdated, watch, nextTick, onUnmounted } from 'vue';
 import user from '@/assets/images/ico/user.png';
+
+import mobile from 'is-mobile';
+
+const isMobile = ref(mobile());
 
 const props = defineProps({
   widgetSettings: {
