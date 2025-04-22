@@ -10,6 +10,7 @@ export default function useResponsive() {
   const isTablet = isMobile.value;
   const isDesktop = computed(() => windowWidth.value >= WIDTH_TABLET);
   const mobileView = ref('chat-list'); // 'chat-list', 'chat-detail', 'chat-info'
+  const settingMobileView = ref('menu'); // 'menu', 'detail'
 
   const updateWindowWidth = () => {
     windowWidth.value = window.innerWidth;
@@ -27,6 +28,10 @@ export default function useResponsive() {
     mobileView.value = view;
   };
 
+  const setSettingMobileView = (view) => {
+    settingMobileView.value = view;
+  };
+
   return {
     windowWidth,
     isMobile,
@@ -34,5 +39,7 @@ export default function useResponsive() {
     isDesktop,
     mobileView,
     setMobileView,
+    settingMobileView,
+    setSettingMobileView,
   };
 }
