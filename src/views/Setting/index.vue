@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-nowrap h-[calc(100vh-var(--header-height))]">
+  <div class="flex flex-nowrap h-[calc(var(--vh)-var(--header-height))]">
     <!-- Menu button cho mobile -->
     <div
       v-if="isMobile && settingMobileView === 'detail'"

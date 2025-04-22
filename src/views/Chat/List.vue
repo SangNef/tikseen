@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-80 h-[calc(100vh-var(--header-height))] bg-white border-r border-gray-300"
+    class="w-80 h-[calc(var(--vh)-var(--header-height))] bg-white border-r border-gray-300"
     :class="{ 'w-full': isMobile, 'pb-[var(--mobile-menu-height)]': isMobile }">
     <div
       class="border-b border-gray-300 p-3 flex justify-between items-center text-sm font-bold h-[var(--menu-height-chat-list)]">
@@ -19,7 +19,8 @@
       </div>
     </div>
 
-    <div class="overflow-y-auto max-h-[calc(100vh-var(--header-height)-var(--menu-height-chat-list))] divide-gray-200">
+    <div
+      class="overflow-y-auto max-h-[calc(var(--vh)-var(--header-height)-var(--menu-height-chat-list))] divide-gray-200">
       <div
         v-for="chat in chats"
         :key="chat.id"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-[calc(100vw-768px)] h-[calc(100vh-var(--header-height))] bg-white flex flex-col relative"
+    class="w-[calc(100vw-768px)] h-[calc(var(--vh)-var(--header-height))] bg-white flex flex-col relative"
     :class="{ 'w-full': isMobile }">
     <!-- Header -->
     <div class="border-b border-gray-300 p-3 flex justify-between items-center text-sm font-bold">

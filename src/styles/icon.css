@@ -1,7 +1,7 @@
 .main__livechat__screen {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: var(--vh);
 }
 
 .chat_icon {

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full md:w-80 md:h-[calc(100vh-var(--header-height))] bg-white md:border-r border-gray-200 overflow-y-auto">
+    class="w-full md:w-80 md:h-[calc(var(--vh)-var(--header-height))] bg-white md:border-r border-gray-200 overflow-y-auto">
     <div class="sticky top-0 bg-white z-10 p-3 sm:p-4 border-b border-gray-200 flex items-center">
       <h2 class="text-lg sm:text-xl font-semibold text-gray-800">Cài đặt</h2>
       <div v-if="isMobile" class="ml-auto">

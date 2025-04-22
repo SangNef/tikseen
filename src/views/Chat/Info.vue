@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white h-[calc(100vh-var(--header-height))] overflow-y-auto border-l border-gray-200"
+    class="bg-white h-[calc(var(--vh)-var(--header-height))] overflow-y-auto border-l border-gray-200"
     :class="{ 'w-full': isMobile }">
     <!-- Header -->
     <div class="p-3 border-b border-gray-200 flex items-center justify-between">
