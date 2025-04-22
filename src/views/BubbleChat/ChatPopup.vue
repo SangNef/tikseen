@@ -4,8 +4,8 @@
       <div
         class="chat_area_header"
         :style="{
-          backgroundImage:
-            'url(https://res.cloudinary.com/dx2o9ki2g/image/upload/v1729929419/hnvzlufwx3gej80nnnag.jpg)',
+          // backgroundImage:
+          //   'url(https://res.cloudinary.com/dx2o9ki2g/image/upload/v1729929419/hnvzlufwx3gej80nnnag.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }">
@@ -18,7 +18,7 @@
               fill="#0F1729"></path>
           </svg>
         </button>
-        <h4 class="title" style="margin-top: 16px">Chào mừng đến với</h4>
+        <h4 class="title">Chào mừng đến với</h4>
         <h4 class="title">LiveChat</h4>
       </div>
       <component :is="hasUser ? Message : CreateChat" @user-created="handleUserCreated" />

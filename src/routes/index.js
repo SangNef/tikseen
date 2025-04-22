@@ -5,6 +5,7 @@ import Register from '@/views/Auth/Register.vue';
 import Chat from '@/views/Chat/index.vue';
 import Setting from '@/views/Setting/index.vue';
 import BubbleChat from '@/views/BubbleChat/index.vue';
+import Stats from '@/views/Stats/index.vue';
 
 const routes = [
   {
@@ -35,6 +36,14 @@ const routes = [
     path: '/settings',
     name: 'Setting',
     component: Setting,
+    meta: {
+      layout: 'DefaultLayout',
+    },
+  },
+  {
+    path: '/stats',
+    name: 'Stats',
+    component: Stats,
     meta: {
       layout: 'DefaultLayout',
     },
