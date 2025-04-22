@@ -6,7 +6,10 @@
         <div
           v-for="(item, index) in messages"
           :key="index"
-          :class="['flex items-end gap-2 message-item', item.send_by === 'user' ? 'flex-row-reverse' : 'flex-row']">
+          :class="[
+            'flex items-end gap-2 message-item animate-message',
+            item.send_by === 'user' ? 'flex-row-reverse' : 'flex-row',
+          ]">
           <!-- Avatar -->
           <div :class="['flex-shrink-0', item.send_by === 'user' ? 'ml-2' : 'mr-2']">
             <div class="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
@@ -39,7 +42,7 @@
         </div>
 
         <!-- Typing indicator -->
-        <div v-if="isTyping" class="flex items-end gap-2">
+        <div v-if="isTyping" class="flex items-end gap-2 animate-message">
           <div class="flex-shrink-0 mr-2">
             <div class="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
               <img
@@ -89,7 +92,7 @@
 import '@/styles/message.css';
 import '@/styles/chat.css';
 import InputMessage from './InputMessage.vue';
-import { ref, onMounted, onUpdated, watch } from 'vue';
+import { ref, onMounted, onUpdated, watch, nextTick, onUnmounted } from 'vue';
 import user from '@/assets/images/ico/user.png';
 
 const props = defineProps({
@@ -106,6 +109,7 @@ const props = defineProps({
 const messageContainer = ref(null);
 const isTyping = ref(false);
 const userAvatar = ref(user);
+const isChatActive = ref(false);
 
 // Khởi tạo messages với tin nhắn chào mừng và thời gian
 const messages = ref([
@@ -130,11 +134,19 @@ function formatTime(date) {
 }
 
 // Tự động cuộn xuống khi có tin nhắn mới
-function scrollToBottom() {
+function scrollToBottom(smooth = true) {
   if (messageContainer.value) {
-    setTimeout(() => {
-      messageContainer.value.scrollTop = messageContainer.value.scrollHeight;
-    }, 50);
+    nextTick(() => {
+      const container = messageContainer.value;
+      if (smooth) {
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: 'smooth',
+        });
+      } else {
+        container.scrollTop = container.scrollHeight;
+      }
+    });
   }
 }
 
@@ -146,6 +158,9 @@ function handleSendMessage(message, file) {
       msg: message || (file ? `Đã gửi một hình ảnh: ${file.name}` : ''),
       time: new Date(),
     });
+
+    // Cuộn xuống ngay lập tức khi người dùng gửi tin nhắn
+    scrollToBottom();
 
     // Hiển thị đang nhập
     isTyping.value = true;
@@ -163,6 +178,25 @@ function handleSendMessage(message, file) {
   }
 }
 
+// Theo dõi sự kiện focus và visibility để xác định khi chat đang active
+function handleVisibilityChange() {
+  if (!document.hidden) {
+    isChatActive.value = true;
+    scrollToBottom();
+  } else {
+    isChatActive.value = false;
+  }
+}
+
+function handleFocus() {
+  isChatActive.value = true;
+  scrollToBottom();
+}
+
+function handleBlur() {
+  isChatActive.value = false;
+}
+
 // Tải avatar người dùng nếu đã đăng nhập
 onMounted(() => {
   const savedUser = localStorage.getItem('user_livechat');
@@ -177,13 +211,37 @@ onMounted(() => {
     }
   }
 
-  // Cuộn xuống dưới khi khởi tạo
-  scrollToBottom();
+  // Cuộn xuống dưới khi khởi tạo (không mượt ở lần đầu)
+  scrollToBottom(false);
+
+  // Theo dõi các sự kiện khi chat đang active
+  window.addEventListener('visibilitychange', handleVisibilityChange);
+  window.addEventListener('focus', handleFocus);
+  window.addEventListener('blur', handleBlur);
+
+  // Đặt active ban đầu
+  isChatActive.value = !document.hidden;
+});
+
+// Cleanup event listeners
+onUnmounted(() => {
+  window.removeEventListener('visibilitychange', handleVisibilityChange);
+  window.removeEventListener('focus', handleFocus);
+  window.removeEventListener('blur', handleBlur);
 });
 
 // Theo dõi thay đổi tin nhắn để cuộn xuống dưới
-watch(messages, () => scrollToBottom());
-onUpdated(scrollToBottom);
+watch(messages, () => {
+  if (isChatActive.value) {
+    scrollToBottom();
+  }
+});
+
+onUpdated(() => {
+  if (isChatActive.value) {
+    scrollToBottom();
+  }
+});
 </script>
 
 <style scoped>
@@ -212,5 +270,22 @@ onUpdated(scrollToBottom);
   color: var(--text-gray);
   border-top: 1px solid var(--border-light);
   background-color: var(--bg-light);
+}
+
+/* Animation cho tin nhắn mới */
+.animate-message {
+  animation: message-appear 0.3s ease-out;
+  transform-origin: bottom;
+}
+
+@keyframes message-appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 </style>
