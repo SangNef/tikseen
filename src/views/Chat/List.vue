@@ -1,11 +1,27 @@
 <template>
-  <div class="w-80 h-[calc(100vh-var(--header-height))] bg-white border-r border-gray-300">
-    <div class="border-b border-gray-300 p-3 flex justify-between items-center text-sm font-bold">
-      <span>My Chats ({{ chats.length }})</span>
-      <span>Newest</span>
+  <div
+    class="w-80 h-[calc(100vh-var(--header-height))] bg-white border-r border-gray-300"
+    :class="{ 'w-full': isMobile, 'pb-[var(--mobile-menu-height)]': isMobile }">
+    <div
+      class="border-b border-gray-300 p-3 flex justify-between items-center text-sm font-bold h-[var(--menu-height-chat-list)]">
+      <span>Chats ({{ chats.length }})</span>
+      <div class="flex items-center gap-2">
+        <span>Newest</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+      </div>
     </div>
 
-    <div class="overflow-y-auto max-h-[calc(100vh-var(--header-height))] divide-gray-200">
+    <div
+      class="overflow-y-auto max-h-[calc(100vh-var(--header-height)-var(--menu-height-chat-list))] divide-gray-200"
+      :class="{ 'pb-[var(--mobile-menu-height)]': isMobile }">
       <div
         v-for="chat in chats"
         :key="chat.id"
@@ -38,7 +54,9 @@
 <script setup>
 import chats from '@/data/chat';
 import formatTime from '@/helpers';
+import useResponsive from '@/composables/useResponsive';
 
+const { isMobile } = useResponsive();
 const emit = defineEmits(['selected']);
 const props = defineProps({
   selected: Object,

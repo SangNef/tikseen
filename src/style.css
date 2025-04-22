@@ -15,3 +15,29 @@ p {
   margin: 0;
   padding: 0;
 }
+
+/* Mobile CSS */
+.bg-dark {
+  background-color: #111827;
+}
+
+.text-primary {
+  color: #3b82f6;
+}
+
+/* Adjust margin bottom of components when mobile menu is present */
+@media (max-width: 767px) {
+  .has-mobile-menu {
+    padding-bottom: var(--mobile-menu-height);
+  }
+
+  /* Hide scrollbar for mobile but allow scrolling */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-16 fixed top-0 left-0 h-screen bg-dark flex flex-col items-center py-4">
+  <div v-if="!isMobile" class="w-16 fixed top-0 left-0 h-screen bg-dark flex flex-col items-center py-4">
     <!-- Logo at top -->
     <div class="mb-6">
       <router-link to="/" class="block">
@@ -48,6 +48,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
+import useResponsive from '@/composables/useResponsive';
 import {
   ChatBubbleLeftRightIcon as ChatOutline,
   Cog6ToothIcon as CogOutline,
@@ -64,21 +65,16 @@ import {
 } from '@heroicons/vue/24/solid';
 
 const route = useRoute();
+const { isMobile } = useResponsive();
 
 const isActive = (path) => route.path === path;
 
 const menuItems = [
   {
-    label: 'Trang chủ',
-    iconOutline: HomeOutline,
-    iconSolid: HomeSolid,
-    route: '/',
-  },
-  {
     label: 'Tin nhắn',
     iconOutline: ChatOutline,
     iconSolid: ChatSolid,
-    route: '/chat',
+    route: '/',
   },
   {
     label: 'Đội ngũ',

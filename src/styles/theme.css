@@ -48,7 +48,9 @@
   --rounded-lg: 0.75rem; /* 12px */
   --rounded-xl: 1rem; /* 16px */
 
-  --header-height: 64px;
+  --header-height: 50px;
+  --mobile-menu-height: 50px;
+  --menu-height-chat-list: 50px;
 }
 
 /* Các class tiện ích */
