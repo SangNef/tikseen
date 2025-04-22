@@ -14,10 +14,15 @@
     <!-- Input & Icon area -->
     <div class="p-2 rounded-custom border border-gray-300 hover:border-primary transition-colors duration-200 relative">
       <textarea
+        ref="textareaRef"
         v-model="message"
         placeholder="Enter message here..."
-        class="border-none outline-none w-full resize-none"
-        @keydown.enter.prevent="sendMessage" />
+        class="border-none outline-none w-full resize-none min-h-[24px] max-h-[144px] overflow-y-auto"
+        @keydown.enter="handleEnterKey"
+        @keydown.shift.enter="sendMessage"
+        @input="autoResize"
+        @blur="autoResize"
+        @focus="autoResize" />
 
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
@@ -301,6 +306,8 @@ const responseType = ref('shared');
 const cannedResponseText = ref('');
 const shortcutSearch = ref('');
 
+const textareaRef = ref(null);
+
 // Mẫu shortcuts để demo
 const shortcuts = [
   { id: 1, tag: 'anytime', text: 'Chúng tôi sẵn sàng phục vụ bạn bất cứ lúc nào!', count: 3 },
@@ -378,42 +385,87 @@ function saveCannedResponse() {
   cannedResponseText.value = '';
 }
 
+const autoResize = () => {
+  const textarea = textareaRef.value;
+  if (textarea) {
+    textarea.style.height = 'auto';
+    const newHeight = Math.min(textarea.scrollHeight, 144); // 144px tương đương khoảng 6 dòng
+    textarea.style.height = `${newHeight}px`;
+  }
+};
+
+const handleEnterKey = (event) => {
+  if (!event.shiftKey) {
+    event.preventDefault();
+    const cursorPosition = event.target.selectionStart;
+    const textBeforeCursor = message.value.substring(0, cursorPosition);
+    const textAfterCursor = message.value.substring(cursorPosition);
+    message.value = textBeforeCursor + '\n' + textAfterCursor;
+
+    nextTick(() => {
+      event.target.selectionStart = cursorPosition + 1;
+      event.target.selectionEnd = cursorPosition + 1;
+      autoResize();
+    });
+  }
+};
+
 const sendMessage = () => {
-  if (!message.value.trim()) return;
+  try {
+    if (!message.value.trim()) return;
 
-  sendStatus.value = 'sending';
+    sendStatus.value = 'sending';
 
-  // Tạo đối tượng tin nhắn mới
-  const newMessage = {
-    id: Date.now(),
-    text: message.value,
-    sendBy: 'cskh',
-    timestamp: new Date(),
-    status: 'sent',
-  };
+    // Tạo đối tượng tin nhắn mới
+    const newMessage = {
+      id: Date.now(),
+      text: message.value,
+      sendBy: 'cskh',
+      timestamp: new Date(),
+      status: 'sent',
+    };
 
-  // Emit sự kiện lên component cha để xử lý
-  emit('send-message', newMessage);
+    // Emit sự kiện lên component cha để xử lý
+    emit('send-message', newMessage);
 
-  message.value = '';
-  sendStatus.value = 'sent';
+    message.value = '';
+    sendStatus.value = 'sent';
 
-  // Giả lập trạng thái đã xem sau 2 giây
-  setTimeout(() => {
-    sendStatus.value = '';
-
-    // Trong thực tế, cần cập nhật trạng thái tin nhắn trong store
-    if (props.chat && props.chat.messages && props.chat.messages.length > 0) {
-      const lastMsg = props.chat.messages[props.chat.messages.length - 1];
-      if (lastMsg.sendBy === 'cskh') {
-        lastMsg.status = 'seen';
-      }
+    // Reset textarea height về kích thước ban đầu
+    if (textareaRef.value) {
+      textareaRef.value.style.height = '24px';
     }
-  }, 2000);
+
+    // Focus lại vào textarea
+    nextTick(() => {
+      if (textareaRef.value) {
+        textareaRef.value.focus();
+      }
+    });
+
+    // Giả lập trạng thái đã xem sau 2 giây
+    setTimeout(() => {
+      sendStatus.value = '';
+
+      // Trong thực tế, cần cập nhật trạng thái tin nhắn trong store
+      if (props.chat && props.chat.messages && props.chat.messages.length > 0) {
+        const lastMsg = props.chat.messages[props.chat.messages.length - 1];
+        if (lastMsg.sendBy === 'cskh') {
+          lastMsg.status = 'seen';
+        }
+      }
+    }, 2000);
+    autoResize();
+  } catch (error) {
+    console.log('error: ', error);
+  }
 };
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside);
+  nextTick(() => {
+    autoResize();
+  });
 });
 
 onBeforeUnmount(() => {

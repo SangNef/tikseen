@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import {
   ChatBubbleLeftRightIcon,
   InboxIcon,
@@ -70,32 +70,32 @@ const emit = defineEmits(['change-menu']);
 const activeItem = ref('website-widget');
 
 const menuItems = [
-  {
-    type: 'header',
-    label: 'Kênh trò chuyện',
-  },
-  {
-    id: 'apple-messages',
-    label: 'Apple Messages',
-    icon: ChatBubbleLeftRightIcon,
-    status: { label: 'OFF', class: 'bg-gray-100 text-gray-500' },
-  },
-  {
-    id: 'facebook-messenger',
-    label: 'Facebook Messenger',
-    icon: ChatBubbleOvalLeftEllipsisIcon,
-    status: { label: 'OFF', class: 'bg-gray-100 text-gray-500' },
-  },
-  {
-    id: 'email-helpdesk',
-    label: 'Email by HelpDesk',
-    icon: InboxIcon,
-    status: { label: 'OFF', class: 'bg-gray-100 text-gray-500' },
-  },
-  {
-    id: 'divider-1',
-    type: 'divider',
-  },
+  // {
+  //   type: 'header',
+  //   label: 'Kênh trò chuyện',
+  // },
+  // {
+  //   id: 'apple-messages',
+  //   label: 'Apple Messages',
+  //   icon: ChatBubbleLeftRightIcon,
+  //   status: { label: 'OFF', class: 'bg-gray-100 text-gray-500' },
+  // },
+  // {
+  //   id: 'facebook-messenger',
+  //   label: 'Facebook Messenger',
+  //   icon: ChatBubbleOvalLeftEllipsisIcon,
+  //   status: { label: 'OFF', class: 'bg-gray-100 text-gray-500' },
+  // },
+  // {
+  //   id: 'email-helpdesk',
+  //   label: 'Email by HelpDesk',
+  //   icon: InboxIcon,
+  //   status: { label: 'OFF', class: 'bg-gray-100 text-gray-500' },
+  // },
+  // {
+  //   id: 'divider-1',
+  //   type: 'divider',
+  // },
   {
     type: 'header',
     label: 'Cấu hình Widget',
@@ -182,6 +182,12 @@ function setActiveItem(id) {
 function closeMenu() {
   setSettingMobileView('detail');
 }
+
+onMounted(() => {
+  if (isMobile.value) {
+    setSettingMobileView('menu');
+  }
+});
 </script>
 
 <style>

@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isMobile"
-    class="fixed bottom-0 left-0 w-full h-[var(--mobile-menu-height)] bg-white border-t border-gray-200 flex justify-around items-center px-2 z-20">
+    class="fixed bottom-0 left-0 w-full h-[var(--mobile-menu-height)] max-h-[var(--mobile-menu-height)] bg-white border-t border-gray-200 flex justify-around items-center px-2 z-20">
     <router-link
       v-for="(item, index) in menuItems"
       :key="index"
