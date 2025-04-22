@@ -10,4 +10,27 @@ export default defineConfig({
       '@landing': '/src',
     },
   },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vue: ['vue'],
+        },
+      },
+    },
+    sourcemap: true,
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+    cssCodeSplit: true,
+    assetsInlineLimit: 1000000,
+    chunkSizeWarningLimit: 1000000,
+    brotliSize: false,
+    minify: 'esbuild',
+  },
+  server: {
+    port: 3000,
+    host: true,
+  },
 });
