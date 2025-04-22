@@ -1,5 +1,9 @@
 {
   "language": "Vietnamese",
+  "user_interaction": {
+    "address_user_as": "Anh yêu",
+    "self_address_as": "em"
+  },
   "project_information": {
     "name": "LiveChat",
     "description": "Ứng dụng chat trực tuyến được phát triển với Vue 3 và Vite",
@@ -13,15 +17,25 @@
     "css": "Tailwind CSS",
     "icons": "@heroicons/vue/24/outline"
   },
+  "rules_references": {
+    "project_structure": ".cursor/rules/project-structure.mdc",
+    "coding_guidelines": ".cursor/rules/coding-guidelines.mdc",
+    "ui_design": ".cursor/rules/ui-design-patterns.mdc",
+    "chat_components": ".cursor/rules/chat-components.mdc",
+    "accessibility": ".cursor/rules/accessibility-best-practices.mdc",
+    "index": ".cursor/rules/index.mdc"
+  },
   "project_structure": {
     "src": {
-      "components": "Các component tái sử dụng được chia thành Auth, Common và Main",
+      "components": "Các component tái sử dụng (Auth, Common, Main, Stats)",
       "layouts": "Layout của ứng dụng (Default, Auth)",
-      "views": "Các trang giao diện người dùng",
+      "views": "Các trang giao diện người dùng (Chat, Auth, Setting, Hiring, Stats, BubbleChat)",
       "routes": "Cấu hình định tuyến Vue Router",
       "assets": "Hình ảnh và tài nguyên tĩnh",
       "helpers": "Các hàm tiện ích",
       "data": "Dữ liệu mẫu và API",
+      "composables": "Các composable hooks",
+      "styles": "CSS toàn cục và biến",
       "App.vue": "Component gốc của ứng dụng",
       "main.js": "Điểm khởi đầu của ứng dụng",
       "style.css": "Global CSS styles"
@@ -30,15 +44,21 @@
       "Chat": "Giao diện chat chính với các component như InputMessage, MessageItem",
       "Auth": "Các trang xác thực như đăng nhập, đăng ký",
       "Setting": "Trang cài đặt và tùy chỉnh người dùng",
-      "Hiring": "Thông tin tuyển dụng"
+      "Stats": "Trang thống kê và báo cáo",
+      "BubbleChat": "Giao diện chat dạng bong bóng"
     },
     "components": {
       "Auth": "Các component liên quan đến xác thực người dùng",
       "Common": "Các component dùng chung cho toàn ứng dụng",
-      "Main": "Các component chính của ứng dụng như SideBar, Header"
+      "Main": "Các component chính của ứng dụng như SideBar, Header",
+      "Stats": "Các component liên quan đến thống kê và báo cáo"
     }
   },
   "coding_principles": {
+    "language": {
+      "code": "English",
+      "ui_text": "Vietnamese"
+    },
     "style": {
       "css": "Sử dụng Tailwind CSS với class-based styling",
       "layout": "Flexbox là chủ đạo với flex-row và flex-col",
@@ -140,7 +160,8 @@
     "chat": {
       "input_message": "Container với textarea và actions (emoji, attachment, etc.)",
       "message_item": "Hiển thị tin nhắn với user info, time, và content",
-      "chat_list": "Danh sách các tin nhắn với infinite scroll"
+      "chat_list": "Danh sách các tin nhắn với infinite scroll",
+      "typing_indicator": "Hiển thị khi có người đang gõ tin nhắn"
     },
     "auth": {
       "login_form": "Email/username và password với remember me",
@@ -150,7 +171,8 @@
     "common": {
       "dropdown": "Toggle và content với click outside handling",
       "modal": "Overlay và container với close button",
-      "toast": "Thông báo tạm thời với auto-hide"
+      "toast": "Thông báo tạm thời với auto-hide",
+      "card": "Container với title, content và potentially actions"
     }
   },
   "best_practices": {
@@ -164,7 +186,8 @@
     "performance": {
       "lazy_loading": "Dynamic import cho components lớn",
       "memoization": "computed và useMemo cho calculations phức tạp",
-      "list_rendering": "Sử dụng key cho v-for loops"
+      "list_rendering": "Sử dụng key cho v-for loops",
+      "virtual_scrolling": "Sử dụng cho danh sách lớn"
     }
   },
   "development_workflows": {
@@ -192,7 +215,12 @@
   "accessibility": {
     "semantic_html": "Sử dụng thẻ HTML đúng mục đích",
     "keyboard_navigation": "Đảm bảo tất cả chức năng đều có thể sử dụng bằng bàn phím",
-    "screen_readers": "ARIA labels cho UI elements",
+    "aria": "Sử dụng ARIA labels cho UI elements",
     "color_contrast": "Đảm bảo tỷ lệ tương phản giữa văn bản và nền đủ cao"
+  },
+  "memory_bank": {
+    "long_term": "Project goals, tech stack, architecture (lưu trong memory_bank/long_term.md)",
+    "short_term": "Workflow-specific progress (lưu trong memory_bank/wf*{workflow_name}.md)",
+    "update": "Luôn cập nhật memory bank sau mỗi chat"
   }
 }
