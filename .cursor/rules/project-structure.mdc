@@ -1,5 +1,70 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# Cấu trúc dự án LiveChat
+
+## Cấu trúc thư mục gốc
+
+```
+livechat/
+├── .cursor/               # Cấu hình Cursor
+│   └── rules/             # Cursor rules
+├── memory_bank/           # Lưu trữ thông tin dự án
+├── public/                # Tài nguyên tĩnh
+├── src/                   # Mã nguồn chính
+└── dist/                  # Build output (không commit)
+```
+
+## Cấu trúc thư mục src
+
+```
+src/
+├── assets/                # Hình ảnh và tài nguyên tĩnh
+├── components/            # Các component có thể tái sử dụng
+│   ├── Auth/              # Components liên quan đến xác thực 
+│   ├── Common/            # Components dùng chung cho toàn ứng dụng
+│   ├── Main/              # Components chính (SideBar, Header)
+│   └── Stats/             # Components liên quan đến thống kê
+├── composables/           # Các composable hooks
+├── data/                  # Dữ liệu mẫu và API
+├── helpers/               # Các hàm tiện ích
+├── layouts/               # Layout của ứng dụng
+├── routes/                # Cấu hình Vue Router
+├── styles/                # CSS toàn cục và biến
+├── views/                 # Các trang giao diện người dùng
+│   ├── Auth/              # Các trang xác thực
+│   ├── BubbleChat/        # Giao diện chat dạng bong bóng
+│   ├── Chat/              # Giao diện chat chính
+│   ├── Hiring/            # Trang tuyển dụng
+│   ├── Setting/           # Trang cài đặt
+│   └── Stats/             # Trang thống kê
+├── App.vue                # Component gốc
+├── main.js                # Entry point
+└── style.css              # Global CSS
+```
+
+## Files quan trọng
+
+- [src/main.js](mdc:src/main.js): Điểm khởi đầu của ứng dụng, khởi tạo Vue và các plugins
+- [src/App.vue](mdc:src/App.vue): Component gốc của ứng dụng, chứa router-view và layout chính
+- [package.json](mdc:package.json): Cấu hình dependencies và scripts
+
+## Quy ước tổ chức
+
+1. **Components**: 
+   - Mỗi component trong một file riêng với đuôi `.vue`
+   - Đặt tên file và component theo PascalCase (ví dụ: `InputMessage.vue`)
+   - Phân loại theo chức năng vào thư mục thích hợp
+
+2. **Views**: 
+   - Mỗi trang chính có thư mục riêng
+   - File chính trong thư mục có tên là `index.vue`
+   - Sub-components chỉ sử dụng cho view cụ thể nên đặt trong cùng thư mục
+
+3. **Routes**:
+   - Cấu hình routes theo tính năng
+   - Sử dụng meta-data để chỉ định layout và quyền truy cập
+
+

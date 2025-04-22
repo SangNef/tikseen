@@ -1,5 +1,214 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# UI Design Patterns
+
+## Design System
+
+### Colors
+
+```
+- Background: #ffffff, #f3f4f6
+- Primary: #3b82f6, #2563eb
+- Text: #111827, #374151, #6b7280
+- Accent: #ef4444, #10b981
+```
+
+### Typography
+
+- **Font**: Hệ thống font sans-serif mặc định
+- **Sizes**:
+  - Small: `text-xs`, `text-sm`
+  - Normal: `text-base`
+  - Large: `text-lg`, `text-xl`
+  - Heading: `text-2xl` trở lên
+- **Weight**:
+  - Normal: `font-normal`
+  - Medium: `font-medium`
+  - Semibold: `font-semibold`
+  - Bold: `font-bold`
+
+### Spacing
+
+Tuân thủ spacing system của Tailwind:
+- Margins: `m-1`, `m-2`, `m-4`, `m-6`, `m-8`
+- Padding: `p-1`, `p-2`, `p-4`, `p-6`, `p-8`
+- Gap: `gap-1`, `gap-2`, `gap-4`, `gap-6`, `gap-8`
+
+### Rounded Corners
+
+- Small: `rounded-sm`, `rounded`
+- Medium: `rounded-md`, `rounded-lg`
+- Large: `rounded-xl`, `rounded-2xl`, `rounded-full`
+
+### Shadows
+
+- Small: `shadow-sm`, `shadow`
+- Medium: `shadow-md`
+- Large: `shadow-lg`, `shadow-xl`
+
+## Layout Patterns
+
+### Page Layout
+
+```vue
+<template>
+  <div class="min-h-screen bg-gray-50">
+    <Header />
+    <div class="flex">
+      <SideBar />
+      <main class="flex-1 p-4 md:p-6">
+        <!-- Page content -->
+      </main>
+    </div>
+  </div>
+</template>
+```
+
+### Card
+
+```vue
+<template>
+  <div class="bg-white rounded-xl shadow-md p-4">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-semibold text-lg">Card Title</h3>
+      <button class="text-gray-500 hover:text-gray-700">
+        <XMarkIcon class="w-5 h-5" />
+      </button>
+    </div>
+    <div class="card-content">
+      <!-- Card content -->
+    </div>
+    <div class="mt-4 pt-3 border-t border-gray-100 flex justify-end">
+      <!-- Card actions -->
+    </div>
+  </div>
+</template>
+```
+
+### Form Layout
+
+```vue
+<template>
+  <form @submit.prevent="handleSubmit" class="space-y-4">
+    <div class="form-group">
+      <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+      <input 
+        type="email" 
+        v-model="email" 
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      />
+    </div>
+    <!-- Other form fields -->
+    <div class="flex justify-end mt-6">
+      <button type="button" class="btn-secondary mr-3">Hủy</button>
+      <button type="submit" class="btn-primary">Lưu</button>
+    </div>
+  </form>
+</template>
+```
+
+## Component Patterns
+
+### Buttons
+
+```vue
+<template>
+  <!-- Primary Button -->
+  <button class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+    Primary Button
+  </button>
+  
+  <!-- Secondary Button -->
+  <button class="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+    Secondary Button
+  </button>
+  
+  <!-- Danger Button -->
+  <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+    Danger Button
+  </button>
+  
+  <!-- Icon Button -->
+  <button class="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors">
+    <PencilIcon class="w-5 h-5" />
+  </button>
+</template>
+```
+
+### Dropdowns
+
+```vue
+<template>
+  <div class="relative">
+    <button @click="isOpen = !isOpen" class="dropdown-toggle">
+      Options
+      <ChevronDownIcon class="w-4 h-4 ml-1" />
+    </button>
+    
+    <div v-if="isOpen" class="absolute bottom-full mb-2 left-0 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+      <div class="py-1">
+        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Option 1</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Option 2</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Option 3</a>
+      </div>
+    </div>
+  </div>
+</template>
+```
+
+### Modals
+
+```vue
+<template>
+  <div v-if="isOpen" class="fixed inset-0 z-50 overflow-y-auto">
+    <!-- Backdrop -->
+    <div class="fixed inset-0 bg-black/50" @click="close"></div>
+    
+    <!-- Modal -->
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white rounded-xl shadow-xl p-6 max-w-md w-full relative">
+        <!-- Close button -->
+        <button @click="close" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+          <XMarkIcon class="w-5 h-5" />
+        </button>
+        
+        <!-- Header -->
+        <h3 class="text-lg font-semibold mb-4">Modal Title</h3>
+        
+        <!-- Content -->
+        <div class="mb-6">
+          <!-- Modal content -->
+        </div>
+        
+        <!-- Footer -->
+        <div class="flex justify-end space-x-3">
+          <button @click="close" class="btn-secondary">Hủy</button>
+          <button @click="confirm" class="btn-primary">Xác nhận</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+```
+
+## Responsive Design
+
+- Mobile-first approach
+- Common breakpoints:
+  - sm: 640px
+  - md: 768px
+  - lg: 1024px
+  - xl: 1280px
+  - 2xl: 1536px
+
+```vue
+<template>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <!-- Grid items -->
+  </div>
+</template>
+```
+

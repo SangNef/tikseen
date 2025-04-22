@@ -1,5 +1,32 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# LiveChat Project Overview
+
+Đây là trang tổng quan về dự án LiveChat, một ứng dụng chat trực tuyến được phát triển với Vue 3 và Vite. Dự án này sử dụng Composition API với script setup, Vue Router, Tailwind CSS và Heroicons.
+
+## Tài liệu hướng dẫn
+
+- [Cấu trúc dự án](mdc:.cursor/rules/project-structure.mdc): Thông tin về cấu trúc thư mục và tệp tin của dự án
+- [Hướng dẫn code](mdc:.cursor/rules/coding-guidelines.mdc): Quy tắc và quy ước trong viết code
+- [UI Design Patterns](mdc:.cursor/rules/ui-design-patterns.mdc): Hướng dẫn về thiết kế UI
+- [Chat Components](mdc:.cursor/rules/chat-components.mdc): Thông tin về các component chat
+- [Accessibility](mdc:.cursor/rules/accessibility-best-practices.mdc): Hướng dẫn về khả năng tiếp cận
+
+## Tệp tin quan trọng
+
+- Entry point: [src/main.js](mdc:src/main.js)
+- Global styles: [src/style.css](mdc:src/style.css)
+- Root component: [src/App.vue](mdc:src/App.vue)
+
+## Nguyên tắc cơ bản
+
+1. **Ngôn ngữ**: Code bằng tiếng Anh, UI và văn bản hiển thị bằng tiếng Việt
+2. **Components**: Sử dụng Composition API với script setup
+3. **Styling**: Sử dụng Tailwind CSS với class-based styling
+4. **State Management**: Sử dụng ref và reactive cho state management
+5. **Routing**: Sử dụng Vue Router với nested routes và meta data
+
+

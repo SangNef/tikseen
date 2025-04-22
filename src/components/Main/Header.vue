@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="!isMobile"
     class="sticky top-0 left-0 h-[var(--header-height)] bg-white border-b border-gray-200 flex justify-between items-center px-4 z-10">
     <!-- Left side - Search -->
     <div class="relative w-64">
@@ -123,6 +124,10 @@ import {
 // State for notifications dropdown
 const showNotificationDropdown = ref(false);
 const notificationDropdownRef = ref(null);
+
+import useResponsive from '@/composables/useResponsive';
+
+const { isMobile } = useResponsive();
 
 // State for user dropdown
 const showUserDropdown = ref(false);
