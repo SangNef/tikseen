@@ -1,46 +1,53 @@
 <template>
-  <div class="bg-gray-50 min-h-screen p-6">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-800">Thống kê hệ thống</h1>
-      <p class="text-gray-600 mt-1">Tổng quan về hoạt động của hệ thống LiveChat</p>
+  <div class="bg-gray-50 min-h-screen p-3 sm:p-6">
+    <div class="mb-6 sm:mb-8">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Thống kê hệ thống</h1>
+      <p class="text-sm sm:text-base text-gray-600 mt-1">Tổng quan về hoạt động của hệ thống LiveChat</p>
     </div>
 
-    <div class="flex flex-nowrap overflow-x-auto gap-6 mb-8 pb-2">
-      <!-- Thống kê tổng quan -->
+    <!-- Thống kê tổng quan -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
       <div
         v-for="(stat, index) in stats"
         :key="index"
-        class="bg-white rounded-2xl shadow-lg p-6 flex flex-col transition-all duration-300 hover:shadow-xl hover:translate-y-[-4px] min-w-[230px] flex-1">
+        class="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg p-4 sm:p-6 flex flex-col transition-all duration-300 hover:shadow-xl hover:translate-y-[-4px]">
         <div class="flex items-center mb-3">
-          <div class="p-2.5 rounded-xl" :class="stat.bgColor">
-            <component :is="stat.icon" class="w-6 h-6" :class="stat.iconColor" />
+          <div class="p-2 sm:p-2.5 rounded-lg sm:rounded-xl" :class="stat.bgColor">
+            <component :is="stat.icon" class="w-5 h-5 sm:w-6 sm:h-6" :class="stat.iconColor" />
           </div>
-          <span class="text-gray-600 text-sm ml-3 font-medium">{{ stat.name }}</span>
+          <span class="text-gray-600 text-xs sm:text-sm ml-2 sm:ml-3 font-medium">{{ stat.name }}</span>
         </div>
-        <div class="flex items-baseline mt-2">
-          <span class="text-3xl font-bold text-gray-800">{{ stat.value }}</span>
-          <span class="ml-2 text-sm font-medium flex items-center" :class="stat.changeColor" v-if="stat.change">
-            <ArrowUpIcon class="w-3 h-3 mr-1" />
+        <div class="flex items-baseline mt-1 sm:mt-2">
+          <span class="text-xl sm:text-3xl font-bold text-gray-800">{{ stat.value }}</span>
+          <span
+            class="ml-2 text-xs sm:text-sm font-medium flex items-center"
+            :class="stat.changeColor"
+            v-if="stat.change">
+            <ArrowUpIcon class="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1" />
             {{ stat.change }}
           </span>
         </div>
-        <span class="text-xs text-gray-500 mt-1">So với tháng trước</span>
+        <span class="text-xs text-gray-500 mt-0.5 sm:mt-1">So với tháng trước</span>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+    <!-- Biểu đồ -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
       <!-- Biểu đồ lưu lượng truy cập -->
-      <div class="bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
-        <div class="flex justify-between items-center mb-6">
+      <div
+        class="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6 gap-3 sm:gap-0">
           <div>
-            <h2 class="font-bold text-gray-800 text-lg">Lưu lượng truy cập</h2>
-            <p class="text-gray-500 text-sm mt-1">Biểu đồ theo dõi lượng truy cập theo thời gian</p>
+            <h2 class="font-bold text-gray-800 text-base sm:text-lg">Lưu lượng truy cập</h2>
+            <p class="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1">
+              Biểu đồ theo dõi lượng truy cập theo thời gian
+            </p>
           </div>
-          <div class="bg-gray-100 rounded-full p-1 flex">
+          <div class="bg-gray-100 rounded-full p-1 flex self-start sm:self-auto">
             <button
               v-for="period in ['Ngày', 'Tuần', 'Tháng']"
               :key="period"
-              class="text-xs px-4 py-1.5 rounded-full font-medium transition-all duration-200"
+              class="text-xs px-3 sm:px-4 py-1 sm:py-1.5 rounded-full font-medium transition-all duration-200"
               :class="
                 selectedPeriod === period ? 'bg-blue-500 text-white shadow-md' : 'text-gray-600 hover:bg-gray-200'
               "
@@ -57,21 +64,22 @@
                 ? weeklyTrafficData
                 : monthlyTrafficData
           "
-          class="h-64" />
+          class="h-48 sm:h-64 p-5" />
       </div>
 
       <!-- Biểu đồ cuộc trò chuyện -->
-      <div class="bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
-        <div class="flex justify-between items-center mb-6">
+      <div
+        class="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6 gap-3 sm:gap-0">
           <div>
-            <h2 class="font-bold text-gray-800 text-lg">Phân tích cuộc trò chuyện</h2>
-            <p class="text-gray-500 text-sm mt-1">Thống kê chi tiết các cuộc hội thoại</p>
+            <h2 class="font-bold text-gray-800 text-base sm:text-lg">Phân tích cuộc trò chuyện</h2>
+            <p class="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1">Thống kê chi tiết các cuộc hội thoại</p>
           </div>
-          <div class="bg-gray-100 rounded-full p-1 flex">
+          <div class="bg-gray-100 rounded-full p-1 flex self-start sm:self-auto">
             <button
               v-for="type in ['Tổng quan', 'Chi tiết']"
               :key="type"
-              class="text-xs px-4 py-1.5 rounded-full font-medium transition-all duration-200"
+              class="text-xs px-3 sm:px-4 py-1 sm:py-1.5 rounded-full font-medium transition-all duration-200"
               :class="selectedType === type ? 'bg-indigo-500 text-white shadow-md' : 'text-gray-600 hover:bg-gray-200'"
               @click="selectedType = type">
               {{ type }}
@@ -80,47 +88,51 @@
         </div>
         <SimpleChart
           :data="selectedType === 'Tổng quan' ? conversationOverviewData : conversationDetailData"
-          class="h-64" />
+          class="h-48 sm:h-64 p-5" />
       </div>
     </div>
 
-    <div class="bg-white rounded-2xl shadow-lg mb-8 overflow-hidden transition-all duration-300 hover:shadow-xl">
-      <div class="p-6 border-b border-gray-100">
-        <h2 class="font-bold text-gray-800 text-lg">Cuộc trò chuyện gần đây</h2>
-        <p class="text-gray-500 text-sm mt-1">Danh sách các cuộc hội thoại mới nhất trên hệ thống</p>
+    <!-- Bảng cuộc trò chuyện gần đây -->
+    <div
+      class="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg mb-6 sm:mb-8 overflow-hidden transition-all duration-300 hover:shadow-xl">
+      <div class="p-4 sm:p-6 border-b border-gray-100">
+        <h2 class="font-bold text-gray-800 text-base sm:text-lg">Cuộc trò chuyện gần đây</h2>
+        <p class="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1">
+          Danh sách các cuộc hội thoại mới nhất trên hệ thống
+        </p>
       </div>
       <div class="overflow-x-auto">
         <table class="w-full table-auto">
           <thead>
             <tr class="text-left bg-gray-50">
-              <th class="px-6 py-4 font-semibold text-gray-500 text-sm">ID</th>
-              <th class="px-6 py-4 font-semibold text-gray-500 text-sm">Người dùng</th>
-              <th class="px-6 py-4 font-semibold text-gray-500 text-sm">Thời gian</th>
-              <th class="px-6 py-4 font-semibold text-gray-500 text-sm">Thời lượng</th>
-              <th class="px-6 py-4 font-semibold text-gray-500 text-sm">Tin nhắn</th>
-              <th class="px-6 py-4 font-semibold text-gray-500 text-sm">Trạng thái</th>
+              <th class="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-gray-500 text-xs sm:text-sm">ID</th>
+              <th class="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-gray-500 text-xs sm:text-sm">Người dùng</th>
+              <th class="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-gray-500 text-xs sm:text-sm">Thời gian</th>
+              <th class="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-gray-500 text-xs sm:text-sm">Thời lượng</th>
+              <th class="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-gray-500 text-xs sm:text-sm">Tin nhắn</th>
+              <th class="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-gray-500 text-xs sm:text-sm">Trạng thái</th>
             </tr>
           </thead>
           <tbody>
             <tr
               v-for="(conversation, index) in conversations"
               :key="index"
-              class="text-sm border-t border-gray-100 hover:bg-blue-50 transition-colors duration-150">
-              <td class="px-6 py-4 font-medium">{{ conversation.id }}</td>
-              <td class="px-6 py-4">
+              class="text-xs sm:text-sm border-t border-gray-100 hover:bg-blue-50 transition-colors duration-150">
+              <td class="px-3 sm:px-6 py-3 sm:py-4 font-medium">{{ conversation.id }}</td>
+              <td class="px-3 sm:px-6 py-3 sm:py-4">
                 <div class="flex items-center">
-                  <div class="w-9 h-9 rounded-full overflow-hidden mr-3 border-2 border-gray-200">
+                  <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-full overflow-hidden mr-2 sm:mr-3 border-2 border-gray-200">
                     <img :src="conversation.avatar" class="w-full h-full object-cover" />
                   </div>
                   <span class="font-medium">{{ conversation.user }}</span>
                 </div>
               </td>
-              <td class="px-6 py-4 text-gray-500">{{ conversation.time }}</td>
-              <td class="px-6 py-4 text-gray-500">{{ conversation.duration }}</td>
-              <td class="px-6 py-4 text-gray-500">{{ conversation.messages }}</td>
-              <td class="px-6 py-4">
+              <td class="px-3 sm:px-6 py-3 sm:py-4 text-gray-500">{{ conversation.time }}</td>
+              <td class="px-3 sm:px-6 py-3 sm:py-4 text-gray-500">{{ conversation.duration }}</td>
+              <td class="px-3 sm:px-6 py-3 sm:py-4 text-gray-500">{{ conversation.messages }}</td>
+              <td class="px-3 sm:px-6 py-3 sm:py-4">
                 <span
-                  class="inline-flex px-3 py-1.5 text-xs rounded-full font-medium"
+                  class="inline-flex px-2 sm:px-3 py-1 sm:py-1.5 text-xs rounded-full font-medium"
                   :class="{
                     'bg-green-100 text-green-700': conversation.status === 'Hoàn thành',
                     'bg-amber-100 text-amber-700': conversation.status === 'Đang xử lý',
@@ -133,14 +145,14 @@
           </tbody>
         </table>
       </div>
-      <div class="p-5 flex justify-between items-center border-t border-gray-100 bg-gray-50">
-        <span class="text-sm text-gray-500">Hiển thị 1-10 của 56</span>
+      <div class="p-3 sm:p-5 flex justify-between items-center border-t border-gray-100 bg-gray-50">
+        <span class="text-xs sm:text-sm text-gray-500">Hiển thị 1-10 của 56</span>
         <div class="flex">
-          <button class="p-2 mx-1 text-gray-500 hover:bg-gray-200 rounded-lg transition-colors">
-            <ChevronLeftIcon class="w-5 h-5" />
+          <button class="p-1.5 sm:p-2 mx-1 text-gray-500 hover:bg-gray-200 rounded-lg transition-colors">
+            <ChevronLeftIcon class="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
-          <button class="p-2 mx-1 text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition-colors">
-            <ChevronRightIcon class="w-5 h-5" />
+          <button class="p-1.5 sm:p-2 mx-1 text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition-colors">
+            <ChevronRightIcon class="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
       </div>

@@ -19,9 +19,7 @@
       </div>
     </div>
 
-    <div
-      class="overflow-y-auto max-h-[calc(100vh-var(--header-height)-var(--menu-height-chat-list))] divide-gray-200"
-      :class="{ 'pb-[var(--mobile-menu-height)]': isMobile }">
+    <div class="overflow-y-auto max-h-[calc(100vh-var(--header-height)-var(--menu-height-chat-list))] divide-gray-200">
       <div
         v-for="chat in chats"
         :key="chat.id"
