@@ -53,14 +53,19 @@
     </div>
 
     <!-- Messages -->
-    <div class="flex-1 overflow-y-auto p-2 space-y-3">
+    <div ref="messagesContainer" class="flex-1 overflow-y-auto p-2 space-y-3">
       <div class="flex-1 overflow-y-auto p-4 space-y-3">
-        <MessageItem v-for="(msg, index) in chat?.messages" :key="index" :message="msg" :chatName="chat.name" />
+        <MessageItem
+          v-for="(msg, index) in chat?.messages"
+          :key="index"
+          :message="msg"
+          :chatName="chat.name"
+          class="message-item" />
       </div>
     </div>
 
     <div class="bottom-0 left-0 w-full">
-      <InputMessage />
+      <InputMessage :chat="chat" @send-message="handleSendMessage" />
     </div>
   </div>
 </template>
@@ -69,9 +74,10 @@
 import MessageItem from './MessageItem.vue';
 import InputMessage from './InputMessage.vue';
 import useResponsive from '@/composables/useResponsive';
-import { nextTick } from 'vue';
+import { nextTick, ref, watch, onMounted } from 'vue';
 
 const { isMobile, mobileView, setMobileView } = useResponsive();
+const messagesContainer = ref(null);
 
 const props = defineProps({
   chat: {
@@ -79,6 +85,50 @@ const props = defineProps({
     default: null,
   },
 });
+
+// Scroll xuống dưới cùng của danh sách tin nhắn
+function scrollToBottom() {
+  if (messagesContainer.value) {
+    nextTick(() => {
+      messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
+    });
+  }
+}
+
+// Theo dõi khi chat thay đổi để scroll xuống dưới
+watch(
+  () => props.chat,
+  (newChat) => {
+    if (newChat) {
+      scrollToBottom();
+    }
+  },
+  { immediate: true }
+);
+
+// Theo dõi khi có tin nhắn mới được thêm vào để scroll xuống dưới
+watch(
+  () => props.chat?.messages?.length,
+  (newLength, oldLength) => {
+    if (newLength > oldLength) {
+      scrollToBottom();
+    }
+  }
+);
+
+// Khi component được mount, scroll xuống dưới
+onMounted(() => {
+  if (props.chat) {
+    scrollToBottom();
+  }
+});
+
+// Xử lý gửi tin nhắn mới
+function handleSendMessage(message) {
+  // Đây là hàm xử lý khi có tin nhắn mới từ InputMessage
+  console.log('Tin nhắn mới từ InputMessage:', message);
+  // Trong thực tế, bạn cần cập nhật message vào store hoặc gửi lên server
+}
 
 function handleBack() {
   setMobileView('chat-list');
@@ -96,3 +146,21 @@ function showInfo() {
   });
 }
 </script>
+
+<style scoped>
+.message-item {
+  animation: fade-slide-up 0.3s ease-out;
+  transform-origin: bottom;
+}
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>

@@ -23,11 +23,13 @@ import {
   ChatBubbleLeftRightIcon as ChatOutline,
   Cog6ToothIcon as CogOutline,
   UserGroupIcon as TeamOutline,
+  ChartBarIcon as ChartBarOutline,
   RocketLaunchIcon as EngageOutline,
 } from '@heroicons/vue/24/outline';
 import {
   ChatBubbleLeftRightIcon as ChatSolid,
   Cog6ToothIcon as CogSolid,
+  ChartBarIcon as ChartBarSolid,
   UserGroupIcon as TeamSolid,
   RocketLaunchIcon as EngageSolid,
 } from '@heroicons/vue/24/solid';
@@ -47,16 +49,10 @@ const menuItems = [
     badge: '1',
   },
   {
-    label: 'Engage',
-    iconOutline: EngageOutline,
-    iconSolid: EngageSolid,
-    route: '/engage',
-  },
-  {
-    label: 'Team',
-    iconOutline: TeamOutline,
-    iconSolid: TeamSolid,
-    route: '/team',
+    label: 'Stats',
+    iconOutline: ChartBarOutline,
+    iconSolid: ChartBarSolid,
+    route: '/stats',
   },
   {
     label: 'Settings',

@@ -77,12 +77,6 @@ const menuItems = [
     route: '/',
   },
   {
-    label: 'Đội ngũ',
-    iconOutline: TeamOutline,
-    iconSolid: TeamSolid,
-    route: '/team',
-  },
-  {
     label: 'Thống kê',
     iconOutline: StatsOutline,
     iconSolid: StatsSolid,
