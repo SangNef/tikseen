@@ -1,5 +1,155 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
+# Hướng dẫn viết code
+
+## Quy ước chung
+
+1. **Ngôn ngữ**:
+   - Code và comments: Tiếng Anh
+   - UI và nội dung hiển thị: Tiếng Việt
+
+2. **Formatting**:
+   - Sử dụng Prettier cho format code
+   - Cấu hình Prettier được định nghĩa trong [.prettierrc](mdc:.prettierrc)
+   - Tabs/Spaces: 2 spaces
+   - Semicolons: required
+   - Quotes: single quotes
+
+3. **Đặt tên**:
+   - Variables & Functions: camelCase
+   - Components: PascalCase
+   - Constants: UPPER_SNAKE_CASE
+   - Files: PascalCase cho components, camelCase cho helpers
+
+## Vue Components
+
+```vue
+<script setup>
+// Imports
+import { ref, computed } from 'vue';
+import ComponentName from '@/components/ComponentName.vue';
+
+// Props
+const props = defineProps({
+  propName: {
+    type: String,
+    required: true,
+    default: ''
+  }
+});
+
+// Emits
+const emit = defineEmits(['eventName']);
+
+// Reactive state
+const count = ref(0);
+
+// Computed properties
+const doubleCount = computed(() => count.value * 2);
+
+// Methods
+const handleClick = () => {
+  count.value++;
+  emit('eventName', count.value);
+};
+</script>
+
+<template>
+  <div class="component-wrapper">
+    <!-- Template content -->
+  </div>
+</template>
+
+<style scoped>
+/* Component-specific styles */
+</style>
+```
+
+## Vue Router
+
+```js
+// routes/index.js
+import { createRouter, createWebHistory } from 'vue-router';
+
+// Layouts
+import DefaultLayout from '@/layouts/DefaultLayout.vue';
+
+// Lazy-loaded views
+const Chat = () => import('@/views/Chat/index.vue');
+
+const routes = [
+  {
+    path: '/chat',
+    name: 'chat',
+    component: Chat,
+    meta: {
+      layout: DefaultLayout,
+      requiresAuth: true
+    }
+  }
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
+
+export default router;
+```
+
+## Composables (Hooks)
+
+```js
+// composables/useAuth.js
+import { ref, computed } from 'vue';
+
+export default function useAuth() {
+  const user = ref(null);
+  const isLoggedIn = computed(() => !!user.value);
+  
+  const login = async (credentials) => {
+    // Implementation
+  };
+  
+  const logout = async () => {
+    // Implementation
+  };
+  
+  return {
+    user,
+    isLoggedIn,
+    login,
+    logout
+  };
+}
+```
+
+## Tailwind CSS
+
+- Sử dụng utility classes của Tailwind
+- Ưu tiên dùng class trực tiếp trong template thay vì custom CSS
+- Dùng `@apply` trong `<style>` chỉ khi cần tái sử dụng nhiều styles
+- Tuân thủ color palette và spacing system được định nghĩa
+
+```vue
+<template>
+  <div class="flex flex-col gap-4 p-4 bg-white rounded-xl shadow-md">
+    <h2 class="text-xl font-semibold text-gray-800">Tiêu đề</h2>
+    <p class="text-sm text-gray-600">Nội dung</p>
+    <button class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+      Nút bấm
+    </button>
+  </div>
+</template>
+```
+
+## Xử lý State
+
+- Sử dụng `ref()` cho primitive values (string, number, boolean)
+- Sử dụng `reactive()` cho objects và arrays
+- Sử dụng `computed()` cho derived values
+- Sử dụng `watch()` hoặc `watchEffect()` cho side effects
+

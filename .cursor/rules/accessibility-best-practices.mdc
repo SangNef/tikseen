@@ -1,5 +1,210 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
+# Accessibility Best Practices
+
+## Nguyên tắc cơ bản
+
+Để đảm bảo ứng dụng LiveChat có thể tiếp cận được với tất cả người dùng, bao gồm những người dùng có khả năng khác biệt, hãy tuân thủ các nguyên tắc sau:
+
+1. **Semantic HTML**: Sử dụng các thẻ HTML đúng mục đích
+2. **Keyboard Navigation**: Đảm bảo tất cả chức năng đều có thể sử dụng bằng bàn phím
+3. **ARIA Labels**: Sử dụng thuộc tính ARIA khi cần thiết
+4. **Color Contrast**: Đảm bảo tỷ lệ tương phản giữa văn bản và nền đủ cao
+5. **Focus Indicators**: Hiển thị rõ ràng phần tử đang được focus
+6. **Screen Reader Support**: Hỗ trợ đọc nội dung cho người dùng screen reader
+
+## Semantic HTML
+
+### Ví dụ tốt
+
+```vue
+<template>
+  <!-- Sử dụng heading tags đúng cách -->
+  <h1>Tiêu đề chính</h1>
+  <h2>Tiêu đề phụ</h2>
+  
+  <!-- Sử dụng nav cho thanh điều hướng -->
+  <nav>
+    <ul>
+      <li><a href="/chat">Chat</a></li>
+      <li><a href="/settings">Cài đặt</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Sử dụng button cho các phần tử có thể click -->
+  <button @click="openMenu">Mở menu</button>
+  
+  <!-- Sử dụng form, label và input đúng cách -->
+  <form @submit.prevent="submitForm">
+    <div class="form-group">
+      <label for="username">Tên đăng nhập</label>
+      <input id="username" type="text" v-model="username" />
+    </div>
+    <button type="submit">Đăng nhập</button>
+  </form>
+</template>
+```
+
+### Ví dụ không tốt
+
+```vue
+<template>
+  <!-- Sử dụng div thay vì heading tags -->
+  <div class="title">Tiêu đề chính</div>
+  
+  <!-- Sử dụng div thay vì button -->
+  <div class="btn" @click="openMenu">Mở menu</div>
+  
+  <!-- Input không có label -->
+  <input type="text" v-model="username" />
+</template>
+```
+
+## Keyboard Navigation
+
+1. Đảm bảo mọi phần tử tương tác đều có thể focus được
+2. Thứ tự tab phải hợp lý và tuân theo flow của giao diện
+3. Các phím tắt chuẩn phải hoạt động đúng (Enter, Space, Escape...)
+
+```vue
+<template>
+  <!-- Đảm bảo dropdown có thể truy cập bằng bàn phím -->
+  <div class="dropdown">
+    <button 
+      @click="toggleDropdown" 
+      @keydown.esc="closeDropdown"
+      aria-haspopup="true" 
+      :aria-expanded="isOpen"
+    >
+      Options
+    </button>
+    
+    <div v-if="isOpen" class="dropdown-menu" role="menu">
+      <a 
+        href="#" 
+        role="menuitem" 
+        tabindex="0" 
+        @click="selectOption(1)"
+        @keydown.enter="selectOption(1)"
+      >
+        Option 1
+      </a>
+      <!-- Các option khác -->
+    </div>
+  </div>
+</template>
+```
+
+## ARIA Labels
+
+```vue
+<template>
+  <!-- Sử dụng aria-label cho button chỉ có icon -->
+  <button aria-label="Đóng" @click="close">
+    <XMarkIcon class="w-5 h-5" />
+  </button>
+  
+  <!-- Sử dụng aria-labelledby để liên kết nhiều phần tử -->
+  <div id="chat-header">Chat với Nguyễn Văn A</div>
+  <div aria-labelledby="chat-header" class="chat-window">
+    <!-- Chat content -->
+  </div>
+  
+  <!-- Sử dụng aria-live để thông báo nội dung cập nhật -->
+  <div aria-live="polite" class="notifications">
+    {{ latestNotification }}
+  </div>
+</template>
+```
+
+## Color Contrast
+
+1. Đảm bảo tỷ lệ tương phản giữa văn bản và nền tối thiểu là 4.5:1
+2. Đối với văn bản lớn (18pt hoặc 14pt bold), tỷ lệ tối thiểu là 3:1
+3. Không chỉ dựa vào màu sắc để truyền đạt thông tin
+
+```vue
+<template>
+  <!-- Tốt: Văn bản tối trên nền sáng -->
+  <div class="bg-white text-gray-800">Văn bản có độ tương phản cao</div>
+  
+  <!-- Kết hợp màu sắc và biểu tượng/văn bản -->
+  <div class="error-message">
+    <ExclamationCircleIcon class="text-red-500" />
+    <span class="text-red-500">Lỗi: Thông tin không hợp lệ</span>
+  </div>
+</template>
+```
+
+## Focus Indicators
+
+```vue
+<template>
+  <button class="focus:ring-2 focus:ring-blue-500 focus:outline-none">
+    Nút bấm với focus indicator rõ ràng
+  </button>
+</template>
+
+<style>
+/* Nếu muốn tùy chỉnh focus style */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+</style>
+```
+
+## Screen Reader Support
+
+```vue
+<template>
+  <!-- Sử dụng alt text cho hình ảnh -->
+  <img src="/images/logo.png" alt="Logo LiveChat" />
+  
+  <!-- Sử dụng aria-hidden cho các phần tử chỉ mang tính trang trí -->
+  <div class="decorative-element" aria-hidden="true"></div>
+  
+  <!-- Cung cấp trạng thái cập nhật -->
+  <button 
+    @click="toggleMenu"
+    aria-expanded="false"
+    :aria-expanded="isMenuOpen"
+  >
+    Toggle Menu
+  </button>
+  
+  <!-- Screen-reader only text -->
+  <span class="sr-only">Thông báo chỉ hiển thị cho screen reader</span>
+</template>
+
+<style>
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+</style>
+```
+
+## Checklist kiểm tra khả năng tiếp cận
+
+- [ ] Tất cả hình ảnh đều có alt text mô tả
+- [ ] Cấu trúc HTML sử dụng semantic tags
+- [ ] Có thể điều hướng hoàn toàn bằng bàn phím
+- [ ] Tỷ lệ tương phản giữa văn bản và nền đủ cao
+- [ ] Focus states rõ ràng và dễ nhận biết
+- [ ] Forms có labels đầy đủ cho tất cả inputs
+- [ ] ARIA attributes được sử dụng đúng cách khi cần
+- [ ] Phần nội dung động được thông báo cho screen reader
+- [ ] Không chỉ dựa vào màu sắc để truyền đạt thông tin
+- [ ] Chức năng responsive và khả dụng trên các kích thước màn hình khác nhau
+

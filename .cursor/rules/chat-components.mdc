@@ -1,5 +1,229 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
+# Chat Components
+
+## Tổng quan về các thành phần Chat
+
+![Chat Components Overview](mdc:../assets/chat-components.png)
+
+Hệ thống chat được tổ chức với các component chính sau:
+
+1. **ChatView**: Container chính của giao diện chat
+2. **ChatList**: Danh sách các tin nhắn
+3. **MessageItem**: Hiển thị một tin nhắn đơn lẻ
+4. **InputMessage**: Khu vực nhập tin nhắn và các hành động
+5. **TypingIndicator**: Hiển thị khi có người đang gõ tin nhắn
+6. **ChatHeader**: Hiển thị thông tin người/nhóm đang chat
+7. **ChatSidebar**: Danh sách các cuộc trò chuyện
+
+## Cấu trúc thư mục
+
+```
+src/
+└── views/
+    ├── Chat/
+    │   ├── index.vue            # ChatView - View chính
+    │   ├── ChatList.vue         # Component hiển thị danh sách tin nhắn
+    │   ├── MessageItem.vue      # Component hiển thị một tin nhắn
+    │   ├── InputMessage.vue     # Component nhập tin nhắn
+    │   ├── TypingIndicator.vue  # Hiển thị trạng thái đang gõ
+    │   ├── ChatHeader.vue       # Header của khu vực chat
+    │   └── ChatInfo.vue         # Panel thông tin về cuộc trò chuyện
+    └── BubbleChat/
+        └── index.vue            # Chat widget dạng nổi cho websites
+```
+
+## Các mẫu Component
+
+### ChatView
+
+```vue
+<template>
+  <div class="flex flex-col h-screen">
+    <ChatHeader :conversation="activeConversation" />
+    
+    <div class="flex flex-1 overflow-hidden">
+      <!-- Chat area -->
+      <div class="flex-1 flex flex-col">
+        <ChatList :messages="messages" :currentUser="currentUser" />
+        <TypingIndicator v-if="isTyping" :user="typingUser" />
+        <InputMessage @send="sendMessage" />
+      </div>
+      
+      <!-- Info sidebar (optional) -->
+      <ChatInfo v-if="showInfo" :conversation="activeConversation" />
+    </div>
+  </div>
+</template>
+```
+
+### MessageItem
+
+```vue
+<template>
+  <div :class="['message-item', { 'message-mine': isMine }]">
+    <!-- Avatar -->
+    <div v-if="!isMine" class="message-avatar">
+      <img :src="message.sender.avatar" :alt="message.sender.name" class="w-8 h-8 rounded-full" />
+    </div>
+    
+    <!-- Message content -->
+    <div :class="['message-bubble', isMine ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-800']">
+      <!-- Sender name (if not mine and in group) -->
+      <div v-if="!isMine && isGroup" class="message-sender">{{ message.sender.name }}</div>
+      
+      <!-- Message content based on type -->
+      <div v-if="message.type === 'text'" class="message-text">{{ message.content }}</div>
+      <img v-else-if="message.type === 'image'" :src="message.content" class="message-image" />
+      <!-- Other message types... -->
+      
+      <!-- Message meta -->
+      <div class="message-time">{{ formatTime(message.timestamp) }}</div>
+      
+      <!-- Status indicators (if mine) -->
+      <div v-if="isMine" class="message-status">
+        <CheckIcon v-if="message.status === 'sent'" class="h-4 w-4" />
+        <CheckCircleIcon v-else-if="message.status === 'read'" class="h-4 w-4 text-blue-400" />
+      </div>
+    </div>
+  </div>
+</template>
+```
+
+### InputMessage
+
+```vue
+<template>
+  <div class="input-message-container">
+    <!-- Attachments area (when adding files) -->
+    <div v-if="attachments.length" class="input-attachments">
+      <!-- Attachment previews -->
+    </div>
+    
+    <!-- Input toolbar -->
+    <div class="input-toolbar">
+      <!-- Add attachment button -->
+      <button @click="openAttachmentMenu" class="input-action-button">
+        <PaperClipIcon class="h-5 w-5" />
+      </button>
+      
+      <!-- Emoji picker button -->
+      <button @click="toggleEmojiPicker" class="input-action-button">
+        <FaceSmileIcon class="h-5 w-5" />
+      </button>
+      
+      <!-- Emoji picker (when open) -->
+      <EmojiPicker v-if="showEmojiPicker" @select="insertEmoji" />
+    </div>
+    
+    <!-- Text input area -->
+    <div class="input-message-main">
+      <textarea
+        v-model="messageText"
+        placeholder="Nhập tin nhắn..."
+        class="input-message-textarea"
+        @keydown.enter.exact.prevent="sendMessage"
+        @input="handleInput"
+      ></textarea>
+      
+      <!-- Send button -->
+      <button 
+        @click="sendMessage" 
+        :disabled="!canSend"
+        :class="['send-button', { 'send-button-active': canSend }]"
+      >
+        <PaperAirplaneIcon class="h-5 w-5" />
+      </button>
+    </div>
+  </div>
+</template>
+```
+
+## Composables Chat
+
+### useChat.js
+
+```js
+// composables/useChat.js
+
+import { ref, computed } from 'vue';
+
+export default function useChat() {
+  // State
+  const messages = ref([]);
+  const isLoading = ref(false);
+  const error = ref(null);
+  const activeConversationId = ref(null);
+  
+  // Computed
+  const activeConversation = computed(() => {
+    // Find conversation by ID
+  });
+  
+  // Methods
+  const loadMessages = async (conversationId) => {
+    // Load messages from API
+  };
+  
+  const sendMessage = async (content, type = 'text') => {
+    // Send message to API
+  };
+  
+  const markAsRead = async (messageId) => {
+    // Mark message as read
+  };
+  
+  return {
+    messages,
+    isLoading,
+    error,
+    activeConversationId,
+    activeConversation,
+    loadMessages,
+    sendMessage,
+    markAsRead
+  };
+}
+```
+
+## Chat Data Models
+
+```js
+// Data structures for chat
+
+// User
+const user = {
+  id: 'user-123',
+  name: 'Nguyễn Văn A',
+  avatar: '/avatars/user-123.jpg',
+  email: 'user@example.com',
+  status: 'online' // online, offline, away
+};
+
+// Message
+const message = {
+  id: 'msg-123',
+  conversationId: 'conv-456',
+  sender: user,
+  content: 'Xin chào!',
+  type: 'text', // text, image, file, audio
+  timestamp: new Date(),
+  status: 'sent', // sending, sent, delivered, read, error
+  reactions: [] // Array of reactions
+};
+
+// Conversation
+const conversation = {
+  id: 'conv-456',
+  type: 'private', // private, group
+  name: null, // For group chats
+  participants: [user1, user2],
+  lastMessage: message,
+  unreadCount: 0,
+  createdAt: new Date()
+};
+```
+
