@@ -153,7 +153,9 @@
         </div>
 
         <div class="mt-4 text-right">
-          <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition">
+          <button
+            @click="saveChanges"
+            class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition">
             Lưu thay đổi
           </button>
         </div>
@@ -177,14 +179,18 @@ import {
   ChevronLeftIcon,
 } from '@heroicons/vue/24/outline';
 import useResponsive from '@/composables/useResponsive';
+import { getWidgetSettings, saveWidgetSettings } from '@/helpers/widgetSettingsHelper';
 
 const { isMobile, setSettingMobileView } = useResponsive();
 
+// Lấy cấu hình widget hiện tại
+const currentSettings = getWidgetSettings();
+
 // Widget settings
-const selectedThemeColor = ref('#3b82f6');
-const position = ref('right');
-const selectedIcon = ref(0);
-const isWidgetActive = ref(true);
+const selectedThemeColor = ref(currentSettings.themeColor || '#3b82f6');
+const position = ref(currentSettings.position || 'right');
+const selectedIcon = ref(currentSettings.selectedIcon || 0);
+const isWidgetActive = ref(currentSettings.isWidgetActive !== false);
 
 // Preview settings
 const previewDevice = ref('desktop');
@@ -203,6 +209,22 @@ const widgetIcons = [ChatBubbleLeftRightIcon, ChatBubbleOvalLeftEllipsisIcon, En
 
 function handleBack() {
   setSettingMobileView('menu');
+}
+
+// Lưu thay đổi cấu hình widget
+function saveChanges() {
+  const settings = {
+    themeColor: selectedThemeColor.value,
+    position: position.value,
+    selectedIcon: selectedIcon.value,
+    isWidgetActive: isWidgetActive.value,
+  };
+
+  if (saveWidgetSettings(settings)) {
+    alert('Cấu hình widget đã được lưu thành công!');
+  } else {
+    alert('Có lỗi xảy ra khi lưu cấu hình widget!');
+  }
 }
 </script>
 
