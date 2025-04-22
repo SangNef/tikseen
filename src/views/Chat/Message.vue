@@ -69,8 +69,9 @@
 import MessageItem from './MessageItem.vue';
 import InputMessage from './InputMessage.vue';
 import useResponsive from '@/composables/useResponsive';
+import { nextTick } from 'vue';
 
-const { isMobile, setMobileView } = useResponsive();
+const { isMobile, mobileView, setMobileView } = useResponsive();
 
 const props = defineProps({
   chat: {
@@ -81,9 +82,17 @@ const props = defineProps({
 
 function handleBack() {
   setMobileView('chat-list');
+  // Đảm bảo DOM đã cập nhật trước khi kiểm tra giá trị mới
+  nextTick(() => {
+    console.log('Sau khi chuyển về chat-list:', mobileView.value);
+  });
 }
 
 function showInfo() {
   setMobileView('chat-info');
+  // Đảm bảo DOM đã cập nhật trước khi kiểm tra giá trị mới
+  nextTick(() => {
+    console.log('Sau khi chuyển sang chat-info:', mobileView.value);
+  });
 }
 </script>

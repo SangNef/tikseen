@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, watchEffect } from 'vue';
 import useResponsive from '@/composables/useResponsive';
 import List from './List.vue';
 import Message from './Message.vue';
@@ -42,8 +42,14 @@ function handleSelect(chat) {
   }
 }
 
+// Theo dõi mobileView để hiểu trạng thái hiện tại
+watchEffect(() => {
+  console.log('Chế độ hiển thị hiện tại:', mobileView.value);
+});
+
 // Đảm bảo khi bấm nút quay lại, sẽ trở về danh sách chat
 watch(mobileView, (newView) => {
+  console.log('mobileView changed to:', newView);
   if (newView === 'chat-list') {
     // Có thể để lại selectedChat không null để giữ trạng thái
   }

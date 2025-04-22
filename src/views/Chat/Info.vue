@@ -35,9 +35,9 @@
     <div class="px-4 py-4 flex flex-col gap-4">
       <div v-if="chat">
         <!-- Custom components for each info section -->
+        <LocationInfo :chat="chat" />
         <AdditionalInfo :chat="chat" />
         <PrechatForm :chat="chat" />
-        <LocationInfo :chat="chat" />
         <Technology :chat="chat" />
         <VisitedPage :chat="chat" />
       </div>
