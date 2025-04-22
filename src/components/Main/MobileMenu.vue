@@ -11,11 +11,6 @@
       @click="item.action ? item.action() : null">
       <component :is="isActive(item.route) ? item.iconSolid : item.iconOutline" class="w-6 h-6" />
       <span class="text-xs mt-0.5">{{ item.label }}</span>
-      <div
-        v-if="item.badge"
-        class="absolute top-1 right-6 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
-        <span class="text-xs text-white font-bold">{{ item.badge }}</span>
-      </div>
     </router-link>
   </div>
 </template>
