@@ -65,6 +65,97 @@ livechat/
   - Dropdown menus và modals
   - Icon system sử dụng Heroicons
 
+## Hướng dẫn sử dụng LiveChat Widget
+
+### Cách 1: Nhúng script trực tiếp
+
+```html
+<!-- Nhúng script LiveChat vào website của bạn -->
+<script
+  src="https://yourdomain.com/popup.min.js"
+  data-auto-init="true"
+  data-theme-color="#3b82f6"
+  data-position="right"
+  data-business-name="My Business"></script>
+```
+
+Các thuộc tính có thể cấu hình:
+
+- `data-auto-init`: Đặt "true" để tự động khởi chạy widget khi trang web được tải
+- `data-theme-color`: Mã màu cho theme (mặc định: "#3b82f6")
+- `data-position`: Vị trí hiển thị ("right" hoặc "left")
+- `data-business-name`: Tên doanh nghiệp hiển thị
+
+### Cách 2: Khởi tạo qua JavaScript
+
+```html
+<!-- Nhúng script LiveChat vào website của bạn -->
+<script src="https://yourdomain.com/popup.min.js"></script>
+
+<script>
+  // Khởi tạo LiveChat với cấu hình tùy chỉnh
+  document.addEventListener('DOMContentLoaded', () => {
+    VippromaxLiveChat.init({
+      themeColor: '#10b981',
+      position: 'right',
+      businessName: 'My Company',
+      settings: {
+        // Cấu hình nâng cao
+        isGreetingEnabled: true,
+        greetingMessage: 'Xin chào! Chúng tôi có thể giúp gì cho bạn?',
+        showOnMobile: true,
+      },
+    });
+  });
+
+  // Các phương thức điều khiển
+  // Mở chat
+  document.getElementById('openChat').addEventListener('click', function () {
+    VippromaxLiveChat.open();
+  });
+
+  // Đóng chat
+  document.getElementById('closeChat').addEventListener('click', function () {
+    VippromaxLiveChat.close();
+  });
+
+  // Cập nhật cấu hình
+  document.getElementById('changeTheme').addEventListener('click', function () {
+    VippromaxLiveChat.updateConfig({
+      themeColor: '#ef4444',
+    });
+  });
+</script>
+```
+
+### API Reference
+
+#### Khởi tạo
+
+```javascript
+VippromaxLiveChat.init(config);
+```
+
+#### Mở chat
+
+```javascript
+VippromaxLiveChat.open();
+```
+
+#### Đóng chat
+
+```javascript
+VippromaxLiveChat.close();
+```
+
+#### Cập nhật cấu hình
+
+```javascript
+VippromaxLiveChat.updateConfig({
+  // Các tùy chọn cấu hình mới
+});
+```
+
 ## Cài Đặt & Phát Triển
 
 ```bash

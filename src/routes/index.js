@@ -1,14 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import Login from '@/views/Auth/Login.vue';
-import Register from '@/views/Auth/Register.vue';
-import Chat from '@/views/Chat/index.vue';
-import Setting from '@/views/Setting/index.vue';
-import BubbleChat from '@/views/BubbleChat/index.vue';
-import Stats from '@/views/Stats/index.vue';
-import Users from '@/views/Users/index.vue';
-import UserDetail from '@/views/Users/UserDetail.vue';
-import UserEdit from '@/views/Users/UserEdit.vue';
+// Lazy loading các component
+const Login = () => import('@/views/Auth/Login.vue');
+const Register = () => import('@/views/Auth/Register.vue');
+const Chat = () => import('@/views/Chat/index.vue');
+const Setting = () => import('@/views/Setting/index.vue');
+const BubbleChat = () => import('@/views/BubbleChat/index.vue');
+const Stats = () => import('@/views/Stats/index.vue');
+const Users = () => import('@/views/Users/index.vue');
+const UserDetail = () => import('@/views/Users/UserDetail.vue');
+const UserEdit = () => import('@/views/Users/UserEdit.vue');
+const ChatPage = () => import('@/views/BubbleChat/ChatPage.vue');
 
 const routes = [
   {
@@ -79,6 +81,11 @@ const routes = [
     path: '/chat',
     name: 'BubbleChat',
     component: BubbleChat,
+  },
+  {
+    path: '/chat-page/:id',
+    name: 'ChatPage',
+    component: ChatPage,
   },
 ];
 

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col h-full bg-gray-50 overflow-y-auto">
-    <div class="bg-white rounded-lg shadow p-6 max-w-md mx-auto my-4">
+    <div class="bg-white rounded-lg shadow p-6 max-w-md mx-auto h-[100%] m-0">
       <div class="mb-6">
         <div class="flex justify-center mb-4">
           <div class="relative group">
@@ -131,10 +131,12 @@ function createChat() {
   if (hasError) return;
 
   const userData = {
+    userId: Math.random().toString(36).substring(2, 15),
     name: name.value,
     email: email.value,
     createdAt: new Date().toISOString(),
     avatar: avatarPreview.value,
+    lastActiveAt: new Date().toISOString(),
   };
 
   localStorage.setItem('user_livechat', JSON.stringify(userData));
