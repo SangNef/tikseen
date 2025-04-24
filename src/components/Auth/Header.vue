@@ -1,42 +1,37 @@
 <template>
-    <div class="flex justify-between py-6 px-5">
-        <img :src="logo" alt="" class="h-8 w-auto">
-        <button 
-            class="px-4 py-2 border border-[#c9c9cd] rounded-lg text-[#131317] text-sm font-semibold leading-[20px] cursor-pointer"
-            @click="handleClick"
+    <div class="flex justify-between items-center px-6 h-[50px] bg-[#0f171c] fixed top-0 left-0 w-full">
+        <router-link to="/">
+            <img :src="logo" alt="" class="h-7.5 w-auto">
+        </router-link>
+        <router-link
+            :to="buttonLink"
+            class="text-white text-[16px]"
         >
             {{ buttonText }}
-        </button>
+        </router-link>
     </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import logo from "@/assets/images/logo/logo.png";
 
 const route = useRoute();
-const router = useRouter();
 
 const buttonText = computed(() => {
-    if (route.path === '/login') {
-        return 'Sign up free';
-    } else if (route.path === '/register') {
-        return 'Log in';
-    } else {
-        return 'Sign up free';
-    }
+    return route.path === '/login'
+        ? 'Đăng ký'
+        : route.path === '/register'
+        ? 'Đăng nhập'
+        : 'Đăng ký';
 });
 
-function handleClick() {
-    if (route.path === '/login') {
-        router.push('/register');
-    } else if (route.path === '/register') {
-        router.push('/login');
-    } else {
-        router.push('/register');
-    }
-}
+const buttonLink = computed(() => {
+    return route.path === '/login'
+        ? '/register'
+        : '/login';
+});
 </script>
 
 <style></style>

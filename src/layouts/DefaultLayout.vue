@@ -1,16 +1,18 @@
 <template>
-    <div class="flex flex-row">
-        <SideBar />
-        <div class="ml-16 w-full h-screen bg-gray-100 flex flex-col">
+    <div class="w-full overflow-hidden flex">
+        <div class="min-h-screen bg-[#111] flex flex-col">
             <Header />
-            <slot />
+            <div class="mt-12">
+                <slot />
+            </div>
+            <Footer />
         </div>
     </div>
 </template>
 
 <script setup>
-import SideBar from '@/components/Main/SideBar.vue';
 import Header from '@/components/Main/Header.vue';
+import Footer from '@/components/Main/Footer.vue';
 </script>
 
 <style></style>

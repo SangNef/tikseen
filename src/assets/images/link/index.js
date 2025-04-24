@@ -1,0 +1,6 @@
+export { default as ytb } from "./ytb.svg"
+export { default as fb } from "./fb.svg"
+export { default as li } from "./li.svg"
+export { default as apple } from "./apple.svg"
+export { default as skype } from "./skype.svg"
+export { default as tele } from "./tele.svg"

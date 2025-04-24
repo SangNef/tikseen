@@ -1,89 +1,69 @@
 <template>
-    <div class="max-w-90 mx-auto md:mt-[90px]">
-        <h2 class="leading-[32px] text-2xl font-semibold text-center">Start for free</h2>
-        <h3 class="leading-[28px] text-[20px] text-[#62626d] font-semibold text-center !mt-2">
-            No credit card required
-        </h3>
-        <form @submit.prevent="handleSubmit">
-            <div class="w-full mt-7">
+    <div class="w-full h-[calc(100vh-50px)] p-6 md:flex md:justify-center md:items-center bg-[#f4f5f6]">
+        <div class="md:max-w-[487px] mx-auto md:w-full md:p-6 md:bg-white md:shadow-lg">
+            <h2 class="text-center text-[32px] leading-[48px] font-bold">Đăng ký</h2>
+            <form class="mt-4" @submit.prevent="handleRegister">
                 <BaseInput
-                    v-model="email"
-                    label="Business email"
-                    type="email"
-                    placeholder="name@work-email.com"
-                    :isRequire="true"
-                    message="Email không hợp lệ."
-                    ref="emailInput" />
+                    v-model="fullname"
+                    label="Họ và tên"
+                    type="text"
+                    placeholder="Vui lòng nhập họ tên"
+                    required />
                 <BaseInput
-                    v-model="password"
-                    label="Password"
-                    type="password"
-                    placeholder="12 characters or more"
-                    :isRequire="true"
-                    message="Mật khẩu không được bỏ trống."
-                    customClass=""
-                    ref="passwordInput" />
+                    v-model="username"
+                    label="Tên đăng nhập"
+                    type="text"
+                    placeholder="Vui lòng viết liền không dấu"
+                    required />
                 <BaseInput
                     v-model="phone"
-                    label="Phone number"
-                    type="tel"
-                    placeholder="Enter your phone number"
-                    :isRequire="true"
-                    message="Số điện thoại không hợp lệ."
-                    ref="phoneInput" />
+                    label="Số điện thoại"
+                    type="text"
+                    placeholder="Vui lòng cung cấp số điện thoại"
+                    required />
+                <BaseInput
+                    v-model="password"
+                    label="Mật khẩu"
+                    type="password"
+                    placeholder="Vui lòng nhập mật khẩu"
+                    required />
+                <BaseInput
+                    v-model="cpassword"
+                    label="Mật khẩu"
+                    type="password"
+                    placeholder="Vui lòng nhập lại mật khẩu"
+                    required />
+                <BaseInput
+                    v-model="code"
+                    label="Mã giới thiệu"
+                    type="text"
+                    placeholder="Vui lòng nhập mã giới thiệu của bạn"
+                    required />
+                <BaseButton class="w-full mt-6" label="ĐĂNG KÝ TÀI KHOẢN" type="submit" />
+            </form>
+
+            <div class="mt-6 text-center text-[13px] text-black">
+                Nếu Bạn Đã Có Tài Khoản?
+                <router-link to="/login" class="text-blue-600 ml-3 cursor-pointer text-[16px]"> Đăng nhập </router-link>
             </div>
-            <BaseButton
-                type="submit"
-                label="Sign up"
-                color="danger"
-                :disabled="isSubmitting"
-                customClass="!mt-2 w-full py-[11px]" />
-        </form>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import BaseInput from "@/components/Common/BaseInput.vue";
+import { useRouter } from "vue-router";
 import BaseButton from "@/components/Common/BaseButton.vue";
+import BaseInput from "@/components/Common/BaseInput.vue";
 
-const email = ref("");
+const router = useRouter();
+const username = ref("");
 const password = ref("");
-const phone = ref("");
-const isSubmitting = ref(false);
 
-const emailInput = ref(null);
-const passwordInput = ref(null);
-const phoneInput = ref(null);
-
-const handleSubmit = () => {
-    let isValid = true;
-
-    // validate từng input
-    emailInput.value.handleValidate();
-    phoneInput.value.handleValidate();
-    passwordInput.value.handleValidate();
-
-    // kiểm tra error
-    if (emailInput.value.error || phoneInput.value.error || passwordInput.value.error) {
-        isValid = false;
-    }
-
-    if (isValid) {
-        isSubmitting.value = true;
-        console.log("Form submitted with:", {
-            email: email.value,
-            password: password.value,
-            phone: phone.value
-        });
-
-        setTimeout(() => {
-            isSubmitting.value = false;
-        }, 2000);
-    } else {
-        console.log("Validation failed");
-    }
-};
+function handleRegister() {
+    // Lưu username vào localStorage
+    localStorage.setItem("username", username.value);
+    // Điều hướng về trang chủ
+    router.push("/");
+}
 </script>
-
-<style scoped></style>

@@ -48,7 +48,7 @@ const colorClass = computed(() => {
             return 'bg-[#ca0005] hover:bg-[#8d0004] text-white';
         case "primary":
         default:
-            return 'bg-blue-500 hover:bg-blue-600 text-white';
+            return 'bg-[#255ed7] text-white';
     }
 });
 </script>
