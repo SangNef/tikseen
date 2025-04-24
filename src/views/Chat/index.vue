@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref, watch, watchEffect } from 'vue';
+import { ref, watch, watchEffect, onMounted } from 'vue';
 import useResponsive from '@/composables/useResponsive';
 import List from './List.vue';
 import Message from './Message.vue';
@@ -41,6 +41,11 @@ function handleSelect(chat) {
     setMobileView('chat-detail');
   }
 }
+onMounted(() => {
+  if (isMobile) {
+    setMobileView('chat-list');
+  }
+});
 
 // Theo dõi mobileView để hiểu trạng thái hiện tại
 watchEffect(() => {
