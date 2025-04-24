@@ -11,6 +11,7 @@ const props = defineProps({
   isRequire: { type: Boolean, default: false },
   message: { type: String, default: 'Trường này không hợp lệ.' },
   customClass: { type: String, default: '' },
+  showError: { type: Boolean, default: true },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -88,7 +89,7 @@ defineExpose({
         <EyeIcon v-if="isPasswordVisible" class="w-5 h-5 text-gray" />
       </div>
     </div>
-    <div class="h-5">
+    <div v-if="showError" class="h-5">
       <p v-if="error" class="text-error text-xs mt-1">{{ error }}</p>
     </div>
   </div>

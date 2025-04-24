@@ -55,6 +55,7 @@ import {
   HomeIcon as HomeOutline,
   ChartBarIcon as StatsOutline,
   UserGroupIcon as TeamOutline,
+  UsersIcon as UsersOutline,
 } from '@heroicons/vue/24/outline';
 import {
   ChatBubbleLeftRightIcon as ChatSolid,
@@ -62,6 +63,7 @@ import {
   HomeIcon as HomeSolid,
   ChartBarIcon as StatsSolid,
   UserGroupIcon as TeamSolid,
+  UsersIcon as UsersSolid,
 } from '@heroicons/vue/24/solid';
 
 const route = useRoute();
@@ -81,6 +83,12 @@ const menuItems = [
     iconOutline: StatsOutline,
     iconSolid: StatsSolid,
     route: '/stats',
+  },
+  {
+    label: 'Người dùng',
+    iconOutline: UsersOutline,
+    iconSolid: UsersSolid,
+    route: '/users',
   },
   {
     label: 'Cài đặt',

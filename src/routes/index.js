@@ -6,6 +6,9 @@ import Chat from '@/views/Chat/index.vue';
 import Setting from '@/views/Setting/index.vue';
 import BubbleChat from '@/views/BubbleChat/index.vue';
 import Stats from '@/views/Stats/index.vue';
+import Users from '@/views/Users/index.vue';
+import UserDetail from '@/views/Users/UserDetail.vue';
+import UserEdit from '@/views/Users/UserEdit.vue';
 
 const routes = [
   {
@@ -44,6 +47,30 @@ const routes = [
     path: '/stats',
     name: 'Stats',
     component: Stats,
+    meta: {
+      layout: 'DefaultLayout',
+    },
+  },
+  {
+    path: '/users',
+    name: 'Users',
+    component: Users,
+    meta: {
+      layout: 'DefaultLayout',
+    },
+  },
+  {
+    path: '/users/:id',
+    name: 'UserDetail',
+    component: UserDetail,
+    meta: {
+      layout: 'DefaultLayout',
+    },
+  },
+  {
+    path: '/users/:id/edit',
+    name: 'UserEdit',
+    component: UserEdit,
     meta: {
       layout: 'DefaultLayout',
     },

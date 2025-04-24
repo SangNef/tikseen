@@ -7,7 +7,7 @@
     <div class="flex items-center justify-center md:items-end md:justify-end md:p-0" :class="{ 'h-screen': isMobile }">
       <div
         :style="[!isMobile ? 'position: fixed; bottom: 0;right: 0' : '']"
-        class="flex flex-col bg-white rounded-none md:rounded-xl shadow-xl w-full md:h-[600px] md:max-h-[80vh] max-w-full md:max-w-md md:w-[400px] md:mr-10 md:mb-10 overflow-hidden z-[99999]"
+        class="flex flex-col bg-white rounded-none md:rounded-xl shadow-xl w-full max-w-full md:max-w-md overflow-hidden z-[99999]"
         :class="{ 'h-[600px]': !isMobile, 'h-screen': isMobile }">
         <!-- Header -->
         <div
