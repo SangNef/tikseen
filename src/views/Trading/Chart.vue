@@ -1,5 +1,6 @@
 <template>
-    <div class="h-full overflow-y-auto  scroll-hidden w-[calc(100vw-840px)] max-lg:w-[calc(100vw-420px)] max-md:w-full bg-[#151a20] flex-1">
+    <div
+        class="h-full overflow-y-auto scroll-hidden w-[calc(100vw-840px)] max-lg:w-[calc(100vw-420px)] max-md:w-full bg-[#151a20] flex-1">
         <div class="h-25 flex items-center mb-1 overflow-hidden relative">
             <div class="marquee-wrapper">
                 <div class="marquee-track">
@@ -51,7 +52,32 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody class="h-[260px] max-md:overflow-y-auto scroll-hidden"></tbody>
+                <tbody class="h-[260px] max-md:overflow-y-auto scroll-hidden">
+                    <tr
+                        v-for="(tx, index) in transactions"
+                        :key="index"
+                        class="text-white text-[13px] text-center border-t border-[#1e2a36] font-semibold">
+                        <td class="p-3">{{ tx.coin }}USDT</td>
+                        <td class="p-3">{{ tx.period }}</td>
+                        <td
+                            class="p-3"
+                            :class="{
+                                'text-[#29cb97]': tx.vote === 'up',
+                                'text-red-500': tx.vote === 'down',
+                            }">
+                            {{ tx.vote === "up" ? "Lên" : "Xuống" }}
+                        </td>
+                        <td class="p-3 text-white">
+                            {{ getResultText(tx.result, tx.vote) }}
+                        </td>
+                        <td class="p-3">{{ tx.amount }}</td>
+                        <td class="p-3">
+                            {{
+                                tx.result === "pending" || getResultText(tx.result, tx.vote) === "Thua" ? 0 : tx.profit
+                            }}
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
@@ -59,9 +85,17 @@
 
 <script setup>
 import tools from "@/data/tool";
+import transactions from "@/data/transaction";
 
 import VueApexCharts from "vue3-apexcharts";
 import { ref } from "vue";
+
+const getResultText = (result, vote) => {
+    if (result === "pending") return "Chờ";
+    if ((result === "up" || result === "down") && result === vote) return "Thắng";
+    if ((result === "up" || result === "down") && result !== vote) return "Thua";
+    return "Không xác định";
+};
 
 const now = new Date();
 const data = [];

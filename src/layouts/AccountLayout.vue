@@ -24,6 +24,26 @@
 
                 <!-- Slot content -->
                 <div class="grow min-h-[calc(100vh-88px)]">
+                    <div class="px-[15px] mt-8 max-md:hidden">
+                        <div class="bg-white rounded-[10px] shadow-lg px-10 py-5 flex justify-between">
+                            <div class="flex">
+                                <div class="w-12 h-12 rounded-full bg-[#ddd8f9] flex items-center justify-center">
+                                    <SpeakerWaveIcon class="w-6 h-6 text-[#34007f] stroke-2" />
+                                </div>
+                                <div class="ml-5">
+                                    <div class="text-[15px] font-bold">
+                                        Tiến hành tham gia đặt lệnh để tìm kiếm lợi nhuận
+                                    </div>
+                                    <p class="text-[16px] text-[#8f8f8f]">
+                                        lợi nhuận có thể lên tới <strong>40%</strong> thu nhập từ chúng tôi
+                                    </p>
+                                </div>
+                            </div>
+                            <router-link to="/trading/1" class="px-[30px] py-[13px] bg-[#deb00b] text-white font-bold"
+                                >Tiến hành giao dịch</router-link
+                            >
+                        </div>
+                    </div>
                     <slot />
                 </div>
             </div>
