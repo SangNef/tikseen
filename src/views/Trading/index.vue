@@ -1,6 +1,6 @@
 <template>
     <Header />
-    <div class="md:h-[calc(100vh-56px)] mb-1 mx-1 gap-1 flex md:flex-nowrap justify-between max-md:flex-col mt-[54px]">
+    <div class="md:h-[calc(100vh-58px)] mb-1 mx-1 gap-1 flex md:flex-nowrap justify-between max-md:flex-col mt-[54px]">
         <Tool />
         <Chart />
         <Bet />

@@ -22,7 +22,7 @@
             </div>
         </div>
         <VueApexCharts type="candlestick" height="350" :options="chartOptions" :series="series" />
-        <div class="pt-8 w-full md:h-[260px] overflow-y-auto">
+        <div class="mt-8 w-full h-[260px] md:h-[calc(100vh-580px)] overflow-y-auto">
             <table class="w-full">
                 <thead class="w-full bg-[#030f1c]">
                     <tr>
