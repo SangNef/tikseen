@@ -5,9 +5,7 @@
             <div class="marquee-wrapper">
                 <div class="marquee-track">
                     <div v-for="i in 2" :key="i" class="marquee-loop whitespace-nowrap flex items-center">
-                        <div
-                            v-for="(tool, index) in tools"
-                            :key="index + '-' + i"
+                        <div v-for="(tool, index) in tools" :key="index + '-' + i"
                             class="text-white text-sm flex items-start flex-col px-8 border-l border-[#ffffff5c]">
                             <span class="font-bold">{{ tool.coin }}USDT</span>
                             <span :class="tool.percent.startsWith('-') ? 'text-[#fa3963]' : 'text-[#2fedb1]'">{{
@@ -53,18 +51,14 @@
                     </tr>
                 </thead>
                 <tbody class="h-[260px] max-md:overflow-y-auto scroll-hidden">
-                    <tr
-                        v-for="(tx, index) in transactions"
-                        :key="index"
+                    <tr v-for="(tx, index) in transactions" :key="index"
                         class="text-white text-[13px] text-center border-t border-[#1e2a36] font-semibold">
                         <td class="p-3">{{ tx.coin }}USDT</td>
                         <td class="p-3">{{ tx.period }}</td>
-                        <td
-                            class="p-3"
-                            :class="{
-                                'text-[#29cb97]': tx.vote === 'up',
-                                'text-red-500': tx.vote === 'down',
-                            }">
+                        <td class="p-3" :class="{
+                            'text-[#29cb97]': tx.vote === 'up',
+                            'text-red-500': tx.vote === 'down',
+                        }">
                             {{ tx.vote === "up" ? "Lên" : "Xuống" }}
                         </td>
                         <td class="p-3 text-white">
@@ -199,6 +193,7 @@ const chartOptions = ref({
     0% {
         transform: translateX(0%);
     }
+
     100% {
         transform: translateX(-50%);
     }
