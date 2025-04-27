@@ -572,6 +572,80 @@ Nếu vẫn gặp vấn đề đệ quy, có thể cần xem xét:
 2. Tối ưu hóa hơn nữa cấu trúc dữ liệu và policy
 3. Sử dụng service roles cho các thao tác quan trọng thay vì dựa vào RLS
 
+## Giải pháp cho lỗi "infinite recursion detected in policy for relation organizations"
+
+Để giải quyết lỗi infinite recursion trong policy cho relation "organizations", chúng ta cần tạo function SECURITY DEFINER:
+
+```sql
+-- Tạo function bỏ qua RLS để kiểm tra quyền truy cập organizations
+CREATE OR REPLACE FUNCTION is_organization_member(_user_id uuid, _organization_id uuid)
+RETURNS bool AS $$
+SELECT EXISTS (
+  SELECT 1
+  FROM organizations o
+  WHERE o.id = _organization_id AND (
+    o.owner_id = _user_id OR
+    EXISTS (
+      SELECT 1 FROM organization_agents oa
+      JOIN agents a ON oa.agent_id = a.id
+      WHERE oa.organization_id = _organization_id AND a.user_id = _user_id
+    )
+  )
+);
+$$ LANGUAGE sql SECURITY DEFINER;
+
+-- Cập nhật policy sử dụng function này
+DROP POLICY IF EXISTS "Users can view their own organizations" ON organizations;
+CREATE POLICY "Users can view their own organizations" ON organizations
+  FOR SELECT USING (
+    owner_id = auth.uid() OR
+    is_organization_member(auth.uid(), id)
+  );
+```
+
+Cách thực hiện này giúp:
+
+1. Function `is_organization_member` được đánh dấu là SECURITY DEFINER sẽ bỏ qua RLS khi thực thi
+2. Khi policy gọi function này, sẽ không xảy ra đệ quy vô hạn
+3. Vẫn đảm bảo logic kiểm tra quyền truy cập organizations ban đầu
+
+### Giải pháp thay thế với policy đơn giản hơn
+
+Nếu cách tiếp cận dùng function không giải quyết được vấn đề, có thể sử dụng cách tiếp cận đơn giản hơn bằng cách chia nhỏ policy:
+
+```sql
+-- Thay thế bằng policy đơn giản hơn để tránh đệ quy
+DROP POLICY IF EXISTS "Users can view their own organizations" ON organizations;
+
+-- Policy riêng cho chủ sở hữu
+CREATE POLICY "Organization owners can view organizations" ON organizations
+  FOR SELECT USING (
+    owner_id = auth.uid()
+  );
+
+-- Policy riêng cho thành viên tổ chức
+CREATE POLICY "Organization members can view organizations" ON organizations
+  FOR SELECT USING (
+    EXISTS (
+      SELECT 1 FROM organization_agents oa
+      JOIN agents a ON oa.agent_id = a.id
+      WHERE a.user_id = auth.uid() AND oa.organization_id = organizations.id
+    )
+  );
+```
+
+Chia nhỏ policy thành các policy độc lập như vậy có thể giúp tránh được tình trạng đệ quy và dễ quản lý hơn.
+
+### Cân nhắc khi sử dụng đường dẫn API trực tiếp
+
+Khi truy cập API endpoint trực tiếp như `https://xiirftqsiaxgkttmyfom.supabase.co/rest/v1/organizations`, cần đảm bảo:
+
+1. Đã gửi đúng headers xác thực (apikey và authorization JWT token)
+2. Token JWT chứa đủ thông tin claim để policy RLS hoạt động đúng
+3. Thiết lập URL không trực tiếp chứa tên dự án Supabase trong code production
+
+Đồng thời, bạn cũng có thể tạo thêm function tương tự cho các policy phức tạp khác để tránh đệ quy và tối ưu hóa hiệu năng.
+
 ```
 
 ```
