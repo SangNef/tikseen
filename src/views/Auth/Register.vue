@@ -1,38 +1,40 @@
 <template>
   <div class="max-w-90 mx-auto md:mt-[90px]">
-    <h2 class="leading-[32px] text-2xl font-semibold text-center">Start for free</h2>
-    <h3 class="leading-[28px] text-[20px] text-[#62626d] font-semibold text-center !mt-2">No credit card required</h3>
+    <h2 class="leading-[32px] text-2xl font-semibold text-center">Đăng ký miễn phí</h2>
+    <!-- <h3 class="leading-[28px] text-[20px] text-[#62626d] font-semibold text-center !mt-2">Không cần thẻ tín dụng</h3> -->
     <form @submit.prevent="handleSubmit">
       <div class="w-full mt-7">
         <BaseInput
           v-model="email"
-          label="Business email"
+          label="Email doanh nghiệp"
           type="email"
-          placeholder="name@work-email.com"
+          placeholder="Gmail để xác thực"
+          autocomplete="new-email"
           :isRequire="true"
           message="Email không hợp lệ."
           ref="emailInput" />
         <BaseInput
           v-model="password"
-          label="Password"
+          label="Mật khẩu"
           type="password"
-          placeholder="12 characters or more"
+          placeholder="12 ký tự trở lên"
+          autocomplete="new-password"
           :isRequire="true"
           message="Mật khẩu không được bỏ trống."
           customClass=""
           ref="passwordInput" />
-        <BaseInput
+        <!-- <BaseInput
           v-model="phone"
-          label="Phone number"
+          label="Số điện thoại"
           type="tel"
-          placeholder="Enter your phone number"
+          placeholder="Nhập số điện thoại của bạn"
           :isRequire="true"
           message="Số điện thoại không hợp lệ."
-          ref="phoneInput" />
+          ref="phoneInput" /> -->
       </div>
       <BaseButton
         type="submit"
-        label="Sign up"
+        label="Đăng ký"
         color="danger"
         :disabled="isSubmitting"
         customClass="!mt-2 w-full py-[11px]" />
@@ -66,11 +68,11 @@ const handleSubmit = async () => {
 
   // validate từng input
   emailInput.value.handleValidate();
-  phoneInput.value.handleValidate();
+  // phoneInput.value.handleValidate();
   passwordInput.value.handleValidate();
 
   // kiểm tra error
-  if (emailInput.value.error || phoneInput.value.error || passwordInput.value.error) {
+  if (emailInput.value.error || passwordInput.value.error) {
     isValid = false;
   }
 
@@ -80,7 +82,7 @@ const handleSubmit = async () => {
     try {
       // Thêm dữ liệu người dùng với phone
       const userData = {
-        phone: phone.value,
+        // phone: phone.value,
         role: 'agent', // Mặc định là agent
       };
 

@@ -3,6 +3,12 @@ import App from './App.vue';
 import router from './routes';
 import './style.css';
 import './styles/theme.css';
+
+import Vue3Toastify from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+
+import { toast } from 'vue3-toastify';
+
 import { supabase } from './helpers';
 
 // Thêm hàm điều chỉnh viewport height để tối ưu trên mobile
@@ -37,4 +43,14 @@ supabase.auth.onAuthStateChange((event, session) => {
 });
 
 app.use(router);
+app.use(Vue3Toastify, {
+  autoClose: 5000,
+  // theme: 'colored',
+  transition: 'bounce',
+  pauseOnHover: true,
+  pauseOnFocusLoss: true,
+});
+
+window.toast = toast;
+
 app.mount('#app');

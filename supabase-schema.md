@@ -2,6 +2,8 @@
 
 Dưới đây là các câu lệnh SQL để tạo cấu trúc cơ sở dữ liệu cho ứng dụng LiveChat trên Supabase:
 
+> **Lưu ý quan trọng**: Để tránh lỗi "infinite recursion detected in policy for relation" trong các RLS policy, chúng ta sử dụng `auth.jwt()` để truy cập trực tiếp vào JWT claim thay vì sử dụng truy vấn con (subquery) đến bảng `users`. Cách tiếp cận này tránh việc Postgres phải đánh giá lại các policy khi truy vấn bảng users, từ đó ngăn chặn đệ quy vô hạn.
+
 ```sql
 -- Tạo enum types
 CREATE TYPE user_role AS ENUM ('admin', 'agent', 'superadmin');
@@ -199,20 +201,18 @@ CREATE POLICY "Users can view their own organizations" ON organizations
 CREATE POLICY "Owners can update their organizations" ON organizations
   FOR UPDATE USING (owner_id = auth.uid());
 
+-- Thay thế policy gây đệ quy vô hạn bằng cách sử dụng JWT claim
+DROP POLICY IF EXISTS "Superadmin can view all organizations" ON organizations;
+DROP POLICY IF EXISTS "Superadmin can update all organizations" ON organizations;
+
 CREATE POLICY "Superadmin can view all organizations" ON organizations
   FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid() AND role = 'superadmin'
-    )
+    (auth.jwt() ->> 'role') = 'superadmin'
   );
 
 CREATE POLICY "Superadmin can update all organizations" ON organizations
   FOR UPDATE USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid() AND role = 'superadmin'
-    )
+    (auth.jwt() ->> 'role') = 'superadmin'
   );
 
 -- RLS cho bảng agents
@@ -230,12 +230,12 @@ CREATE POLICY "Organization owners can view their organization agents" ON agents
     )
   );
 
+-- Thay thế policy gây đệ quy vô hạn bằng cách sử dụng JWT claim
+DROP POLICY IF EXISTS "Superadmin can view all agents" ON agents;
+
 CREATE POLICY "Superadmin can view all agents" ON agents
   FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid() AND role = 'superadmin'
-    )
+    (auth.jwt() ->> 'role') = 'superadmin'
   );
 
 -- RLS cho bảng organization_agents
@@ -257,12 +257,12 @@ CREATE POLICY "Agents can view their organization relationships" ON organization
     )
   );
 
+-- Thay thế policy gây đệ quy vô hạn bằng cách sử dụng JWT claim
+DROP POLICY IF EXISTS "Superadmin can manage all organization_agents" ON organization_agents;
+
 CREATE POLICY "Superadmin can manage all organization_agents" ON organization_agents
   FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid() AND role = 'superadmin'
-    )
+    (auth.jwt() ->> 'role') = 'superadmin'
   );
 
 -- RLS cho bảng customers
@@ -283,12 +283,12 @@ CREATE POLICY "Organization members can view their customers" ON customers
     )
   );
 
+-- Thay thế policy gây đệ quy vô hạn bằng cách sử dụng JWT claim
+DROP POLICY IF EXISTS "Superadmin can view all customers" ON customers;
+
 CREATE POLICY "Superadmin can view all customers" ON customers
   FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid() AND role = 'superadmin'
-    )
+    (auth.jwt() ->> 'role') = 'superadmin'
   );
 
 -- RLS cho bảng conversations
@@ -323,12 +323,12 @@ CREATE POLICY "Organization admins can update conversations" ON conversations
     )
   );
 
+-- Thay thế policy gây đệ quy vô hạn bằng cách sử dụng JWT claim
+DROP POLICY IF EXISTS "Superadmin can view all conversations" ON conversations;
+
 CREATE POLICY "Superadmin can view all conversations" ON conversations
   FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid() AND role = 'superadmin'
-    )
+    (auth.jwt() ->> 'role') = 'superadmin'
   );
 
 -- RLS cho bảng messages
@@ -374,12 +374,12 @@ CREATE POLICY "Agents can send messages" ON messages
     )
   );
 
+-- Thay thế policy gây đệ quy vô hạn bằng cách sử dụng JWT claim
+DROP POLICY IF EXISTS "Superadmin can view all messages" ON messages;
+
 CREATE POLICY "Superadmin can view all messages" ON messages
   FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid() AND role = 'superadmin'
-    )
+    (auth.jwt() ->> 'role') = 'superadmin'
   );
 
 -- RLS cho bảng settings
@@ -397,12 +397,12 @@ CREATE POLICY "Admin users can update organization settings" ON settings
     )
   );
 
+-- Thay thế policy gây đệ quy vô hạn bằng cách sử dụng JWT claim
+DROP POLICY IF EXISTS "Superadmin can manage all settings" ON settings;
+
 CREATE POLICY "Superadmin can manage all settings" ON settings
   FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid() AND role = 'superadmin'
-    )
+    (auth.jwt() ->> 'role') = 'superadmin'
   );
 
 -- Realtime Publication cho messages

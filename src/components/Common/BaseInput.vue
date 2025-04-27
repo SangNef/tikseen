@@ -12,6 +12,7 @@ const props = defineProps({
   message: { type: String, default: 'Trường này không hợp lệ.' },
   customClass: { type: String, default: '' },
   showError: { type: Boolean, default: true },
+  autocomplete: { type: String, default: 'off' },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -79,6 +80,7 @@ defineExpose({
         :value="modelValue"
         @input="handleInput"
         @blur="handleValidate"
+        :autocomplete="autocomplete"
         class="w-full h-11 px-3 py-2 border rounded-custom outline-none transition-colors duration-200"
         :class="error ? 'border-error focus:border-error' : 'border-medium focus:border-primary'" />
       <div

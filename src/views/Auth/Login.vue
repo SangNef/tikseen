@@ -1,24 +1,26 @@
 <template>
   <div class="max-w-90 mx-auto md:mt-[90px]">
-    <h2 class="leading-[32px] text-2xl font-semibold text-center">Log in</h2>
+    <h2 class="leading-[32px] text-2xl font-semibold text-center">Đăng nhập</h2>
     <form @submit.prevent="handleSubmit">
       <div class="w-full mt-7">
         <BaseInput
           v-model="email"
-          label="Business email"
+          label="Email doanh nghiệp"
           id="email"
           type="email"
-          placeholder="name@work-email.com"
+          autocomplete="new-password"
+          placeholder="Email đăng nhập"
           :isRequire="true"
           :validate="emailValidator"
           message="Email không hợp lệ."
           ref="emailInput" />
         <BaseInput
           v-model="password"
-          label="Password"
+          label="Mật khẩu"
           id="password"
           type="password"
-          placeholder="12 characters or more"
+          autocomplete="new-password"
+          placeholder="12 ký tự trở lên"
           :isRequire="true"
           message="Mật khẩu không được bỏ trống."
           customClass=""
@@ -27,7 +29,7 @@
       <BaseButton
         type="submit"
         color="primary"
-        label="Log in"
+        label="Đăng nhập"
         customClass="!mt-2 w-full py-[11px]"
         :disabled="isSubmitting" />
     </form>
@@ -79,19 +81,21 @@ const handleSubmit = async () => {
 
       if (signInError) {
         loginError.value = signInError.message || 'Đăng nhập không thành công';
-        console.error('Login failed:', signInError);
+        console.error('Đăng nhập thất bại:', signInError);
+
+        window.toast.error(signInError.code);
       } else {
-        console.log('Login successful');
+        console.log('Đăng nhập thành công');
         // Chuyển hướng được xử lý trong listener auth state ở main.js
       }
     } catch (err) {
       loginError.value = err.message || 'Có lỗi xảy ra khi đăng nhập';
-      console.error('Login error:', err);
+      console.error('Lỗi đăng nhập:', err);
     } finally {
       isSubmitting.value = false;
     }
   } else {
-    console.log('Validation failed');
+    console.log('Xác thực thất bại');
   }
 };
 </script>
