@@ -11,3 +11,5 @@ export default function formatTime(time) {
   if (diffHours < 24) return `${diffHours} giờ trước`;
   return `${diffDays} ngày trước`;
 }
+
+export { default as supabase } from './supabase';

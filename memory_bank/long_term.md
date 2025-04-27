@@ -14,6 +14,7 @@
 - **Router**: Vue Router
 - **CSS**: Tailwind CSS
 - **Icons**: @heroicons/vue
+- **Backend/Database**: Supabase (PostgreSQL)
 
 ## Cấu trúc dự án
 
@@ -121,3 +122,117 @@ livechat/
 - **Phase 2**: Tích hợp tính năng chat thời gian thực
 - **Phase 3**: Bổ sung tính năng nâng cao (thông báo, emoji, file sharing)
 - **Phase 4**: Tối ưu hóa hiệu suất và trải nghiệm người dùng
+
+## Cơ sở dữ liệu (Supabase)
+
+### Enum Types
+
+- **user_role**: 'admin', 'agent', 'superadmin'
+- **user_status**: 'active', 'inactive'
+- **customer_status**: 'active', 'blocked'
+- **conversation_status**: 'active', 'closed', 'pending'
+- **message_type**: 'text', 'image', 'file', 'pre-form'
+- **message_sender_type**: 'agent', 'customer'
+
+### Các bảng dữ liệu
+
+1. **users**
+
+   - `id`: UUID (Primary key, references auth.users)
+   - `email`: Text (Unique)
+   - `username`: Text
+   - `role`: user_role (Default: 'agent')
+   - `status`: user_status (Default: 'active')
+   - `created_at`: Timestamp
+   - `updated_at`: Timestamp
+
+2. **organizations**
+
+   - `id`: UUID (Primary key)
+   - `name`: Text
+   - `url`: Text
+   - `owner_id`: UUID (References users.id)
+   - `data`: JSONB
+   - `status`: user_status (Default: 'active')
+   - `created_at`: Timestamp
+
+3. **agents**
+
+   - `id`: UUID (Primary key)
+   - `user_id`: UUID (References users.id)
+   - `name`: Text
+   - `avatar_url`: Text
+   - `status`: user_status (Default: 'active')
+   - `created_at`: Timestamp
+
+4. **organization_agents**
+
+   - `id`: UUID (Primary key)
+   - `agent_id`: UUID (References agents.id)
+   - `organization_id`: UUID (References organizations.id)
+   - `created_at`: Timestamp
+
+5. **customers**
+
+   - `id`: UUID (Primary key)
+   - `organization_id`: UUID (References organizations.id)
+   - `name`: Text
+   - `status`: customer_status (Default: 'active')
+   - `data`: JSONB
+   - `ip`: Text
+   - `user_agent`: Text
+   - `created_at`: Timestamp
+
+6. **conversations**
+
+   - `id`: UUID (Primary key)
+   - `organization_id`: UUID (References organizations.id)
+   - `customer_id`: UUID (References customers.id)
+   - `agent_id`: UUID (References agents.id)
+   - `status`: conversation_status (Default: 'pending')
+   - `created_at`: Timestamp
+
+7. **messages**
+
+   - `id`: UUID (Primary key)
+   - `conversation_id`: UUID (References conversations.id)
+   - `sender_id`: UUID
+   - `receiver_id`: UUID
+   - `sender_type`: message_sender_type
+   - `content`: Text
+   - `type`: message_type (Default: 'text')
+   - `created_at`: Timestamp
+
+8. **settings**
+   - `id`: UUID (Primary key)
+   - `key`: Text (Unique)
+   - `value`: JSONB
+   - `created_at`: Timestamp
+
+### Quan hệ giữa các bảng
+
+- `users` -> `agents` (1:1): Mỗi user có thể là một agent
+- `organizations` -> `organization_agents` -> `agents` (many-to-many): Nhiều agent có thể thuộc nhiều organization
+- `organizations` -> `customers` (1:many): Mỗi organization có nhiều customers
+- `organizations` -> `conversations` (1:many): Mỗi organization có nhiều conversations
+- `customers` -> `conversations` (1:many): Mỗi customer có thể có nhiều conversations
+- `agents` -> `conversations` (1:many): Mỗi agent có thể xử lý nhiều conversations
+- `conversations` -> `messages` (1:many): Mỗi conversation có nhiều messages
+
+### Row Level Security (RLS)
+
+- Supabase RLS được áp dụng để kiểm soát quyền truy cập dữ liệu:
+  - Người dùng thông thường chỉ có thể xem/cập nhật dữ liệu của họ
+  - Admin có thể quản lý dữ liệu trong tổ chức của họ
+  - Superadmin có quyền truy cập toàn bộ dữ liệu hệ thống
+
+### Realtime Pub/Sub
+
+- Supabase Realtime được kích hoạt cho bảng `messages` để cập nhật tin nhắn thời gian thực
+- Agents và Customers đăng ký kênh `messages` theo conversation_id
+
+### Triggers và Functions
+
+- Tự động tạo bản ghi user khi đăng ký mới
+- Tự động tạo agent và liên kết với tổ chức sau khi tạo tổ chức mới
+- Functions cho Dashboard để lấy thống kê cuộc hội thoại và tin nhắn

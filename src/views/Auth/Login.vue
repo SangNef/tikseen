@@ -39,12 +39,15 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import BaseInput from '@/components/Common/BaseInput.vue';
 import BaseButton from '@/components/Common/BaseButton.vue';
+import { useAuth } from '@/composables';
 
 const email = ref('');
 const password = ref('');
 const isSubmitting = ref(false);
+const loginError = ref('');
 
 const router = useRouter();
+const { signIn, loading, error } = useAuth();
 
 const emailValidator = (value) => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -54,8 +57,9 @@ const emailValidator = (value) => {
 const emailInput = ref(null);
 const passwordInput = ref(null);
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   let isValid = true;
+  loginError.value = '';
 
   emailInput.value.handleValidate();
   if (emailInput.value.error) {
@@ -69,13 +73,23 @@ const handleSubmit = () => {
 
   if (isValid) {
     isSubmitting.value = true;
-    console.log('Form submitted with:', { email: email.value, password: password.value });
 
-    setTimeout(() => {
+    try {
+      const { data, error: signInError } = await signIn(email.value, password.value);
+
+      if (signInError) {
+        loginError.value = signInError.message || 'Đăng nhập không thành công';
+        console.error('Login failed:', signInError);
+      } else {
+        console.log('Login successful');
+        // Chuyển hướng được xử lý trong listener auth state ở main.js
+      }
+    } catch (err) {
+      loginError.value = err.message || 'Có lỗi xảy ra khi đăng nhập';
+      console.error('Login error:', err);
+    } finally {
       isSubmitting.value = false;
-      localStorage.setItem('isLoginin', true);
-      router.push({ name: 'Chat' });
-    }, 2000);
+    }
   } else {
     console.log('Validation failed');
   }

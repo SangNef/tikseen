@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './routes';
 import './style.css';
 import './styles/theme.css';
+import { supabase } from './helpers';
 
 // Thêm hàm điều chỉnh viewport height để tối ưu trên mobile
 function setCustomViewportHeight() {
@@ -23,6 +24,17 @@ window.addEventListener('resize', setCustomViewportHeight);
 window.addEventListener('orientationchange', setCustomViewportHeight);
 
 const app = createApp(App);
+
+// Xử lý auth state trước khi mount
+supabase.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN' && session) {
+    // Điều hướng sau khi đăng nhập thành công
+    router.push('/');
+  } else if (event === 'SIGNED_OUT') {
+    // Điều hướng sau khi đăng xuất
+    router.push('/auth/login');
+  }
+});
 
 app.use(router);
 app.mount('#app');

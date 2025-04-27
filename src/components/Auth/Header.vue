@@ -18,9 +18,9 @@ const route = useRoute();
 const router = useRouter();
 
 const buttonText = computed(() => {
-  if (route.path === '/login') {
+  if (route.path === '/auth/login') {
     return 'Sign up free';
-  } else if (route.path === '/register') {
+  } else if (route.path === '/auth/register') {
     return 'Log in';
   } else {
     return 'Sign up free';
@@ -28,12 +28,12 @@ const buttonText = computed(() => {
 });
 
 function handleClick() {
-  if (route.path === '/login') {
-    router.push('/register');
-  } else if (route.path === '/register') {
-    router.push('/login');
+  if (route.path === '/auth/login') {
+    router.push('/auth/register');
+  } else if (route.path === '/auth/register') {
+    router.push('/auth/login');
   } else {
-    router.push('/register');
+    router.push('/auth/register');
   }
 }
 </script>
