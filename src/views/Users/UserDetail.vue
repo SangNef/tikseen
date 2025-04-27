@@ -181,7 +181,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import BaseButton from '@/components/Common/BaseButton.vue';
 import { getUserById, getUserActivities } from '@/data/users';
@@ -305,10 +305,68 @@ const toggleUserStatus = () => {
   }
 };
 
+// Kiểm tra và cập nhật thời gian hoạt động của người dùng
+const updateUserActivity = () => {
+  if (user.value) {
+    // Cập nhật thời gian hoạt động gần nhất
+    user.value.lastActive = new Date().toISOString();
+
+    // Trong trường hợp thực tế, sẽ gọi API để cập nhật thông tin này
+    console.log('Cập nhật thời gian hoạt động cho user:', user.value.id);
+
+    // Giả lập lưu thông tin vào localStorage
+    try {
+      const usersData = localStorage.getItem('users_activity_data');
+      let usersActivity = usersData ? JSON.parse(usersData) : {};
+
+      usersActivity[user.value.id] = {
+        lastActive: new Date().toISOString(),
+        name: user.value.name,
+        id: user.value.id,
+      };
+
+      localStorage.setItem('users_activity_data', JSON.stringify(usersActivity));
+    } catch (error) {
+      console.error('Lỗi khi lưu hoạt động user:', error);
+    }
+  }
+};
+
+// Lấy thông tin người dùng từ localStorage nếu có
+const getUserFromLocalStorage = (userId) => {
+  try {
+    const usersData = localStorage.getItem('users_activity_data');
+    if (usersData) {
+      const usersActivity = JSON.parse(usersData);
+      return usersActivity[userId];
+    }
+  } catch (error) {
+    console.error('Lỗi khi đọc thông tin hoạt động user:', error);
+  }
+  return null;
+};
+
 onMounted(async () => {
   const userId = route.params.id;
   if (userId) {
+    // Kiểm tra trước từ localStorage
+    const localUserActivity = getUserFromLocalStorage(userId);
+    if (localUserActivity) {
+      console.log('Đã tìm thấy thông tin hoạt động gần đây của user từ localStorage');
+    }
+
     await fetchUserData(userId);
+
+    // Cập nhật thời gian hoạt động
+    updateUserActivity();
+
+    // Thiết lập interval để cập nhật thời gian hoạt động định kỳ
+    const activityInterval = setInterval(updateUserActivity, 60000); // Cập nhật mỗi phút
+
+    // Clear interval khi component unmount
+    onBeforeUnmount(() => {
+      clearInterval(activityInterval);
+    });
   } else {
     error.value = 'Không tìm thấy ID người dùng';
     loading.value = false;

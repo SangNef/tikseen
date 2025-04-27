@@ -187,7 +187,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import BaseInput from '@/components/Common/BaseInput.vue';
 import BaseButton from '@/components/Common/BaseButton.vue';
@@ -285,6 +285,8 @@ const roleText = (role) => {
 
 // Xem chi tiết người dùng
 const viewUser = (userId) => {
+  // Theo dõi lịch sử xem user
+  trackUserView(userId);
   router.push(`/users/${userId}`);
 };
 
@@ -311,4 +313,78 @@ const refreshUsers = () => {
   console.log('Refreshing users list...');
   // Here you would typically make an API call to fetch updated user data
 };
+
+// Kiểm tra thông tin hoạt động người dùng từ localStorage
+const checkUserActivity = () => {
+  try {
+    const usersData = localStorage.getItem('users_activity_data');
+    if (usersData) {
+      const usersActivity = JSON.parse(usersData);
+
+      // Cập nhật thông tin hoạt động cho danh sách người dùng
+      usersList.value.forEach((user) => {
+        const userActivity = usersActivity[user.id];
+        if (userActivity && userActivity.lastActive) {
+          // Cập nhật thời gian đăng nhập cuối
+          user.lastLogin = userActivity.lastActive;
+
+          // Cập nhật trạng thái dựa trên thời gian hoạt động
+          const lastActive = new Date(userActivity.lastActive);
+          const now = new Date();
+          const diffMinutes = Math.floor((now - lastActive) / (1000 * 60));
+
+          // Nếu hoạt động trong vòng 5 phút, đánh dấu là đang hoạt động
+          if (diffMinutes < 5) {
+            user.status = 'active';
+          } else if (diffMinutes < 60) {
+            user.status = 'inactive';
+          }
+        }
+      });
+
+      console.log('Đã cập nhật thông tin hoạt động người dùng từ localStorage');
+    }
+  } catch (error) {
+    console.error('Lỗi khi kiểm tra thông tin hoạt động người dùng:', error);
+  }
+};
+
+// Lưu thông tin người dùng đang xem vào localStorage
+const trackUserView = (userId) => {
+  if (!userId) return;
+
+  try {
+    const usersData = localStorage.getItem('users_view_history');
+    let viewHistory = usersData ? JSON.parse(usersData) : [];
+
+    // Thêm vào lịch sử xem, loại bỏ trùng lặp
+    const existingIndex = viewHistory.findIndex((id) => id === userId);
+    if (existingIndex !== -1) {
+      viewHistory.splice(existingIndex, 1);
+    }
+    viewHistory.unshift(userId);
+
+    // Giới hạn lịch sử xem
+    if (viewHistory.length > 10) {
+      viewHistory = viewHistory.slice(0, 10);
+    }
+
+    localStorage.setItem('users_view_history', JSON.stringify(viewHistory));
+  } catch (error) {
+    console.error('Lỗi khi lưu lịch sử xem người dùng:', error);
+  }
+};
+
+onMounted(() => {
+  // Kiểm tra thông tin hoạt động người dùng khi component được tạo
+  checkUserActivity();
+
+  // Cập nhật thông tin định kỳ
+  const activityInterval = setInterval(checkUserActivity, 30000); // Cập nhật mỗi 30 giây
+
+  // Clear interval khi component unmount
+  onBeforeUnmount(() => {
+    clearInterval(activityInterval);
+  });
+});
 </script>

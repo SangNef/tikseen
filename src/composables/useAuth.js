@@ -57,6 +57,11 @@ export default function useAuth() {
       session.value = data.session;
       user.value = data.user;
 
+      // Lưu thông tin user vào localStorage
+      if (data.user) {
+        saveUserToLocalStorage(data.user);
+      }
+
       return { data };
     } catch (err) {
       error.value = err.message;
@@ -78,6 +83,9 @@ export default function useAuth() {
 
       user.value = null;
       session.value = null;
+
+      // Xóa thông tin user khỏi localStorage
+      localStorage.removeItem('livechat_user_data');
     } catch (err) {
       error.value = err.message;
       return { error: err };
@@ -86,16 +94,54 @@ export default function useAuth() {
     }
   };
 
-  // Hàm kiểm tra phiên hiện tại
+  // Hàm kiểm tra phiên hiện tại từ Supabase
   const checkSession = async () => {
     try {
       loading.value = true;
       error.value = null;
 
-      const { data } = await supabase.auth.getSession();
+      // Kiểm tra trước từ localStorage nếu có
+      const savedUser = getSavedUserFromLocalStorage();
+      if (savedUser) {
+        user.value = savedUser;
+      }
 
-      session.value = data.session;
-      user.value = data.session?.user || null;
+      // Kiểm tra phiên từ Supabase
+      const { data, error: sessionError } = await supabase.auth.getSession();
+
+      if (sessionError) {
+        throw sessionError;
+      }
+
+      if (data.session) {
+        session.value = data.session;
+        user.value = data.session?.user || null;
+
+        // Nếu có user mới, cập nhật vào localStorage
+        if (data.session?.user) {
+          saveUserToLocalStorage(data.session.user);
+
+          // Cập nhật thêm thông tin người dùng từ Supabase nếu cần
+          await refreshUserData(data.session.user.id);
+        }
+      } else if (savedUser) {
+        // Nếu không có phiên Supabase nhưng có user đã lưu, thử sử dụng thông tin đó
+        // Kiểm tra xem thông tin còn hợp lệ không
+        const lastSaved = new Date(savedUser.lastSaved);
+        const now = new Date();
+        const diffHours = Math.abs(now - lastSaved) / (1000 * 60 * 60);
+
+        if (diffHours < 24) {
+          // Nếu thông tin lưu trong vòng 24 giờ, tạm thời sử dụng
+          user.value = savedUser;
+          console.log('Sử dụng thông tin user đã lưu (không có phiên Supabase hợp lệ)');
+        } else {
+          // Nếu thông tin quá cũ, xóa khỏi localStorage
+          localStorage.removeItem('livechat_user_data');
+          user.value = null;
+          session.value = null;
+        }
+      }
 
       return { data };
     } catch (err) {
@@ -106,10 +152,125 @@ export default function useAuth() {
     }
   };
 
+  // Hàm cập nhật thông tin người dùng từ Supabase
+  const refreshUserData = async (userId) => {
+    if (!userId) return;
+
+    try {
+      // Lấy thông tin chi tiết của user từ bảng users (nếu có)
+      const { data, error } = await supabase.from('users').select('*').eq('id', userId).single();
+
+      if (error) {
+        console.error('Lỗi khi lấy thông tin chi tiết user:', error.message);
+        return;
+      }
+
+      if (data) {
+        // Cập nhật thông tin user từ users
+        const updatedUser = {
+          ...user.value,
+          lastUpdated: new Date().toISOString(),
+        };
+
+        user.value = updatedUser;
+
+        // Cập nhật vào localStorage
+        saveUserToLocalStorage(updatedUser);
+      }
+    } catch (err) {
+      console.error('Lỗi khi cập nhật thông tin user:', err);
+    }
+  };
+
+  // Hàm kiểm tra trạng thái xác thực
+  const checkAuthState = async () => {
+    // Kiểm tra từ localStorage trước
+    const savedUser = getSavedUserFromLocalStorage();
+
+    // Kiểm tra từ Supabase
+    const { data } = await supabase.auth.getSession();
+
+    if (data && data.session) {
+      session.value = data.session;
+      user.value = data.session.user;
+
+      // Cập nhật localStorage
+      saveUserToLocalStorage(data.session.user);
+
+      return {
+        isAuthenticated: true,
+        user: data.session.user,
+      };
+    } else if (savedUser) {
+      // Kiểm tra tính hợp lệ của thông tin đã lưu
+      const lastSaved = new Date(savedUser.lastSaved);
+      const now = new Date();
+      const diffHours = Math.abs(now - lastSaved) / (1000 * 60 * 60);
+
+      if (diffHours < 24) {
+        user.value = savedUser;
+        return {
+          isAuthenticated: true,
+          user: savedUser,
+          fromLocal: true,
+        };
+      } else {
+        // Xóa thông tin quá cũ
+        localStorage.removeItem('livechat_user_data');
+      }
+    }
+
+    return {
+      isAuthenticated: false,
+    };
+  };
+
+  // Hàm lưu thông tin user vào localStorage
+  const saveUserToLocalStorage = (userData) => {
+    try {
+      if (userData) {
+        const userToSave = {
+          ...userData,
+          lastSaved: new Date().toISOString(),
+        };
+        localStorage.setItem('livechat_user_data', JSON.stringify(userToSave));
+      }
+    } catch (error) {
+      console.error('Lỗi khi lưu thông tin user:', error);
+    }
+  };
+
+  // Hàm lấy thông tin user từ localStorage
+  const getSavedUserFromLocalStorage = () => {
+    try {
+      const savedUserData = localStorage.getItem('livechat_user_data');
+      if (savedUserData) {
+        return JSON.parse(savedUserData);
+      }
+      return null;
+    } catch (error) {
+      console.error('Lỗi khi đọc thông tin user từ localStorage:', error);
+      return null;
+    }
+  };
+
   // Theo dõi thay đổi trạng thái xác thực
   supabase.auth.onAuthStateChange((event, currentSession) => {
     session.value = currentSession;
     user.value = currentSession?.user || null;
+
+    // Cập nhật localStorage khi có thay đổi
+    if (event === 'SIGNED_IN' && currentSession?.user) {
+      saveUserToLocalStorage(currentSession.user);
+
+      // Cập nhật thông tin chi tiết người dùng
+      refreshUserData(currentSession.user.id);
+    } else if (event === 'SIGNED_OUT') {
+      localStorage.removeItem('livechat_user_data');
+    } else if (event === 'USER_UPDATED' && currentSession?.user) {
+      // Cập nhật thông tin khi user được cập nhật
+      saveUserToLocalStorage(currentSession.user);
+    }
   });
 
   return {
@@ -121,5 +282,8 @@ export default function useAuth() {
     signIn,
     signOut,
     checkSession,
+    checkAuthState,
+    refreshUserData,
+    getSavedUserFromLocalStorage,
   };
 }

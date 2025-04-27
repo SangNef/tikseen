@@ -2,7 +2,13 @@
 
 Dưới đây là các câu lệnh SQL để tạo cấu trúc cơ sở dữ liệu cho ứng dụng LiveChat trên Supabase:
 
-> **Lưu ý quan trọng**: Để tránh lỗi "infinite recursion detected in policy for relation" trong các RLS policy, chúng ta sử dụng `auth.jwt()` để truy cập trực tiếp vào JWT claim thay vì sử dụng truy vấn con (subquery) đến bảng `users`. Cách tiếp cận này tránh việc Postgres phải đánh giá lại các policy khi truy vấn bảng users, từ đó ngăn chặn đệ quy vô hạn.
+> **Lưu ý quan trọng**: Để tránh lỗi "infinite recursion detected in policy for relation" trong các RLS policy, chúng ta cần:
+>
+> 1. Sử dụng `auth.jwt()` để truy cập trực tiếp vào JWT claim thay vì sử dụng truy vấn con (subquery) đến bảng có RLS.
+> 2. Luôn chuyển đổi kiểu dữ liệu khi so sánh JWT claim với chuỗi, ví dụ: `(auth.jwt() ->> 'role')::text = 'superadmin'`
+> 3. Tránh tham chiếu đệ quy giữa các policy khi một policy tham chiếu đến bảng khác mà bảng đó lại có policy tham chiếu ngược lại.
+> 4. Ưu tiên sử dụng joins thay vì subqueries trong điều kiện EXISTS khi có thể.
+> 5. Sử dụng rule SECURITY DEFINER cho các function được sử dụng trong RLS nếu cần.
 
 ```sql
 -- Tạo enum types
@@ -143,12 +149,12 @@ $$;
 -- Tạo policy mới dùng JWT claim
 CREATE POLICY "Superadmin can view all users" ON users
   FOR SELECT USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 CREATE POLICY "Superadmin can update all users" ON users
   FOR UPDATE USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 -- RLS (Row Level Security) Policies
@@ -177,12 +183,12 @@ DROP POLICY IF EXISTS "Superadmin can update all users" ON users;
 
 CREATE POLICY "Superadmin can view all users" ON users
   FOR SELECT USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 CREATE POLICY "Superadmin can update all users" ON users
   FOR UPDATE USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 -- RLS cho bảng organizations
@@ -207,12 +213,12 @@ DROP POLICY IF EXISTS "Superadmin can update all organizations" ON organizations
 
 CREATE POLICY "Superadmin can view all organizations" ON organizations
   FOR SELECT USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 CREATE POLICY "Superadmin can update all organizations" ON organizations
   FOR UPDATE USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 -- RLS cho bảng agents
@@ -235,7 +241,7 @@ DROP POLICY IF EXISTS "Superadmin can view all agents" ON agents;
 
 CREATE POLICY "Superadmin can view all agents" ON agents
   FOR SELECT USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 -- RLS cho bảng organization_agents
@@ -262,24 +268,23 @@ DROP POLICY IF EXISTS "Superadmin can manage all organization_agents" ON organiz
 
 CREATE POLICY "Superadmin can manage all organization_agents" ON organization_agents
   FOR ALL USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 -- RLS cho bảng customers
 ALTER TABLE customers ENABLE ROW LEVEL SECURITY;
 
+-- Sửa đổi policy phức tạp để giảm nguy cơ đệ quy
 CREATE POLICY "Organization members can view their customers" ON customers
   FOR SELECT USING (
     EXISTS (
       SELECT 1 FROM organizations o
-      WHERE o.id = customers.organization_id AND (
-        o.owner_id = auth.uid() OR
-        EXISTS (
-          SELECT 1 FROM organization_agents oa
-          JOIN agents a ON oa.agent_id = a.id
-          WHERE a.user_id = auth.uid() AND oa.organization_id = o.id
-        )
-      )
+      WHERE o.id = customers.organization_id AND o.owner_id = auth.uid()
+    ) OR
+    EXISTS (
+      SELECT 1 FROM agents a
+      JOIN organization_agents oa ON oa.agent_id = a.id
+      WHERE a.user_id = auth.uid() AND oa.organization_id = customers.organization_id
     )
   );
 
@@ -288,12 +293,13 @@ DROP POLICY IF EXISTS "Superadmin can view all customers" ON customers;
 
 CREATE POLICY "Superadmin can view all customers" ON customers
   FOR SELECT USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 -- RLS cho bảng conversations
 ALTER TABLE conversations ENABLE ROW LEVEL SECURITY;
 
+-- Sửa lại policy phức tạp có thể gây đệ quy
 CREATE POLICY "Agents can view assigned conversations" ON conversations
   FOR SELECT USING (
     EXISTS (
@@ -305,8 +311,8 @@ CREATE POLICY "Agents can view assigned conversations" ON conversations
       WHERE o.id = conversations.organization_id AND o.owner_id = auth.uid()
     ) OR
     EXISTS (
-      SELECT 1 FROM organization_agents oa
-      JOIN agents a ON oa.agent_id = a.id
+      SELECT 1 FROM agents a
+      JOIN organization_agents oa ON oa.agent_id = a.id
       WHERE a.user_id = auth.uid() AND oa.organization_id = conversations.organization_id
     )
   );
@@ -328,12 +334,13 @@ DROP POLICY IF EXISTS "Superadmin can view all conversations" ON conversations;
 
 CREATE POLICY "Superadmin can view all conversations" ON conversations
   FOR SELECT USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 -- RLS cho bảng messages
 ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
 
+-- Sửa lại policy phức tạp có thể gây đệ quy
 CREATE POLICY "Agents can view their conversations' messages" ON messages
   FOR SELECT USING (
     EXISTS (
@@ -354,6 +361,7 @@ CREATE POLICY "Agents can view their conversations' messages" ON messages
     )
   );
 
+-- Sửa lại policy phức tạp có thể gây đệ quy
 CREATE POLICY "Agents can send messages" ON messages
   FOR INSERT WITH CHECK (
     EXISTS (
@@ -379,7 +387,7 @@ DROP POLICY IF EXISTS "Superadmin can view all messages" ON messages;
 
 CREATE POLICY "Superadmin can view all messages" ON messages
   FOR SELECT USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 -- RLS cho bảng settings
@@ -402,7 +410,7 @@ DROP POLICY IF EXISTS "Superadmin can manage all settings" ON settings;
 
 CREATE POLICY "Superadmin can manage all settings" ON settings
   FOR ALL USING (
-    (auth.jwt() ->> 'role') = 'superadmin'
+    (auth.jwt() ->> 'role')::text = 'superadmin'
   );
 
 -- Realtime Publication cho messages
@@ -533,4 +541,37 @@ AS $$
   GROUP BY DATE(m.created_at)
   ORDER BY date
 $$;
+```
+
+## Xử lý "Infinite Recursion" trong Supabase RLS
+
+Để giải quyết lỗi "infinite recursion detected in policy for relation" trong Supabase RLS, chúng ta đã thực hiện các biện pháp sau:
+
+1. **Sử dụng JWT claims thay vì truy vấn users:**
+
+   - Thay vì `user_role = 'superadmin'` (cần truy vấn bảng users), chúng ta sử dụng `(auth.jwt() ->> 'role')::text = 'superadmin'`
+   - Điều này tránh việc PostgreSQL thực hiện truy vấn đến bảng users, kích hoạt policy của bảng users và gây đệ quy vô hạn
+
+2. **Tối ưu hóa cấu trúc query trong policy phức tạp:**
+
+   - Sử dụng JOIN thay vì subquery lồng nhau trong điều kiện EXISTS
+   - Tách các truy vấn phức tạp thành nhiều điều kiện EXISTS đơn giản hơn với toán tử OR
+   - Giảm thiểu số lượng bảng tham gia trong một truy vấn
+
+3. **Sử dụng SECURITY DEFINER cho các function:**
+
+   - Các function get_conversation_stats và get_message_stats được đánh dấu với SECURITY DEFINER
+   - Điều này giúp bỏ qua kiểm tra RLS khi function được gọi, tránh đệ quy
+
+4. **Ép kiểu dữ liệu cho JWT claim:**
+   - Luôn sử dụng ::text khi so sánh JWT claim với chuỗi, tránh trường hợp so sánh kiểu không khớp
+
+Nếu vẫn gặp vấn đề đệ quy, có thể cần xem xét:
+
+1. Sử dụng các function SECURITY DEFINER để thay thế các policy phức tạp
+2. Tối ưu hóa hơn nữa cấu trúc dữ liệu và policy
+3. Sử dụng service roles cho các thao tác quan trọng thay vì dựa vào RLS
+
+```
+
 ```
