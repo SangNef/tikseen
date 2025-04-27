@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && vite build --config vite.standalone.config.js",
+    "dev": "vite --config vite-chat.config.js",
+    "build": "vite build --config vite-chat.config.js && vite build --config vite-chat.standalone.config.js",
     "preview": "vite preview",
     "build:standalone": "vite build --config vite.standalone.config.js",
     "format": "prettier --write ."

@@ -14,6 +14,9 @@ alwaysApply: true
 - [UI Design Patterns](mdc:.cursor/rules/ui-design-patterns.mdc): Hướng dẫn về thiết kế UI
 - [Chat Components](mdc:.cursor/rules/chat-components.mdc): Thông tin về các component chat
 - [Accessibility](mdc:.cursor/rules/accessibility-best-practices.mdc): Hướng dẫn về khả năng tiếp cận
+- [Logic Management](mdc:.cursor/rules/logic-management.mdc): Hướng dẫn về quản lý logic nghiệp vụ
+- [Superadmin Roles](mdc:.cursor/rules/superadmin-roles.mdc): Vai trò và quyền hạn của Superadmin
+- [Data Management](mdc:.cursor/rules/data-management.mdc): Cấu trúc và quản lý dữ liệu với Supabase
 
 ## Tệp tin quan trọng
 

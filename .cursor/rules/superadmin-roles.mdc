@@ -1,0 +1,82 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Superadmin Role Capabilities
+
+## Overview
+
+Superadmin là vai trò cao nhất trong hệ thống LiveChat với toàn quyền truy cập và quản lý toàn bộ nền tảng. Vai trò này được thiết kế để giám sát và quản trị hệ thống ở mức cao nhất.
+
+## Quyền hạn của Superadmin
+
+### Quản lý người dùng
+
+- Xem và quản lý tất cả người dùng không phân biệt tổ chức
+- Tạo mới, chỉnh sửa và xóa bất kỳ tài khoản người dùng nào
+- Thay đổi vai trò và trạng thái của người dùng (active/inactive)
+- Đặt lại mật khẩu cho bất kỳ tài khoản nào
+
+### Quản lý tổ chức
+
+- Truy cập vào tất cả dữ liệu và cài đặt của mọi tổ chức
+- Tạo, chỉnh sửa và xóa tổ chức
+- Quản lý mối quan hệ giữa tổ chức và đại lý (agents)
+- Override giới hạn số lượng agent cho tổ chức
+
+### Quản lý cuộc trò chuyện
+
+- Theo dõi tất cả cuộc trò chuyện trên toàn bộ nền tảng
+- Có thể tham gia vào bất kỳ cuộc trò chuyện nào
+- Xem lịch sử tin nhắn của mọi cuộc trò chuyện
+- Can thiệp để hỗ trợ hoặc giải quyết vấn đề khi cần
+
+### Quản lý cài đặt hệ thống
+
+- Quản lý tất cả cài đặt trên toàn hệ thống
+- Tạo và chỉnh sửa cài đặt mặc định cho tổ chức mới
+- Cài đặt các thông số kỹ thuật của hệ thống
+- Quản lý các tính năng toàn cục
+
+### Quản lý bảo mật
+
+- Override bất kỳ giới hạn quyền truy cập nào
+- Xem log hệ thống và thống kê hoạt động
+- Theo dõi các hoạt động đáng ngờ
+- Thực hiện các biện pháp bảo mật cần thiết
+
+## Row Level Security (RLS)
+
+Superadmins được cấp quyền truy cập đầy đủ đối với mọi bảng trong cơ sở dữ liệu:
+
+```sql
+-- Ví dụ về policy cho superadmin với bảng users
+CREATE POLICY "Superadmins can do anything with users" 
+ON users 
+FOR ALL 
+TO authenticated 
+USING (auth.jwt() ->> 'role' = 'superadmin');
+```
+
+## Giao diện quản trị cho Superadmin
+
+Superadmin được cung cấp giao diện quản trị đặc biệt với các tính năng:
+
+- Dashboard thống kê toàn hệ thống
+- Công cụ tìm kiếm và lọc nâng cao
+- Chế độ xem tổng quan về mọi cuộc trò chuyện
+- Quản lý tập trung các cài đặt hệ thống
+- Công cụ xem log và debug
+
+## Quy trình làm việc
+
+1. Đăng nhập với tài khoản superadmin
+2. Truy cập bảng điều khiển quản trị
+3. Thực hiện các tác vụ quản trị cần thiết
+4. Mọi hành động của superadmin đều được ghi lại trong log hệ thống
+
+## Ghi chú triển khai
+
+Vai trò superadmin chỉ nên được cấp cho số lượng người dùng tối thiểu cần thiết để quản lý hệ thống. Tất cả hoạt động của superadmin nên được ghi log đầy đủ để đảm bảo tính minh bạch và an toàn.
+

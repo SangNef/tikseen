@@ -1,0 +1,146 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Logic Management
+
+## Flow Logic
+
+### User Registration & Authentication
+- SignUp with Supabase Auth
+- Roles: `agent`, `admin`, `superadmin`
+- Organization ownership and membership rules
+- Only users with proper roles can access specific parts of the system
+
+### Organization Management
+- Organization creation automatically sets up related agents and organization_agents records
+- Only `admin`, `superadmin` or organization owner can add agents
+- Maximum 5 agents per organization
+
+### Customer Chat Flow
+- Customer connects via widget (Vue 3 component)
+- First message creates new conversation
+- Messages stored and transmitted in realtime
+- Agents subscribe to messages by conversation_id
+
+### Realtime Messaging
+- Use Supabase realtime channels for instant updates
+- Subscribe to conversations and messages by relevant IDs
+- UI updates triggered by new messages
+
+### Access Control & Permissions
+- Row Level Security (RLS) implementation:
+  - Regular agents can only see conversations they're part of
+  - Organization admins see all conversations in their organization
+  - Superadmins have platform-wide access
+- Regular users can only manage their own data
+- Admin users can manage organization-wide settings and users
+
+### Settings Management
+- Global configuration stored in `settings` table
+- Only `admin` and `superadmin` can update settings
+- Regular users can only view public settings
+
+## Implementation Guidelines
+
+### Authentication Logic
+```vue
+<script setup>
+// Example auth logic
+import { useSupabaseClient } from '@supabase/vue-3';
+import { ref } from 'vue';
+
+const supabase = useSupabaseClient();
+const email = ref('');
+const password = ref('');
+const errorMessage = ref('');
+
+const handleSignIn = async () => {
+  try {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email.value,
+      password: password.value,
+    });
+    
+    if (error) throw error;
+    // Redirect to dashboard
+  } catch (error) {
+    errorMessage.value = error.message;
+  }
+};
+</script>
+```
+
+### Permissions Logic
+```js
+// Example of checking user permissions
+const checkPermission = async (userId, requiredRole) => {
+  const { data, error } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', userId)
+    .single();
+    
+  if (error) return false;
+  
+  // Access control logic
+  if (requiredRole === 'admin') {
+    return ['admin', 'superadmin'].includes(data.role);
+  } else if (requiredRole === 'superadmin') {
+    return data.role === 'superadmin';
+  }
+  
+  return true; // Basic access for agents
+};
+```
+
+### Conversation Logic
+```js
+// Example of creating a new conversation
+const startConversation = async (organizationId, customerId) => {
+  // Insert new conversation
+  const { data, error } = await supabase
+    .from('conversations')
+    .insert({
+      organization_id: organizationId,
+      customer_id: customerId,
+      status: 'active',
+    })
+    .select()
+    .single();
+    
+  if (error) throw error;
+  
+  // Subscribe to conversation channel
+  const channel = supabase
+    .channel(`conversation:${data.id}`)
+    .on('postgres_changes', {
+      event: 'INSERT',
+      schema: 'public',
+      table: 'messages',
+      filter: `conversation_id=eq.${data.id}`,
+    }, (payload) => {
+      // Handle new message
+    })
+    .subscribe();
+    
+  return data;
+};
+```
+
+## Data Flow Relationships
+
+- `users` -> `agents` (1:1)
+- `organizations` -> `organization_agents` -> `agents` (many to many)
+- `agents` -> `conversations` (1:many)
+- `customers` -> `conversations` (1:many)
+- `conversations` -> `messages` (1:many)
+
+## Client-Server Communication
+
+- Use Supabase client SDK for database operations
+- Implement Realtime for live updates
+- Use Vue 3 Composition API for reactive state management
+- Handle errors consistently throughout the application
+

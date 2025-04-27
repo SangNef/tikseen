@@ -1,0 +1,345 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Quản lý dữ liệu
+
+## Cấu trúc cơ sở dữ liệu
+
+LiveChat sử dụng Supabase làm nền tảng cơ sở dữ liệu với PostgreSQL. Dưới đây là các bảng chính và mối quan hệ giữa chúng:
+
+### Bảng users
+
+```
+- id: UUID (auth user id) - Primary key
+- email: Text
+- username: Text
+- password: Text (Managed by Supabase Auth)
+- role: Enum('admin', 'agent', 'superadmin')
+- status: Enum('active', 'inactive')
+- created_at: Timestamp
+- updated_at: Timestamp
+```
+
+### Bảng organizations
+
+```
+- id: UUID - Primary key
+- name: Text - Organization name
+- url: Text - Organization URL
+- owner_id: UUID (users.id) - Organization owner
+- data: JSONB - Additional info
+- status: Enum('active', 'inactive')
+- created_at: Timestamp
+```
+
+### Bảng agents
+
+```
+- id: UUID - Primary key
+- user_id: UUID (users.id) - Related user id
+- name: Text - Agent name
+- avatar_url: Text - Agent avatar
+- status: Enum('active', 'inactive')
+- created_at: Timestamp
+```
+
+### Bảng organization_agents
+
+```
+- id: UUID - Primary key
+- agent_id: UUID (agents.id) - Agent id
+- organization_id: UUID (organizations.id) - Organization id
+- created_at: Timestamp
+```
+
+### Bảng customers
+
+```
+- id: UUID - Primary key
+- organization_id: UUID (organizations.id)
+- name: Text - Customer name
+- status: Enum('active', 'blocked')
+- data: JSONB - IP, location, metadata
+- ip: Text - IP address
+- user_agent: Text - Browser info
+- created_at: Timestamp
+```
+
+### Bảng conversations
+
+```
+- id: UUID - Primary key
+- organization_id: UUID (organizations.id)
+- customer_id: UUID (customers.id)
+- agent_id: UUID (agents.id) - null chat all
+- status: Enum('active', 'closed', 'pending')
+- created_at: Timestamp
+```
+
+### Bảng messages
+
+```
+- id: UUID - Primary key
+- conversation_id: UUID (conversations.id)
+- sender_id: UUID - Agent id or Customer id
+- receiver_id: UUID
+- sender_type: Enum('agent', 'customer')
+- content: Text - Message content
+- type: Enum('text', 'image', 'file', 'pre-form')
+- created_at: Timestamp
+```
+
+### Bảng settings
+
+```
+- id: UUID - Primary key
+- key: Text - Setting key
+- value: Text / JSON - Setting value
+- created_at: Timestamp
+```
+
+## Mối quan hệ dữ liệu
+
+- `users` -> `agents` (1:1)
+- `organizations` -> `organization_agents` -> `agents` (many to many)
+- `agents` -> `conversations` (1:many)
+- `customers` -> `conversations` (1:many)
+- `conversations` -> `messages` (1:many)
+
+## Row Level Security (RLS)
+
+Supabase RLS được sử dụng để bảo mật dữ liệu theo vai trò người dùng:
+
+### users
+
+```sql
+-- Regular users can read/update only own user data
+CREATE POLICY "Users can view own data" 
+ON users FOR SELECT 
+USING (auth.uid() = id);
+
+CREATE POLICY "Users can update own data" 
+ON users FOR UPDATE 
+USING (auth.uid() = id);
+
+-- Admin users can manage users within their organization
+CREATE POLICY "Admins can manage organization users" 
+ON users FOR ALL 
+USING (
+  EXISTS (
+    SELECT 1 FROM organizations o
+    WHERE o.owner_id = auth.uid()
+    AND id IN (
+      SELECT user_id FROM agents a
+      JOIN organization_agents oa ON a.id = oa.agent_id
+      WHERE oa.organization_id = o.id
+    )
+  )
+  OR (SELECT role FROM users WHERE id = auth.uid()) = 'admin'
+);
+
+-- Superadmin users can manage all users
+CREATE POLICY "Superadmins can manage all users" 
+ON users FOR ALL 
+USING ((SELECT role FROM users WHERE id = auth.uid()) = 'superadmin');
+```
+
+Các RLS policy tương tự được áp dụng cho tất cả các bảng khác.
+
+## Xử lý dữ liệu
+
+### Truy vấn dữ liệu
+
+```js
+// Ví dụ về truy vấn dữ liệu sử dụng Supabase Client
+
+// Lấy tất cả cuộc trò chuyện của một tổ chức
+const getOrganizationConversations = async (organizationId) => {
+  const { data, error } = await supabase
+    .from('conversations')
+    .select(`
+      id, 
+      status,
+      created_at,
+      customers (id, name),
+      agents (id, name)
+    `)
+    .eq('organization_id', organizationId)
+    .order('created_at', { ascending: false });
+    
+  if (error) throw error;
+  return data;
+};
+
+// Lấy tin nhắn của một cuộc trò chuyện
+const getConversationMessages = async (conversationId) => {
+  const { data, error } = await supabase
+    .from('messages')
+    .select('*')
+    .eq('conversation_id', conversationId)
+    .order('created_at');
+    
+  if (error) throw error;
+  return data;
+};
+```
+
+### Thêm dữ liệu
+
+```js
+// Thêm một tin nhắn mới
+const addMessage = async (messageData) => {
+  const { data, error } = await supabase
+    .from('messages')
+    .insert([messageData])
+    .select();
+    
+  if (error) throw error;
+  return data[0];
+};
+
+// Tạo một tổ chức mới
+const createOrganization = async (orgData, userId) => {
+  // Bắt đầu transaction
+  const { data: organization, error: orgError } = await supabase
+    .from('organizations')
+    .insert([{
+      name: orgData.name,
+      url: orgData.url,
+      owner_id: userId,
+      status: 'active'
+    }])
+    .select()
+    .single();
+    
+  if (orgError) throw orgError;
+  
+  // Tạo agent cho user
+  const { data: agent, error: agentError } = await supabase
+    .from('agents')
+    .insert([{
+      user_id: userId,
+      name: orgData.agentName || 'Admin',
+      status: 'active'
+    }])
+    .select()
+    .single();
+    
+  if (agentError) throw agentError;
+  
+  // Liên kết agent với organization
+  const { error: linkError } = await supabase
+    .from('organization_agents')
+    .insert([{
+      agent_id: agent.id,
+      organization_id: organization.id
+    }]);
+    
+  if (linkError) throw linkError;
+  
+  return organization;
+};
+```
+
+### Cập nhật dữ liệu
+
+```js
+// Cập nhật trạng thái cuộc trò chuyện
+const updateConversationStatus = async (conversationId, status) => {
+  const { data, error } = await supabase
+    .from('conversations')
+    .update({ status })
+    .eq('id', conversationId)
+    .select()
+    .single();
+    
+  if (error) throw error;
+  return data;
+};
+
+// Cập nhật thông tin agent
+const updateAgentProfile = async (agentId, profileData) => {
+  const { data, error } = await supabase
+    .from('agents')
+    .update(profileData)
+    .eq('id', agentId)
+    .select()
+    .single();
+    
+  if (error) throw error;
+  return data;
+};
+```
+
+### Xóa dữ liệu
+
+```js
+// Xóa một tổ chức (soft delete - chỉ thay đổi trạng thái)
+const deleteOrganization = async (organizationId) => {
+  const { data, error } = await supabase
+    .from('organizations')
+    .update({ status: 'inactive' })
+    .eq('id', organizationId)
+    .select()
+    .single();
+    
+  if (error) throw error;
+  return data;
+};
+```
+
+## Realtime Data
+
+LiveChat sử dụng Supabase Realtime để cập nhật dữ liệu theo thời gian thực:
+
+```js
+// Đăng ký kênh tin nhắn realtime
+const subscribeToMessages = (conversationId, callback) => {
+  const channel = supabase
+    .channel(`conversation:${conversationId}`)
+    .on('postgres_changes', {
+      event: 'INSERT',
+      schema: 'public',
+      table: 'messages',
+      filter: `conversation_id=eq.${conversationId}`,
+    }, (payload) => {
+      callback(payload.new);
+    })
+    .subscribe();
+    
+  // Return unsubscribe function
+  return () => {
+    supabase.removeChannel(channel);
+  };
+};
+
+// Đăng ký kênh cuộc trò chuyện realtime
+const subscribeToConversations = (organizationId, callback) => {
+  const channel = supabase
+    .channel(`org:${organizationId}`)
+    .on('postgres_changes', {
+      event: '*', // Listen to all events (INSERT, UPDATE, DELETE)
+      schema: 'public',
+      table: 'conversations',
+      filter: `organization_id=eq.${organizationId}`,
+    }, (payload) => {
+      callback(payload.new || payload.old, payload.eventType);
+    })
+    .subscribe();
+    
+  return () => {
+    supabase.removeChannel(channel);
+  };
+};
+```
+
+## Quy ước dữ liệu
+
+- Sử dụng UUID cho tất cả các khóa chính
+- Timestamps mặc định được quản lý bởi Supabase (created_at)
+- Xóa dữ liệu nên là soft delete (thay đổi trạng thái) thay vì hard delete
+- Sử dụng JSONB cho dữ liệu cấu trúc phức tạp
+- Áp dụng RLS cho tất cả các bảng để đảm bảo bảo mật dữ liệu
+
