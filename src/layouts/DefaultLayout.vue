@@ -1,32 +1,27 @@
 <template>
   <AuthGuard>
-    <div class="livechat-app w-full">
-      <div class="flex flex-col min-h-[calc(var(--vh,1vh)*100)]">
-        <div class="flex flex-1 overflow-hidden">
-          <SideBar />
-          <div
-            class="flex-1 overflow-auto"
-            :class="{
-              '!bg-[#f7f7fa] ml-16': !isMobile,
-            }">
-            <div class="flex flex-1 flex-col w-full">
-              <Header />
-              <slot></slot>
-            </div>
-          </div>
-        </div>
+    <div class="flex flex-row h-screen max-h-screen overflow-hidden bg-[#f3f4f6]">
+      <SideBar />
+      <div :class="[isMobile ? 'ml-0' : 'ml-16', 'w-full h-screen flex flex-col']">
+        <Header v-if="!isMobile || (isMobile && mobileView !== 'chat-list')" />
+        <!-- not use .p-4 for main -->
+        <main class="flex-1 overflow-y-auto">
+          <slot />
+        </main>
+        <MobileMenu v-if="isMobile" />
       </div>
     </div>
   </AuthGuard>
 </template>
 
 <script setup>
-import Header from '@/components/Main/Header.vue';
 import SideBar from '@/components/Main/SideBar.vue';
-import { useResponsive } from '@/composables';
+import Header from '@/components/Main/Header.vue';
+import MobileMenu from '@/components/Main/MobileMenu.vue';
+import useResponsive from '@/composables/useResponsive';
 import AuthGuard from '@/components/Auth/AuthGuard.vue';
 
-const { isMobile } = useResponsive();
+const { isMobile, mobileView } = useResponsive();
 </script>
 
 <style>

@@ -47,7 +47,7 @@
   </div>
 
   <!-- Mobile Bottom Navigation -->
-  <div v-else class="fixed bottom-0 left-0 right-0 bg-gray-800 flex justify-around items-center py-2 z-50">
+  <!-- <div v-else class="fixed bottom-0 left-0 right-0 bg-gray-800 flex justify-around items-center py-2 z-50">
     <router-link
       v-for="(item, index) in menuItems"
       :key="index"
@@ -58,9 +58,8 @@
         :is="isActive(item.route) ? item.iconSolid : item.iconOutline"
         :class="isActive(item.route) ? 'text-white' : 'text-gray-400'"
         class="w-6 h-6" />
-      <!-- <span class="text-xs mt-1" :class="isActive(item.route) ? 'text-white' : 'text-gray-400'">{{ item.label }}</span> -->
     </router-link>
-  </div>
+  </div> -->
 </template>
 
 <script setup>

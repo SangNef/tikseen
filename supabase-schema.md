@@ -124,6 +124,31 @@ BEFORE UPDATE ON users
 FOR EACH ROW
 EXECUTE FUNCTION update_updated_at_column();
 
+-- Function để lấy JWT claim
+CREATE OR REPLACE FUNCTION auth.jwt()
+RETURNS jsonb
+LANGUAGE sql
+STABLE
+AS $$
+  SELECT
+    coalesce(
+      nullif(current_setting('request.jwt.claims', true), '')::jsonb,
+      '{}'::jsonb
+    )
+$$;
+
+
+-- Tạo policy mới dùng JWT claim
+CREATE POLICY "Superadmin can view all users" ON users
+  FOR SELECT USING (
+    (auth.jwt() ->> 'role') = 'superadmin'
+  );
+
+CREATE POLICY "Superadmin can update all users" ON users
+  FOR UPDATE USING (
+    (auth.jwt() ->> 'role') = 'superadmin'
+  );
+
 -- RLS (Row Level Security) Policies
 
 -- RLS cho bảng users
@@ -143,20 +168,19 @@ CREATE POLICY "Admin users can view organization users" ON users
     )
   );
 
+-- Các policy "Superadmin can view/update all users" gây đệ quy vô hạn
+-- Thay thế bằng cách sử dụng JWT claim
+DROP POLICY IF EXISTS "Superadmin can view all users" ON users;
+DROP POLICY IF EXISTS "Superadmin can update all users" ON users;
+
 CREATE POLICY "Superadmin can view all users" ON users
   FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid() AND role = 'superadmin'
-    )
+    (auth.jwt() ->> 'role') = 'superadmin'
   );
 
 CREATE POLICY "Superadmin can update all users" ON users
   FOR UPDATE USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid() AND role = 'superadmin'
-    )
+    (auth.jwt() ->> 'role') = 'superadmin'
   );
 
 -- RLS cho bảng organizations
