@@ -7,7 +7,7 @@
           <div
             class="flex-1 overflow-auto"
             :class="{
-              '!bg-[#f7f7fa]': !isMobile,
+              '!bg-[#f7f7fa] ml-16': !isMobile,
             }">
             <div class="flex flex-1 flex-col w-full">
               <Header />

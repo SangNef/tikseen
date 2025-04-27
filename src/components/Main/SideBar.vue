@@ -1,5 +1,6 @@
 <template>
-  <div v-if="!isMobile" class="w-16 fixed top-0 left-0 h-screen bg-dark flex flex-col items-center py-4">
+  <!-- Desktop Sidebar -->
+  <div v-if="!isMobile" class="w-16 fixed top-0 left-0 h-screen bg-gray-800 flex flex-col items-center py-4 z-50">
     <!-- Logo at top -->
     <div class="mb-6">
       <router-link to="/" class="block">
@@ -44,6 +45,22 @@
       <span>BK</span>
     </div>
   </div>
+
+  <!-- Mobile Bottom Navigation -->
+  <div v-else class="fixed bottom-0 left-0 right-0 bg-gray-800 flex justify-around items-center py-2 z-50">
+    <router-link
+      v-for="(item, index) in menuItems"
+      :key="index"
+      :to="item.route"
+      class="flex flex-col items-center justify-center p-2 rounded-lg"
+      :class="{ 'bg-gray-700': isActive(item.route) }">
+      <component
+        :is="isActive(item.route) ? item.iconSolid : item.iconOutline"
+        :class="isActive(item.route) ? 'text-white' : 'text-gray-400'"
+        class="w-6 h-6" />
+      <!-- <span class="text-xs mt-1" :class="isActive(item.route) ? 'text-white' : 'text-gray-400'">{{ item.label }}</span> -->
+    </router-link>
+  </div>
 </template>
 
 <script setup>
@@ -52,17 +69,13 @@ import useResponsive from '@/composables/useResponsive';
 import {
   ChatBubbleLeftRightIcon as ChatOutline,
   Cog6ToothIcon as CogOutline,
-  HomeIcon as HomeOutline,
   ChartBarIcon as StatsOutline,
-  UserGroupIcon as TeamOutline,
   UsersIcon as UsersOutline,
 } from '@heroicons/vue/24/outline';
 import {
   ChatBubbleLeftRightIcon as ChatSolid,
   Cog6ToothIcon as CogSolid,
-  HomeIcon as HomeSolid,
   ChartBarIcon as StatsSolid,
-  UserGroupIcon as TeamSolid,
   UsersIcon as UsersSolid,
 } from '@heroicons/vue/24/solid';
 

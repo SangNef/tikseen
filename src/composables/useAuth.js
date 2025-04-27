@@ -18,10 +18,19 @@ export default function useAuth() {
         password,
         options: {
           data: userData,
+          emailRedirectTo: undefined, // Không cần redirect để xác thực email
+          emailVerification: false, // Tắt yêu cầu xác thực email
         },
       });
 
       if (signUpError) throw signUpError;
+
+      // Đặt email_verified = true cho user khi đăng ký
+      // Chú ý: cần thiết lập trigger hoặc function ở phía Supabase để cập nhật trường này
+      if (data?.user) {
+        // Optional: Có thể gọi API tùy chỉnh để cập nhật trạng thái xác thực email
+        // await supabase.functions.invoke('verify-email', { id: data.user.id });
+      }
 
       return { data };
     } catch (err) {
