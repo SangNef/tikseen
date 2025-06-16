@@ -1,0 +1,10 @@
+export { default as center } from './center.png';
+export { default as mkButton } from './mk-button.png';
+export { default as invite1 } from './invite1.png';
+export { default as invite2 } from './invite2.png';
+export { default as invite3 } from './invite3.png';
+export { default as btc } from './btc.png';
+export { default as eth } from './eth.png';
+export { default as cex } from './cex.png';
+export { default as star } from './star.png';
+export { default as invite } from './invite.png';

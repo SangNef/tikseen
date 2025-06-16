@@ -1,0 +1,10 @@
+export { default as Home } from './HomeScreen.vue';
+export { default as Event } from './Event.vue';
+export { default as EventDetail } from './EventDetail.vue';
+export { default as Envelope } from './Envelop.vue';
+export { default as Exchange } from './Exchange.vue';
+export { default as Vip } from './Vip.vue';
+export { default as Invite } from './Invite.vue';
+export { default as InviteReward } from './InviteReward.vue';
+export { default as Partner } from './Partner.vue';
+export { default as Earn } from './Earn.vue';
