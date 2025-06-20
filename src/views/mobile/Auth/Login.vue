@@ -196,7 +196,7 @@
 </template>
 
 <script setup>
-import { Tele, Google, Apple } from "@/assets/auth";
+import { Tele, Google, Apple } from "@/assets/mobile/auth";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 

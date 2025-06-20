@@ -133,9 +133,9 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-import { usdt, vndc } from '@/assets/coin';
-import { Header } from '@/components/mobile';
+<script setup>
+import { usdt, vndc } from "@/assets/mobile/coin";
+import { Header } from "@/components/mobile";
 </script>
 
 <style></style>

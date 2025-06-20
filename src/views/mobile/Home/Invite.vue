@@ -298,8 +298,8 @@
 </template>
 
 <script setup>
-import { btc, cex, eth, invite, star } from '@/assets/invite';
-import { useRouter } from 'vue-router';
+import { btc, cex, eth, invite, star } from "@/assets/mobile/invite";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 const navigateBack = () => {

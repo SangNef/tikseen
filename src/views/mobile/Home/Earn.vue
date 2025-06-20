@@ -518,10 +518,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import ApexCharts from 'apexcharts';
-import { frame } from '@/assets/earn';
-import { useRouter } from 'vue-router';
+import { ref, onMounted, onUnmounted } from "vue";
+import ApexCharts from "apexcharts";
+import { frame } from "@/assets/mobile/earn";
+import { useRouter } from "vue-router";
 
 const isScrolled = ref(false);
 
@@ -530,10 +530,10 @@ const onScroll = () => {
 };
 
 onMounted(() => {
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
 });
 onUnmounted(() => {
-    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener("scroll", onScroll);
 });
 
 const router = useRouter();
@@ -543,21 +543,21 @@ const navigateBack = () => {
 
 const chartOptions = ref({
     chart: {
-        type: 'area',
+        type: "area",
         height: 280,
         toolbar: { show: false },
         zoom: { enabled: false },
-        fontFamily: 'Nunito, sans-serif',
+        fontFamily: "Nunito, sans-serif",
     },
-    colors: ['#16a34a'],
+    colors: ["#16a34a"],
     dataLabels: { enabled: false },
     stroke: {
-        curve: 'smooth',
+        curve: "smooth",
         width: 3,
-        colors: ['#16a34a'],
+        colors: ["#16a34a"],
     },
     fill: {
-        type: 'gradient',
+        type: "gradient",
         gradient: {
             shadeIntensity: 1,
             opacityFrom: 0.4,
@@ -567,12 +567,12 @@ const chartOptions = ref({
                 [
                     {
                         offset: 0,
-                        color: '#16a34a',
+                        color: "#16a34a",
                         opacity: 0.4,
                     },
                     {
                         offset: 100,
-                        color: '#fff',
+                        color: "#fff",
                         opacity: 0,
                     },
                 ],
@@ -580,11 +580,11 @@ const chartOptions = ref({
         },
     },
     xaxis: {
-        categories: ['07/2024', '09/2024', '11/2024', '01/2025', '03/2025', '05/2025'],
+        categories: ["07/2024", "09/2024", "11/2024", "01/2025", "03/2025", "05/2025"],
         labels: {
             style: {
-                colors: '#81888e',
-                fontSize: '12px',
+                colors: "#81888e",
+                fontSize: "12px",
                 fontWeight: 400,
             },
         },
@@ -596,14 +596,14 @@ const chartOptions = ref({
         labels: {
             formatter: (val) => `${val}%`,
             style: {
-                colors: '#81888e',
-                fontSize: '11px',
+                colors: "#81888e",
+                fontSize: "11px",
                 fontWeight: 400,
             },
         },
     },
     grid: {
-        borderColor: '#171a1f',
+        borderColor: "#171a1f",
         strokeDashArray: 5,
         xaxis: { lines: { show: false } },
         yaxis: { lines: { show: true } },
@@ -618,13 +618,13 @@ const chartOptions = ref({
 
 const chartSeries = ref([
     {
-        name: 'APY',
+        name: "APY",
         data: [35, 30, 25, 20, 15, 10],
     },
 ]);
 
 onMounted(() => {
-    const chart = new ApexCharts(document.querySelector('#apy-chart'), {
+    const chart = new ApexCharts(document.querySelector("#apy-chart"), {
         ...chartOptions.value,
         series: chartSeries.value,
     });
@@ -633,7 +633,7 @@ onMounted(() => {
 
 const drawers = ref([
     {
-        title: 'FOIR hoạt động như thế nào?',
+        title: "FOIR hoạt động như thế nào?",
         content: `
             <p class="pb-0.5">
                 Tính ưu việt của công nghệ blockchain đã sản sinh ra đa dạng các sản phẩm tích lũy
@@ -657,7 +657,7 @@ const drawers = ref([
         `,
     },
     {
-        title: 'Tích lũy với FOIR có an toàn không?',
+        title: "Tích lũy với FOIR có an toàn không?",
         content: `
             <p class="pb-0.5">
                 Tất cả các khoản tích lũy của người dùng
@@ -685,7 +685,7 @@ const drawers = ref([
         `,
     },
     {
-        title: 'So sánh FOIR với các sản phẩm tích lũy VNDC phổ biến trên thị trường',
+        title: "So sánh FOIR với các sản phẩm tích lũy VNDC phổ biến trên thị trường",
         content: `
             <p class="pb-1.5">
                 FOIR có mức lợi nhuận và linh hoạt vượt trội so với các sản phẩm tích lũy VNDC phổ

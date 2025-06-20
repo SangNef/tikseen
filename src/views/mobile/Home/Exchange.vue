@@ -141,9 +141,9 @@
 </template>
 
 <script setup>
-import { usdt, vndc } from '@/assets/coin';
-import { bgMain, bgTop, change, change2 } from '@/assets/exchange';
-import { useRouter } from 'vue-router';
+import { usdt, vndc } from "@/assets/mobile/coin";
+import { bgMain, bgTop, change, change2 } from "@/assets/mobile/exchange";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 function navigateBack() {

@@ -93,9 +93,9 @@
 </template>
 
 <script setup>
-import { deposit, fiat, mcard } from '@/assets/wallet';
-import { ref, onMounted, onUnmounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { deposit, fiat, mcard } from "@/assets/mobile/wallet";
+import { ref, onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
 
 const isScrolled = ref(false);
 
@@ -104,10 +104,10 @@ const onScroll = () => {
 };
 
 onMounted(() => {
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
 });
 onUnmounted(() => {
-    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener("scroll", onScroll);
 });
 
 const router = useRouter();

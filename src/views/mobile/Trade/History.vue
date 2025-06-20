@@ -59,12 +59,12 @@
                     <a-tab-pane key="2" tab="Lịch sử giao dịch">
                         <div class="flex flex-col min-h-[520px]">
                             <div class="divide-y divide-default/60 mt-1.5 px-0.5">
-                                <template v-for="(item, idx) in tradeHistory" :key="item.id">
+                                <template v-for="item in tradeHistory" :key="item.id">
                                     <div class="text-gray-300 text-[0.32rem] font-normal px-0.5 py-1">
                                         <div class="flex items-center justify-between mb-1 text-[0.36rem]">
                                             <div class="flex items-center gap-1">
                                                 <span :class="item.result > 0 ? 'text-green-600' : 'text-red-600'">
-                                                    {{ item.result > 0 ? '+' : '' }}{{ item.result.toFixed(4) }} USDT
+                                                    {{ item.result > 0 ? "+" : "" }}{{ item.result.toFixed(4) }} USDT
                                                 </span>
                                                 <p
                                                     :class="[
@@ -73,7 +73,7 @@
                                                             ? 'bg-green-600/10 border border-green-600/50 text-green-600'
                                                             : 'bg-red-600/10 border border-red-600/50 text-red-600',
                                                     ]">
-                                                    {{ item.status === 'success' ? 'Thành công' : 'Thất bại' }}
+                                                    {{ item.status === "success" ? "Thành công" : "Thất bại" }}
                                                 </p>
                                             </div>
                                             <div
@@ -221,10 +221,10 @@
 </template>
 
 <script setup>
-import { empty } from '@/assets/trade';
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { empty } from "@/assets/mobile/trade";
+import { ref, onMounted, onUnmounted, watch } from "vue";
 
-const activeKey = ref('0');
+const activeKey = ref("0");
 const openOrders = 0;
 
 const bids = ref([]);
@@ -233,11 +233,11 @@ let intervalId = null;
 
 // Các trường dữ liệu giống nhau cho tradeHistory
 const tradeFields = [
-    { key: 'orderId', label: '* Mã lệnh' },
-    { key: 'amount', label: '* Số tiền vào lệnh' },
-    { key: 'side', label: '* Mở lệnh' },
-    { key: 'symbol', label: '* Cặp giao dịch' },
-    { key: 'createdAt', label: '* Thời gian vào lệnh' },
+    { key: "orderId", label: "* Mã lệnh" },
+    { key: "amount", label: "* Số tiền vào lệnh" },
+    { key: "side", label: "* Mở lệnh" },
+    { key: "symbol", label: "* Cặp giao dịch" },
+    { key: "createdAt", label: "* Thời gian vào lệnh" },
 ];
 
 // Dữ liệu mẫu, thay bằng API thực tế
@@ -245,55 +245,55 @@ const tradeHistory = ref([
     {
         id: 1,
         result: -12.5,
-        status: 'fail',
-        orderId: '#20250531N2ZH24X8',
-        amount: '12.5000 USDT',
-        side: 'MUA',
-        symbol: 'BTC/USDT',
-        createdAt: '2025-05-31 11:32:31',
+        status: "fail",
+        orderId: "#20250531N2ZH24X8",
+        amount: "12.5000 USDT",
+        side: "MUA",
+        symbol: "BTC/USDT",
+        createdAt: "2025-05-31 11:32:31",
     },
     {
         id: 2,
         result: 15.093,
-        status: 'success',
-        orderId: '#20250531GEJBSJDR',
-        amount: '7.7400 USDT',
-        side: 'BÁN',
-        symbol: 'BTC/USDT',
-        createdAt: '2025-05-31 11:24:20',
+        status: "success",
+        orderId: "#20250531GEJBSJDR",
+        amount: "7.7400 USDT",
+        side: "BÁN",
+        symbol: "BTC/USDT",
+        createdAt: "2025-05-31 11:24:20",
     },
     // ... thêm dữ liệu
 ]);
 
 const marketFields = [
-    { key: 'result', label: '* Kết quả' },
-    { key: 'open', label: '* Giá mở' },
-    { key: 'close', label: '* Giá đóng' },
-    { key: 'symbol', label: '* Cặp giao dịch' },
-    { key: 'closedAt', label: '* Thời gian đóng' },
+    { key: "result", label: "* Kết quả" },
+    { key: "open", label: "* Giá mở" },
+    { key: "close", label: "* Giá đóng" },
+    { key: "symbol", label: "* Cặp giao dịch" },
+    { key: "closedAt", label: "* Thời gian đóng" },
 ];
 
 const marketHistory = ref([
     {
-        block: '1950168715',
-        result: 'up',
-        open: '105465.3906 USDT',
-        close: '105494.4922 USDT',
-        symbol: 'BTC/USDT',
-        closedAt: '2025-06-16 07:55:59',
+        block: "1950168715",
+        result: "up",
+        open: "105465.3906 USDT",
+        close: "105494.4922 USDT",
+        symbol: "BTC/USDT",
+        closedAt: "2025-06-16 07:55:59",
     },
     {
-        block: '1950168714',
-        result: 'down',
-        open: '105400.0000 USDT',
-        close: '105371.8203 USDT',
-        symbol: 'BTC/USDT',
-        closedAt: '2025-06-16 07:53:59',
+        block: "1950168714",
+        result: "down",
+        open: "105400.0000 USDT",
+        close: "105371.8203 USDT",
+        symbol: "BTC/USDT",
+        closedAt: "2025-06-16 07:53:59",
     },
     // ...thêm dữ liệu
 ]);
 
-async function fetchOrderBook(symbol = 'BTCUSDT', limit = 10) {
+async function fetchOrderBook(symbol = "BTCUSDT", limit = 10) {
     const url = `https://api.binance.com/api/v3/depth?symbol=${symbol}&limit=${limit}`;
     const res = await fetch(url);
     const data = await res.json();
@@ -316,7 +316,7 @@ async function fetchOrderBook(symbol = 'BTCUSDT', limit = 10) {
 }
 
 watch(activeKey, (val) => {
-    if (val === '0') {
+    if (val === "0") {
         fetchOrderBook();
         if (!intervalId) {
             intervalId = setInterval(() => fetchOrderBook(), 2000);
@@ -330,7 +330,7 @@ watch(activeKey, (val) => {
 });
 
 onMounted(() => {
-    if (activeKey.value === '0') {
+    if (activeKey.value === "0") {
         fetchOrderBook();
         intervalId = setInterval(() => fetchOrderBook(), 2000);
     }

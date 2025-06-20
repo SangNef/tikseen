@@ -254,7 +254,7 @@
                         class="_btn-ripple_1fzeu_1 text-white font-medium flex-1 flex items-stretch rounded-sm border border-[#d5dae011]"
                         :class="orderType === 'long' ? 'bg-[#27ae60]' : 'bg-[#f86655]'">
                         <div class="w-full flex flex-col items-center justify-between p-0.5">
-                            <span>{{ orderType === 'long' ? 'Mua/Long' : 'Bán/Short' }}</span>
+                            <span>{{ orderType === "long" ? "Mua/Long" : "Bán/Short" }}</span>
                             <span>107,087.24</span>
                         </div>
                     </button>
@@ -309,14 +309,14 @@
 </template>
 
 <script setup>
-import { empty } from '@/assets/trade';
-import { onMounted, onUnmounted, ref } from 'vue';
-import Market from '../Trade/Market.vue';
+import { empty } from "@/assets/mobile/trade";
+import { onMounted, onUnmounted, ref } from "vue";
+import Market from "../Trade/Market.vue";
 
 const price = ref(null);
 const percent = ref(null);
-const activeTab = ref('1');
-const orderType = ref('long');
+const activeTab = ref("1");
+const orderType = ref("long");
 
 let intervalId = null;
 
@@ -328,9 +328,9 @@ function onTabChange(key) {
 
 async function fetchTicker() {
     try {
-        const res = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
+        const res = await fetch("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT");
         const data = await res.json();
-        price.value = Number(data.lastPrice).toLocaleString('en-US', {
+        price.value = Number(data.lastPrice).toLocaleString("en-US", {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
         });
@@ -344,18 +344,18 @@ function renderTV() {
     if (window.TradingView?.widget) {
         new window.TradingView.widget({
             autosize: true,
-            symbol: 'BINANCE:BTCUSDT',
-            interval: '15',
-            timezone: 'Asia/Ho_Chi_Minh',
-            theme: 'dark',
-            style: '1',
-            locale: 'vi',
-            toolbar_bg: '#151821',
+            symbol: "BINANCE:BTCUSDT",
+            interval: "15",
+            timezone: "Asia/Ho_Chi_Minh",
+            theme: "dark",
+            style: "1",
+            locale: "vi",
+            toolbar_bg: "#151821",
             enable_publishing: false,
             hide_top_toolbar: true,
             hide_legend: true,
             hide_side_toolbar: true,
-            container_id: 'chart_container',
+            container_id: "chart_container",
             hide_volume: true,
         });
     }
@@ -369,8 +369,8 @@ onMounted(() => {
     if (window.TradingView?.widget) {
         renderTV();
     } else {
-        const script = document.createElement('script');
-        script.src = 'https://s3.tradingview.com/tv.js';
+        const script = document.createElement("script");
+        script.src = "https://s3.tradingview.com/tv.js";
         script.onload = renderTV;
         document.body.appendChild(script);
     }

@@ -59,7 +59,7 @@
                                         class="w-7 min-h-[28px] rounded-sm duration-150 ant-flex css-1v613y0 ant-flex-align-center ant-flex-justify-center"
                                         :class="coin.change24h >= 0 ? 'bg-[#00c189]' : 'bg-[#e24c4b]'">
                                         <span class="text-[0.28rem] font-bold text-white">
-                                            {{ coin.change24h >= 0 ? '+' : '' }}{{ coin.change24h }}%
+                                            {{ coin.change24h >= 0 ? "+" : "" }}{{ coin.change24h }}%
                                         </span>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                 class="text-[#b6b6b6] text-[0.32rem] font-medium py-0.5 active:opacity-60 duration-150 flex items-center justify-center cursor-pointer"
                 style="border-top: 1px solid rgb(29, 29, 29); gap: 6px"
                 @click="toggleExpand">
-                {{ expanded ? 'Thu gọn' : 'Mở rộng' }}
+                {{ expanded ? "Thu gọn" : "Mở rộng" }}
                 <svg
                     width="1em"
                     height="1em"
@@ -101,18 +101,18 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import { coins } from '@/assets/coin';
+import { computed, ref } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import { coins } from "@/assets/mobile/coin";
 
 const tabs = [
-    { id: 'favorite', label: 'Yêu thích' },
-    { id: 'popular', label: 'Phổ biến' },
-    { id: 'up', label: 'Tăng giá' },
-    { id: 'new', label: 'Mới' },
-    { id: 'volume', label: 'Khối lượng' },
-    { id: 'down', label: 'Giảm giá' },
+    { id: "favorite", label: "Yêu thích" },
+    { id: "popular", label: "Phổ biến" },
+    { id: "up", label: "Tăng giá" },
+    { id: "new", label: "Mới" },
+    { id: "volume", label: "Khối lượng" },
+    { id: "down", label: "Giảm giá" },
 ];
 const activeTab = ref(0);
 const expanded = ref(false);

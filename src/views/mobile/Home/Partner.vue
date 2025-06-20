@@ -46,9 +46,9 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-import { bg } from '@/assets/partner';
-import { Header } from '@/components/mobile';
+<script setup>
+import { bg } from "@/assets/mobile/partner";
+import { Header } from "@/components/mobile";
 </script>
 
 <style></style>

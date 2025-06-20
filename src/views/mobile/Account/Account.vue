@@ -256,24 +256,24 @@
         <div class="!mt-2 px-1.5">
             <h3 class="text-[0.36rem] font-medium !mb-1.5 text-[#f1f1f1]">Hỗ trợ nhanh</h3>
             <div class="flex items-center gap-1.5">
-                <a
-                    href="http://t.me/coincex_chat_bot"
+                <router-link
+                    to="http://t.me/coincex_chat_bot"
                     class="bg-primary border border-secondary active:opacity-80 active:duration-150 active:scale-95 w-full flex flex-col items-center justify-center gap-1 py-1 rounded-md"
                     target="_blank"
                     ><img
                         class="w-2.5 h-2.5"
                         width="25"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAACMCAMAAACZHrEMAAAACXBIWXMAAAsSAAALEgHS3X78AAAAY1BMVEVHcEwpofIpofIpofIpofIpofIpofIpofIpofIpofIpofIpofIpofIpofIpofIpofIpofL///82p/NfufWv3PrY7v3y+f7K6PyU0Pnl9P1Rs/RErfSi1vm94vuHyvh6xPdsvvaVrW77AAAAEHRSTlMAQNBQwPBgoCAQsJCAcOAwAW+5ngAABE5JREFUeNrNXOl66joMbNKskBRl34H3f8rDUu6lkNiTWAman/2KGWzPSLZlf30thuVFvuPQExzHjzzra2McYt+mSdh+fNiISODtXNLC3XnB6kxim2DY8Yp8Qs+hmXC8cJ1O2bu0AO6ev3ssnxbD5xWY5ZARHD46gU/G8HkGK4yIBRHDVP7+ISb8fJt2y44YsTPqnG+XWOEu75xwT+zYL+ycwKYVYAcShui/oVrgOR6tBm8uF59WhC+Iy0w2K3OZxWZHJIaNTySGzSZcQDYbcYHYeLQZtH5j0YbQeHHgbknGVcap0KZNYati+J42xl4RqGlzTGZbobs9GTf8XBQYyYvFDNLkQIU/nyHzMzZQEX0I0Yjd0ccQfC4+AhHTog/iNUY5nyTjCOqY165Zb8a0eVXl2ZxZs5qUTkVyw2mGoNaJ1l1dJg9kcPReJUJmQ/KEAY6X/HlvemySPyjhfJhb111eJq9A1c08fU9V8o4KjQkx5/jUTTKGQffB+JcMXxae5ckEam1uzjxKD1MZw4mwceLRUteXiQKZtgGPLfX9ayojSMFk2GU3lXeU+lbc23mjcSQsEy0qoKGDsbBHTeUdOdBUbJY9dHWTYKiB1nwTl5k2lXeckV2AC5mFk3bSVPq0XqLsCxYmnNOm0ly+tk/mhslH8rnA8s7TpjKko1xKqF1v9kJSZSrldWrkC5V9XVr6M01FZSbpBBdI2Vc5OVymUh5piguk7GuC5eCmonTaopvmAin7SobJVO6/PV8cs+/axkxF47RNq+SSEBsZTaZy8zk1l5KLzFkbCcvfQciNYraeDJCp3HxOzQVUtppMC0TC8iGU3DBmq8m0BRCNqw7gAipbQaYD8re7z12HU92HrSmZo55L8fiSVNOJZEqmxrM3HZfGmEyrodJkKBdY2YoJ3CM+h3BJepjMdKDsjoNW0AgXWNm6qJ3VhcLnMC5omLyQ0SZX6bn/+4XFU+MIF1jZPpZ2dqf8Ny40/fPvhLjAyo7whDzNLnj5E8QFVrZnsjeOccGVbS1dxF2BLbNnKNtgedsxrrMfy9vFC/8MJJPBYjLYEmlBMqiyY6PNInA/BG3uYLSN1pacynYNNxixZBBsbGe89drzickz35TOtBPnCLYUMGzXpwOPsm2eg4yzeh53uLA5Dg/SikHZAdvh13G6cwo0seI7FuwKQ2V7rAemtZGynwuMOI6SJxwQU/ae+5A97ZcrO+AvP8jKhcr21yjMGHFANOFco2Tl1QGHebpmrlnpqvlTxlqvzOnZAYf5M4b52P9/kVfpbCnxl8bdT+iaE/TP0epFg22WgYn4aNGgqHJKWYWmskpwRRUnyyrbllXQLqrUX9YlCFnXQ2RdnJF1pUjWZatN2My4FCfpgp6sq4uyLnXKuu568WJBF4FlXZGWdXlc1rV6YQ8OyHqKQdgjFbKe7xD2sImwJ1+EPYYj7JkgYQ8oSXtaStqjWys+R/YPiiPWw+dfqjIAAAAASUVORK5CYII="
-                        alt="" /><span class="text-[0.28rem] text-[#f1f1f1]">Nhắn tin Telegram</span></a
-                ><a
-                    href="http://t.me/coincex_chat_bot"
+                        alt="" /><span class="text-[0.28rem] text-[#f1f1f1]">Nhắn tin Telegram</span></router-link
+                ><router-link
+                    to="http://t.me/coincex_chat_bot"
                     class="bg-primary border border-secondary active:opacity-80 active:duration-150 active:scale-95 w-full flex flex-col items-center justify-center gap-1 py-1 rounded-md"
                     target="_blank"
                     ><img
                         class="w-2.5 h-2.5"
                         width="25"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAACMCAMAAACZHrEMAAAACXBIWXMAAAsSAAALEgHS3X78AAAAY1BMVEVHcEzwVFXwVFXwVFXwVFXwVFXwVFXwVFXwVFXwVFXwVFXwVFXwVFXwVFXwVFXwVFX////wVFX4qqr+9fXxX2DzdHX71dX3n6D5v8D96uryaWr0f4D83+D4tbX1ior2lJX6yspa1YXAAAAAEHRSTlMAYNCwEPBAoCDAkFCAcOAwcaig3QAABHdJREFUeNrtXOuSqjAMFgQKLBwtd+Tm+z/l2RHloAslCaWTM7Pfv9VZ+UhzbZOeTmR4ViSCQM4QBCKyvJNhXGJhy1XYIr4YIuJbZ1duwj1b/uFMYluCYccH8nGsQCIRWM4xQgldSYAb6hePJyQZQq+BeYHchUAfHV/I3RB6FsuJpBZEGlT564/UhD9fe8Vylhpx3iWcL1dqhUsXjhNK7QiJwvFteQBskll5rjwELsHnWPIwWFguQh4IwYgLks3BXFBszlKyYSOkZMPGCBcgG0NcQGwsaQyb/saTBrHhi33XJBlXGaccWxqFrYrhoTSMUJFLSeNYzbYc1zwZ19EaBW5Nn3yjb260vFjXImV9V1xnKLo+07NQDrYmGe7XBdx7bAWztFC4Wi1L6usK6gQnnmjB3aF+oEznj2+Lop3/nZaoH/N3xcdmkkpdDc306VBNn7fNnoiJiUnJSwBd/vlV3r1EluyIUfA9j+xpQPWwotdP8RRwzQmogsnrTbV4KlSdE0UD9nf5+KC78rWz0ejTnKQ1PpLLprWUSDY+IVpnKfQZI+sUqjchIUK28Pcd2bT4eAnNezuM7Ec2HTofBtp1j9ODkU2PtG6g+mYPox4QkfRh4BlOhWOE460wQadCuOL4SQaWhd8w7zmXJSzpslGrVCE04E3LKsw6wWwpe8QbbBr3iGMZwp5goeDhUxssmQbkr2fJMMzj1QgX9uEma5jfe5w3wpwG0qzfzBvmmi5gw07gi/9T1UqwcQuwJt4pddEdrPcC7GXgL7ik+GBPA1eZnEKmgf8nNOHswe+3KFOYr/SALi+hGfbLuGHxyQIWkgnF/f5TfRiZaMOYsrKYasc7jcxUkadFmW2YUwCuYhMamQRc9wZKMtVbQa+BjDqEB6etlFczGWVSfNrwENrJqCL/aSMX0U+moJC5XY8ho0hDT+rgfwSZnkAmOYpM8kvml8wvmePJBHzIBLzICD5kxHraaZ5MtJ6QmydjrZcqhwXKYb1UOfFJIVTlrenkylYV/qbTTqHcEtGTkHfQhDxWbxa9lyoljUwBLVUuG9to8yIuzWhkWmAR525uMH6Xt6/iNqdxyWaqqyxvzwbad3rovrRFOETGooJud/qY7XoabtBzHht3kEEWDGgXLSYd9uM1pkCsEuZQG4nx/AuyyR8c3g6HOBm0jm4p6sczU4iznDcY0Ru/8jKZMLy5k6xCnG2H5H6VmeF+pBnVJIXbs0MDeL7q72/ozNLPxGncK75NQaSFcREauiirn21F3ZDc6wVJqeFRW1YWY+ByvxP04C7Q0GDaKKkU8KMyT0MbsIJM2yEyDrGzAUyxTG2R9Lj+QX9va9yaAhMS5UhH0+C3Ca+YNgqLTYOUntd1pwfHl75G0/VwAMT5f2jBZdWczKttm1dDO6tWf15DELzGQ3gNzvAaKeI1bGWEDWIojtOAHq/RRV5DnbzGXXkNAvMakeY1PM5rrJ7ZhQO8rmJgdkkFr+s7mF1swuzKF2aX4TC7JojZBUrcrpbidunWgdeR/QV1KwQhMnpm3gAAAABJRU5ErkJggg=="
-                        alt="" /><span class="text-[0.28rem] text-[#f1f1f1]">Nhắn tin CSKH</span></a
+                        alt="" /><span class="text-[0.28rem] text-[#f1f1f1]">Nhắn tin CSKH</span></router-link
                 >
             </div>
         </div>
@@ -283,9 +283,9 @@
 </template>
 
 <script setup>
-import { Header } from '@/components/mobile';
-import { avatar } from '@/assets/icons';
-import { Gift, Mine, Invite } from '@/assets/account';
+import { Header } from "@/components/mobile";
+import { avatar } from "@/assets/mobile/icons";
+import { Gift, Mine, Invite } from "@/assets/mobile/account";
 </script>
 
 <style></style>

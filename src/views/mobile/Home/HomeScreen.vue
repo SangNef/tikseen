@@ -235,7 +235,7 @@
 </template>
 
 <script setup>
-import Header from './Header.vue';
+import Header from "./Header.vue";
 import {
     GiftBg,
     NoAuth,
@@ -255,24 +255,24 @@ import {
     Com,
     Earn,
     Coin,
-} from '@/assets/home';
+} from "@/assets/mobile/home";
 
-import { menu } from '@/assets/menu';
+import { menu } from "@/assets/mobile/menu";
 
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Autoplay, Pagination } from 'swiper/modules'; // ✅ Thêm Pagination
-import 'swiper/css';
-import 'swiper/css/autoplay';
-import 'swiper/css/pagination';
-import SwiperCore from 'swiper';
-import Drawer from './Drawer.vue';
-import CoinMaker from './CoinMaker.vue';
-import Gif from './Gif.vue';
-import { ref, onMounted, onUnmounted } from 'vue';
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay, Pagination } from "swiper/modules"; // ✅ Thêm Pagination
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/pagination";
+import SwiperCore from "swiper";
+import Drawer from "./Drawer.vue";
+import CoinMaker from "./CoinMaker.vue";
+import Gif from "./Gif.vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 const isScrolled = ref(false);
 
-const user = localStorage.getItem('username');
+const user = localStorage.getItem("username");
 
 // Đưa khai báo onScroll ra ngoài
 const onScroll = () => {
@@ -289,7 +289,7 @@ const countdown = ref({
 let countdownInterval = null;
 
 function updateCountdown() {
-    const target = new Date('2025-06-26T10:21:43+07:00'); // Giờ VN
+    const target = new Date("2025-06-26T10:21:43+07:00"); // Giờ VN
     const now = new Date();
     let diff = target - now;
     if (diff <= 0) {
@@ -308,7 +308,7 @@ function updateCountdown() {
 }
 
 onMounted(() => {
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
     updateCountdown();
@@ -316,7 +316,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener("scroll", onScroll);
     if (countdownInterval) clearInterval(countdownInterval);
 });
 
@@ -338,12 +338,12 @@ const banners = [
 ];
 
 const swiperText = [
-    'Thông báo: Điều chỉnh phí giao dịch Futures',
-    'Thông báo: Coincex hỗ trợ quy đổi các loại token',
-    'Vinh danh lạnh đạo tập sự có khối lượng giao dịch vượt trội trong quý',
-    'Thông báo quy định nạp/rút VNDC qua tài khoản ngân hàng chính chủ',
-    'Hỗ trợ kế hoạch chuyển đổi mã giao dịch ZK Token sang mã giao dịch ZKJ Token',
-    'Vinh danh đối tác cấp cao có khối lượng giao dịch vượt trội trong tháng',
+    "Thông báo: Điều chỉnh phí giao dịch Futures",
+    "Thông báo: Coincex hỗ trợ quy đổi các loại token",
+    "Vinh danh lạnh đạo tập sự có khối lượng giao dịch vượt trội trong quý",
+    "Thông báo quy định nạp/rút VNDC qua tài khoản ngân hàng chính chủ",
+    "Hỗ trợ kế hoạch chuyển đổi mã giao dịch ZK Token sang mã giao dịch ZKJ Token",
+    "Vinh danh đối tác cấp cao có khối lượng giao dịch vượt trội trong tháng",
 ];
 </script>
 

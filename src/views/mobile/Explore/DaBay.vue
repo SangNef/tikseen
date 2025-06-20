@@ -265,7 +265,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import { dabay1, dabay2, dabay3, dabay4, dabayBg, main } from '@/assets/explore';
+import { dabay1, dabay2, dabay3, dabay4, dabayBg, main } from '@/assets/mobile/explore';
 
 const dabay4Matrix = ref('1,0,0,1,223.5185546875,164.90586853027344');
 const lottie251Matrix = ref('0.9741671085357666,0.21075259149074554,-0.21075259149074554,0.9741671085357666,402.8359680175781,212.85142517089844');

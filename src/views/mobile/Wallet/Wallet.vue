@@ -165,50 +165,50 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { btc, usdt } from '@/assets/coin';
-import { wallet, future } from '@/assets/wallet';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
+import { ref } from "vue";
+import { btc, usdt } from "@/assets/mobile/coin";
+import { wallet, future } from "@/assets/mobile/wallet";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
 const coins = [
     {
         icon: btc,
-        name: 'Bitcoin',
-        tag: 'Tăng cường kép',
-        apy: '905.03%',
+        name: "Bitcoin",
+        tag: "Tăng cường kép",
+        apy: "905.03%",
     },
     {
         icon: usdt,
-        name: 'USDT',
-        tag: 'Cho vay tiền điện tử Pro',
-        apy: '628.54%',
+        name: "USDT",
+        tag: "Cho vay tiền điện tử Pro",
+        apy: "628.54%",
     },
     {
         icon: usdt,
-        name: 'USDT',
-        tag: 'Tiết kiệm linh hoạt',
-        apy: '22.86%',
+        name: "USDT",
+        tag: "Tiết kiệm linh hoạt",
+        apy: "22.86%",
     },
 ];
 
 const walletList = [
     {
         icon: wallet,
-        name: 'Ví chính',
-        desc: 'Mặc định',
+        name: "Ví chính",
+        desc: "Mặc định",
         amount: 0.57,
-        currency: '$',
-        route: '/main-wallet',
+        currency: "$",
+        route: "/main-wallet",
     },
     {
         icon: future,
-        name: 'Ví Futures',
-        desc: '',
+        name: "Ví Futures",
+        desc: "",
         amount: 0.0,
-        currency: '$',
-        route: '/future-wallet',
+        currency: "$",
+        route: "/future-wallet",
     },
 ];
 

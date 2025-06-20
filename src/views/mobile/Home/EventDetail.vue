@@ -20,10 +20,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { events } from '@/assets/event';
-import { Header } from '@/components/mobile';
+import { ref, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { events } from "@/assets/mobile/event";
+import { Header } from "@/components/mobile";
 
 const route = useRoute();
 const router = useRouter();
@@ -33,7 +33,7 @@ onMounted(() => {
     const { id } = route.params;
     const found = events.find((ev) => ev.id === id);
     if (!found) {
-        router.replace({ name: 'Events' });
+        router.replace({ name: "Events" });
     } else {
         event.value = found;
     }

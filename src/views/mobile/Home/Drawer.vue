@@ -71,7 +71,7 @@
                 :disabled="buttonDisabled"
                 @click="visible = false">
                 <span class="!text-invalid !font-bold">
-                    {{ buttonDisabled ? `Đã hiểu (${countdown}s)` : 'Đã hiểu' }}
+                    {{ buttonDisabled ? `Đã hiểu (${countdown}s)` : "Đã hiểu" }}
                 </span>
             </a-button>
         </div>
@@ -79,8 +79,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-import { Passkey } from '@/assets/home';
+import { onMounted, ref } from "vue";
+import { Passkey } from "@/assets/mobile/home";
 
 const visible = ref(true);
 const countdown = ref(3); // bộ đếm 3 giây

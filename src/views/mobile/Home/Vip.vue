@@ -72,24 +72,24 @@
 </template>
 
 <script setup>
-import { vipImages, vipMain } from '@/assets/vip';
-import { Header } from '@/components/mobile';
+import { vipImages, vipMain } from "@/assets/mobile/vip";
+import { Header } from "@/components/mobile";
 
 const vipList = [
-    { level: 1, requirement: '0' },
-    { level: 2, requirement: '2' },
-    { level: 3, requirement: '100' },
-    { level: 4, requirement: '800' },
-    { level: 5, requirement: '15.000' },
-    { level: 6, requirement: '40.000' },
-    { level: 7, requirement: '100.000' },
-    { level: 8, requirement: '1.000.000' },
-    { level: 9, requirement: '5.000.000' },
+    { level: 1, requirement: "0" },
+    { level: 2, requirement: "2" },
+    { level: 3, requirement: "100" },
+    { level: 4, requirement: "800" },
+    { level: 5, requirement: "15.000" },
+    { level: 6, requirement: "40.000" },
+    { level: 7, requirement: "100.000" },
+    { level: 8, requirement: "1.000.000" },
+    { level: 9, requirement: "5.000.000" },
 ];
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const percent = ref(50.5558); // Giá trị phần trăm
-const strokeColor = ref('#01bc8d'); // Màu xanh đặc trưng
+const strokeColor = ref("#01bc8d"); // Màu xanh đặc trưng
 </script>
 
 <style>

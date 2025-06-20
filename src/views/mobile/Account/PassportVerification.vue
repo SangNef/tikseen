@@ -133,8 +133,8 @@
 </template>
 
 <script setup>
-import { Back, Front, Kyc, Secu, BgWallet } from '@/assets/account';
-import { useRouter } from 'vue-router';
+import { Back, Front, Kyc, Secu, BgWallet } from "@/assets/mobile/account";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 function navigateBack() {

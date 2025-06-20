@@ -34,12 +34,12 @@
 </template>
 
 <script setup>
-import { VI } from '@/assets/auth';
-import { useRouter } from 'vue-router';
+import { VI } from "@/assets/mobile/auth";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 function goHome() {
-    router.push({ name: 'Home' });
+    router.push({ name: "Home" });
 }
 </script>
 

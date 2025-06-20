@@ -260,8 +260,8 @@
 </template>
 
 <script setup>
-import { usdt, vndc } from '@/assets/coin';
-import { Header } from '@/components/mobile';
+import { usdt, vndc } from "@/assets/mobile/coin";
+import { Header } from "@/components/mobile";
 </script>
 
 <style></style>

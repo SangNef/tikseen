@@ -203,7 +203,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { Forgot } from "@/assets/auth";
+import { Forgot } from "@/assets/mobile/auth";
 
 const username = ref("");
 const newPassword = ref("");

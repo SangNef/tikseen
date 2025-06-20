@@ -56,9 +56,9 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-import { Header } from '@/components/mobile';
-import { events } from '@/assets/event';
+<script setup>
+import { Header } from "@/components/mobile";
+import { events } from "@/assets/mobile/event";
 </script>
 
 <style></style>

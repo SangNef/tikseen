@@ -73,7 +73,7 @@
 </template>
 
 <script setup>
-import { avatar } from '@/assets/icons';
+import { avatar } from "@/assets/mobile/icons";
 </script>
 
 <style scoped></style>
