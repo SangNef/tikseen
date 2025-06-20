@@ -10,6 +10,8 @@ import {
     Home,
     Invite,
     InviteReward,
+    Notification,
+    NotificationDetail,
     Partner,
     Vip,
 } from "@/views/mobile/Home";
@@ -62,6 +64,22 @@ const MobileRoutes = [
         component: Explore,
         meta: {
             layout: "MainLayout",
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/notifications",
+        name: "Notification",
+        component: Notification,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/notification/:id",
+        name: "NotificationDetail",
+        component: NotificationDetail,
+        meta: {
             requiresAuth: true,
         },
     },
